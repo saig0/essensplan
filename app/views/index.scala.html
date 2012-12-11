@@ -1,0 +1,47 @@
+@(essen: List[Essen], essenForm: Form[Essen])
+
+@import helper._
+
+@main("Essensplan") {
+    
+	<h1>Essensplan</h1>
+	
+	<table border="1">
+		<tr>
+			<th>Wochentag</th>
+			<th>Essen</th>
+		</tr>
+	
+		@essen.map { e =>
+			<tr>
+				<td>@e.tag</td>
+				<td>@e.name</td>
+				<td><a href="@e.verweis">öffnen</a></td>
+				<td>
+					@form(routes.Application.entferneEssen(e.name)) {
+						<input type="submit" value="entfernen" />
+					}
+				</td>
+			</tr>
+		}	
+	</table>
+	
+	<h2>Neues Essen</h2>
+	
+	@form(routes.Application.neuesEssen) {
+		@inputText(essenForm("name"))
+		@inputText(essenForm("verweis"))
+		@select(
+			field = essenForm("tag"), 
+			options = options(
+			"Montag" -> "Montag",
+			"Dienstag" -> "Dienstag",
+			"Mittwoch" -> "Mittwoch",
+			"Donnerstag" -> "Donnerstag",
+			"Freitag" -> "Freitag",
+			"Samstag" -> "Samstag", 
+			"Sonntag" -> "Sonntag"))
+		
+		<input type="submit" value="hinzufügen" />
+	}
+}
