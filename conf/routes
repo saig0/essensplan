@@ -3,12 +3,28 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           controllers.Application.essen
 
 # Essen
 GET		/essen						controllers.Application.essen
 POST	/essen						controllers.Application.neuesEssen
 POST	/essen/:name/delete			controllers.Application.entferneEssen(name: String)
+
+# Rezepte
+GET		/recipes					controllers.Application.recipes
+GET		/recipes/new				controllers.Application.newRecipe
+GET		/recipes/:recipeId/ingredients					controllers.Application.recipeIngredients(recipeId: Long) 
+POST	/recipes/:recipeId/ingredients/new								controllers.Application.addRecipeIngredient(recipeId: Long)
+POST	/recipes/:recipeId/ingredients/:ingredientId/delete controllers.Application.removeRecipeIngredient(recipeId:Long, ingredientId: Long)
+POST	/recipes/create				controllers.Application.createRecipe
+POST	/recipes/:recipeId			controllers.Application.updateRecipe(recipeId: Long)
+POST	/recipes/:recipeId/delete	controllers.Application.removeRecipe(recipeId: Long)
+GET		/recipes/:recipeId			controllers.Application.recipe(recipeId: Long, page="all")
+GET		/recipes/:recipeId/page/:page	controllers.Application.recipe(recipeId: Long, page: String)
+GET		/recipes/:recipeId/edit		controllers.Application.editRecipe(recipeId: Long)
+GET		/recipes/:recipeId/preparationStep					controllers.Application.recipePreparation(recipeId: Long) 
+POST	/recipes/:recipeId/preparationStep/new								controllers.Application.addPreparationStep(recipeId: Long)
+POST	/recipes/:recipeId/preparationStep/:preparationStepId/delete controllers.Application.removePreparationStep(recipeId:Long, preparationStepId: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

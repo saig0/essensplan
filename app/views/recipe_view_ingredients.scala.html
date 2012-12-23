@@ -1,0 +1,17 @@
+@(recipeId: Long, ingredients: List[Ingredient])
+
+@import helper._
+@import tags._
+
+@main("Rezept") {
+    
+	@recipe_ingredients_view(recipeId, ingredients)
+	
+	@form(routes.Application.recipe(recipeId, "step=1")) {
+		<input type="submit" value="weiter" />
+	}
+	
+	@form(routes.Application.recipe(recipeId, "info")) {
+		<input type="submit" value="zurück" />
+	}
+}

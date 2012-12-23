@@ -1,0 +1,52 @@
+@(recipe: Recipe, preparationSteps: List[PreparationStep], preparationStepForm: Form[PreparationStep])
+
+@import helper._
+
+@main("Rezepte") {
+    
+	<h1>Zubereitung</h1>
+	
+	<table border="1">
+		<tr>
+			<th>Schritt</th>
+			<th>Beschreibung</th>
+			<th>Bild</th>
+			<td> </th>
+		</tr>
+	
+		@preparationSteps.map { preparationStep =>
+			<tr>
+				<td valign="top">@preparationStep.step</td>
+				<td valign="top">@preparationStep.description</td>
+				<td>
+					@if(!preparationStep.imageRef.isEmpty) {
+						<img src="@preparationStep.imageRef" alt="Schritt @preparationStep.step" width="250px"/> 
+					} 
+				</td>
+				<td valign="top">
+					@if(preparationStep.step == preparationSteps.size) {
+						@form(routes.Application.removePreparationStep(recipe.id, preparationStep.id)) {
+							<input type="submit" value="entfernen" />
+						}
+					}
+				</td>
+			</tr>
+		}	
+	</table>
+	
+	@form(routes.Application.addPreparationStep(recipe.id)) {
+		<input type="hidden" name="step" value="@(preparationSteps.size + 1)" />
+		@textarea(preparationStepForm("description"))
+		@inputText(preparationStepForm("imageRef"))
+		
+		<input type="submit" value="hinzufügen" />
+	}
+	
+	@form(routes.Application.recipes) {
+		<input type="submit" value="fertig" />
+	}
+
+	@form(routes.Application.recipeIngredients(recipe.id)) {
+		<input type="submit" value="zurück" />
+	}	
+}

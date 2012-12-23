@@ -1,0 +1,41 @@
+@(recipeId: Long, step: Int, preparationSteps: List[PreparationStep])
+
+@import helper._
+
+@main("Rezept") {
+    	
+	<h2>Zubereitung - Schritt @step</h2>
+	
+	@defining(if(step <= preparationSteps.size) {
+			preparationSteps(step-1)
+		} else {
+			PreparationStep(0,0,0,"keine Anleitung verfügbar","")
+		}){ preparationStep =>
+	<table>
+			<tr>
+				<td>
+					@if(!preparationStep.imageRef.isEmpty) {
+						<img src="@preparationStep.imageRef" alt="Schritt @preparationStep.step" width="250px"/> 
+					} 
+				</td>
+			<tr>
+			<tr>
+				<td valign="top">@preparationStep.description</td>				
+			</tr>
+	</table>
+	}
+	
+	@if(step < preparationSteps.size) {
+		@form(routes.Application.recipe(recipeId, "step="+(step+1))) {
+			<input type="submit" value="weiter" />
+		}
+	}
+	
+	@form(if(step == 1) {
+			routes.Application.recipe(recipeId, "ingredients")
+		} else {
+			routes.Application.recipe(recipeId, "step="+(step-1))
+		}) {
+		<input type="submit" value="zurück" />
+	}
+}

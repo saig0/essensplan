@@ -1,0 +1,44 @@
+@(recipes: List[Recipe], searchForm: Form[RecipeFilter], render: Recipe => List[Html])(titel: String = "Rezepte")
+
+@import helper._
+
+    
+	<h1>@titel</h1>	
+	
+	@form(routes.Application.recipes) {
+		@searchInput(searchForm("name"))
+		@select(
+			field = searchForm("sorting"), 
+			options = options(
+				"2"		-> "name",
+				"-3"	-> "rating"
+			)
+		)
+		
+		<details>
+			<summary>erweiterte Suche</summary>
+			@inputRange(searchForm("rating"), 0, 5)
+			@searchInput(searchForm("ingredient"))
+		</details>
+	
+	<input type="submit" value="suchen" />
+	}
+	
+	<span>@recipes.size Rezepte gefunden</span>
+	
+	<table border="1">
+		<tr>
+			<th>Rezept</th>
+		</tr>
+	
+		@recipes.map { recipe =>
+			<tr>
+				<td>@recipe.name</td>
+				@render(recipe).map { r =>
+					<td> @r </td>
+				}
+			</tr>
+		}	
+	</table>
+	
+	

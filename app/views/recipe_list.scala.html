@@ -1,0 +1,27 @@
+@(recipes: List[Recipe], searchForm: Form[RecipeFilter])
+
+@import helper._
+@import tags._
+
+
+@main("Rezepte") {
+	
+	@recipe_list_view(recipes, searchForm, (recipe: Recipe) => {
+		var l = List[Html]().toBuffer
+		l += form(routes.Application.recipe(recipe.id, "all")) { Html("""
+						<input type='submit' value='öffnen' />
+						""")}
+		l+=	form(routes.Application.editRecipe(recipe.id)) { Html("""
+						<input type='submit' value='bearbeiten' />
+					""")}
+		l+=	form(routes.Application.removeRecipe(recipe.id)) { Html("""
+						<input type='submit' value='entfernen' />
+					""")}
+		l.toList
+	})("Rezepte")
+	
+	@form(routes.Application.newRecipe) {
+		<input type="submit" value="neues Rezept" />
+	}
+	
+}

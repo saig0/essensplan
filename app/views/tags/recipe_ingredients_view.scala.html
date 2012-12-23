@@ -1,0 +1,26 @@
+@(recipeId: Long, ingredients: List[Ingredient], render: Ingredient => List[Html] = ( _ => List[Html]()))
+
+@import helper._
+
+    
+	<h2>Zutaten</h2>
+	
+	<table border="1">
+		<tr>
+			<th>Menge</th>
+			<th>Einheit</th>
+			<th>Zutat</th>
+		</tr>
+	
+		@ingredients.map { ingredient =>
+			<tr>
+				<td>@ingredient.amount</td>
+				<td>@ingredient.unit</td>
+				<td>@ingredient.name</td>
+				@render(ingredient).map { action =>
+					<td> @action </td>
+				}
+			</tr>
+		}	
+	</table>
+	

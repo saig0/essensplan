@@ -1,0 +1,39 @@
+@(recipe: Recipe, ingredients: List[Ingredient], preparationSteps: List[PreparationStep])
+
+@import helper._
+@import tags._
+
+@main("Rezept") {
+    
+	<h1>Rezept: @recipe.name</h1>
+	
+	@form(routes.Application.recipe(recipe.id, "info")) {
+		<input type="submit" value="Schritt-für-Schritt-Anleitung" />
+	}
+	
+	@recipe_info_view(recipe)
+	
+	@recipe_ingredients_view(recipe.id, ingredients)
+	
+	<h2>Zubereitung</h2>
+	
+	<table border="1">
+		<tr>
+			<th>Schritt</th>
+			<th>Beschreibung</th>
+			<th>Bild</th>
+		</tr>
+	
+		@preparationSteps.map { preparationStep =>
+			<tr>
+				<td valign="top">@preparationStep.step</td>
+				<td valign="top">@preparationStep.description</td>
+				<td>
+					@if(!preparationStep.imageRef.isEmpty) {
+						<img src="@preparationStep.imageRef" alt="Schritt @preparationStep.step" width="250px"/> 
+					} 
+				</td>
+			</tr>
+		}	
+	</table>
+}

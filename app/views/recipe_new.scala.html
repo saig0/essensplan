@@ -1,0 +1,24 @@
+@(recipeForm: Form[Recipe], recipeId: Long = 0)
+
+@import helper._
+
+@main("Rezepte") {
+    
+	<h1>Neues Rezepte</h1>
+	
+	@form(
+		if(recipeId == 0) routes.Application.createRecipe
+		else routes.Application.updateRecipe(recipeId)
+		){
+		@inputText(recipeForm("name"))
+		@inputRange(recipeForm("rating"), 0, 5)
+		@inputText(recipeForm("imageRef"))
+		@inputText(recipeForm("tags"))
+		
+		<input type="submit" value="weiter" />		
+	}
+
+	@form(routes.Application.recipes) {
+		<input type="submit" value="abbrechen" />
+	}
+}
