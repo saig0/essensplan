@@ -176,8 +176,6 @@ object Application extends Controller {
 				Ok(views.html.recipe_view_preparation(recipe.id, preparationStep, preparationSteps))
 			}
 		}
-		
-		
 	}
 	
 	def updateRecipe(recipeId: Long) = Action { implicit request =>
