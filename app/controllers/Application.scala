@@ -253,7 +253,7 @@ object Application extends Controller {
 	
 	def mealsNewRecipe = showRecipes((recipes, form, tags) => views.html.meal_new_recipe(recipes, form, tags))
 	
-	def mealsNewRecipeQuery = showRecipesQuery((recipes, form, tags) => views.html.meal_new_recipe(recipes, form, tags))	
+	def mealsNewRecipeQuery = showRecipesQuery((recipes, form, tags) => 		views.html.meal_new_recipe(recipes, form, tags))	
 	
 	def mealsNewDay(recipeId: Long) = Action {
 		val recipe = Recipe.findById(recipeId)
@@ -264,7 +264,7 @@ object Application extends Controller {
 	val newMealForm : Form[NewMealFilter] = Form (
 		mapping (				
 			"date"		-> date
-		)((date) => NewMealFilter( date))
+		)((date) => NewMealFilter(date))
 		 ((filter: NewMealFilter) => Some((filter.date)))
 	)
 	
