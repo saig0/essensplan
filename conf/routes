@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.essen
+GET     /                           controllers.Application.meals
 
 # Essen
 GET		/essen						controllers.Application.essen
@@ -12,6 +12,7 @@ POST	/essen/:name/delete			controllers.Application.entferneEssen(name: String)
 
 # Rezepte
 GET		/recipes					controllers.Application.recipes
+GET		/recipes/query				controllers.Application.recipesQuery
 GET		/recipes/new				controllers.Application.newRecipe
 GET		/recipes/:recipeId/ingredients					controllers.Application.recipeIngredients(recipeId: Long) 
 POST	/recipes/:recipeId/ingredients/new								controllers.Application.addRecipeIngredient(recipeId: Long)
@@ -25,6 +26,18 @@ GET		/recipes/:recipeId/edit		controllers.Application.editRecipe(recipeId: Long)
 GET		/recipes/:recipeId/preparationStep					controllers.Application.recipePreparation(recipeId: Long) 
 POST	/recipes/:recipeId/preparationStep/new								controllers.Application.addPreparationStep(recipeId: Long)
 POST	/recipes/:recipeId/preparationStep/:preparationStepId/delete controllers.Application.removePreparationStep(recipeId:Long, preparationStepId: Long)
+
+# Essensplan
+GET		/meals						controllers.Application.meals
+GET		/meals/query				controllers.Application.mealsQuery
+GET		/meals/create/recipe		controllers.Application.mealsNewRecipe
+GET		/meals/create/recipe/query	controllers.Application.mealsNewRecipeQuery
+GET		/meals/create/day/:recipeId	controllers.Application.mealsNewDay(recipeId: Long)
+POST	/meals/create/:recipeId		controllers.Application.mealsNew(recipeId: Long)
+POST	/meals/:mealId/delete		controllers.Application.mealRemove(mealId: Long)
+GET		/meals/:mealId/edit			controllers.Application.mealEdit(mealId: Long)
+POST	/meals/:mealId/:recipeId	controllers.Application.mealUpdate(recipeId: Long, mealId: Long)
+GET		/meals/shoppingList/:from/:to	controllers.Application.mealShoppingList(from: String, to: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

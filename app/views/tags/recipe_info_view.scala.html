@@ -1,4 +1,4 @@
-@(recipe: Recipe)
+@(recipe: RecipeDTO)
 
 @import helper._
 
@@ -18,7 +18,7 @@
 		</tr>
 		<tr>
 			<td>Tags</td>
-			<td>@recipe.tags</td>
+			<td>@recipe.tags.map(_.name).mkString(",")</td>
 		</tr>
 	</table>
 	

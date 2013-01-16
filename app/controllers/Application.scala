@@ -4,8 +4,11 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
+import play.api.templates._
 import models._
 import models.Essen._
+import java.util.Date
+import java.text.SimpleDateFormat
 
 object Application extends Controller {
       
@@ -38,43 +41,55 @@ object Application extends Controller {
 	
 	// ---------------------------------------------------
 	
-	def recipes =  Action { implicit request =>
-		searchForm.bindFromRequest.fold (
-			errors => BadRequest(views.html.recipe_list(Recipe.all, errors)),
-			RecipeFilter => {
-				val recipes = Recipe.find(name = RecipeFilter.name, rating = RecipeFilter.rating, ingredient = RecipeFilter.ingredient, sorting = RecipeFilter.sorting)
-				Ok(views.html.recipe_list(recipes, searchForm.fill(RecipeFilter)))
-			}
-	)}
+	private def findRecipes(filter: RecipeFilter) = 
+		Recipe.find(name = filter.name, tag = filter.tag, rating = filter.rating, ingredient = filter.ingredient, sorting = filter.sorting)
 	
-	def newRecipe = Action {
-		Ok(views.html.recipe_new(recipeForm))
+	private def showRecipes(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) = Action { request =>
+		val defaultFilter = RecipeFilter("", "", 0, "", 2)
+		Ok(html(findRecipes(defaultFilter), searchForm.fill(defaultFilter), tagOptions))
 	}
 	
-	def editRecipe(recipeId: Long) = Action {
-		val recipe = Recipe.findById(recipeId)
+	private def showRecipesQuery(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) = Action { implicit request =>
+		searchForm.bindFromRequest.fold (
+			errors => BadRequest(html(Recipe.all, errors, tagOptions)),
+			filter => Ok(html(findRecipes(filter), searchForm.fill(filter), tagOptions))	
+	)}
+		
+	def recipes = showRecipes((recipes, form, tags) => views.html.recipe_list(recipes, form, tags))
+	
+	def recipesQuery =  showRecipesQuery((recipes, form, tags) => views.html.recipe_list(recipes, form, tags))
+	
+	private def showNewRecipe(form: Form[RecipeDTO], recipeId: Long = 0) = Action {
+		Ok(views.html.recipe_new(form, tagOptions, recipeId))
+	}
+	
+	def newRecipe = showNewRecipe(recipeForm)
+	
+	def editRecipe(recipeId: Long) = {
+		val recipe = Recipe.toDto(Recipe.findById(recipeId))
 		val filledRecipeForm = recipeForm.fill(recipe)
-		Ok(views.html.recipe_new(filledRecipeForm, recipeId))
+		showNewRecipe(filledRecipeForm, recipeId)
 	}
 	
 	val searchForm : Form[RecipeFilter] = Form (
 		mapping (
-			"name"		-> text,			
+			"name"		-> text,
+			"tag"		-> text,
 			"rating"	-> number(min=0, max=5),
 			"ingredient"-> text,
 			"sorting"	-> number
-		)((name, rating, ingredient, sorting) => RecipeFilter(name, rating, ingredient, sorting))
-		 ((RecipeFilter: RecipeFilter) => Some((RecipeFilter.name, RecipeFilter.rating, RecipeFilter.ingredient, RecipeFilter.sorting)))
+		)((name, tag, rating, ingredient, sorting) => RecipeFilter(name, tag, rating, ingredient, sorting))
+		 ((recipeFilter: RecipeFilter) => Some((recipeFilter.name, recipeFilter.tag, recipeFilter.rating, recipeFilter.ingredient, recipeFilter.sorting)))
 	)
 	
-	val recipeForm : Form[Recipe] = Form (
+	val recipeForm : Form[RecipeDTO] = Form (
 		mapping (
 			"name"		-> nonEmptyText,
 			"rating"	-> number(min=0, max=5),	
 			"imageRef"	-> text,
-			"tags"		-> text
-		)((name, rating, image, tags) => Recipe(0, name, rating, image, tags))
-		 ((recipe: Recipe) => Some((recipe.name, recipe.rating, recipe.imageRef, recipe.tags)))
+			"tags"		-> list(text)
+		)((name, rating, image, tags) => RecipeDTO(0, name, rating, image, tags.map(tag => new Tag(tag.toInt, ""))))
+		 ((recipe: RecipeDTO) => Some((recipe.name, recipe.rating, recipe.imageRef, recipe.tags.map(_.id.toString))))
 	)
 	
 	val ingredientForm : Form[Ingredient] = Form (
@@ -100,15 +115,29 @@ object Application extends Controller {
 		Redirect(routes.Application.recipes)
 	}
 	
-	def createRecipe = Action { implicit request =>
+	def createRecipe = Action { implicit request =>		
 		recipeForm.bindFromRequest.fold (
-			errors => BadRequest(views.html.recipe_new(errors)),
+			errors => {
+				BadRequest(views.html.recipe_new(errors, tagOptions))
+			},
 			recipe => {
-				val id = Recipe.create(recipe.name, recipe.rating, recipe.imageRef, recipe.tags)
-				val r = new Recipe(id, recipe.name, recipe.rating, recipe.imageRef, recipe.tags)
+				val id = Recipe.create(recipe.name, recipe.rating, recipe.imageRef)				
+				val tags = extractTags(request.body.asFormUrlEncoded)				
+				tags.map(tagId => RecipeTag.create(id, tagId))
+				val r = new Recipe(id, recipe.name, recipe.rating, recipe.imageRef)
 				Redirect(routes.Application.recipeIngredients(r.id))
 			}
 	)}
+	
+	private def tagOptions = Tag.all.map(tag => tag.id.toString -> tag.name).toMap
+	
+	private def extractTags(url: Option[Map[String, Seq[String]]]): List[Long] = url match {
+		case None			=> List[Long]()
+		case Some(params) 	=> params.get("tags") match {
+						case None		=> List[Long]()
+						case Some(tags)	=> tags.map(_.toLong).toList
+		}			
+	}
 	
 	def recipeIngredients(recipeId: Long) = Action {
 		val recipe = Recipe.findById(recipeId)		
@@ -134,7 +163,7 @@ object Application extends Controller {
 	}
 		 
 	def recipe(recipeId: Long, page: String) = Action {
-		val recipe = Recipe.findById(recipeId)		
+		val recipe = Recipe.toDto(Recipe.findById(recipeId))		
 		var ingredients = Ingredient.findByRecipe(recipeId)
 		var preparationSteps = PreparationStep.findByRecipe(recipeId)
 		
@@ -153,9 +182,18 @@ object Application extends Controller {
 	
 	def updateRecipe(recipeId: Long) = Action { implicit request =>
 		recipeForm.bindFromRequest.fold (
-			errors => BadRequest(views.html.recipe_new(errors)),
+			errors => {
+				BadRequest(views.html.recipe_new(errors, tagOptions))
+			},
 			recipe => {
-				val r = new Recipe(recipeId, recipe.name, recipe.rating, recipe.imageRef, recipe.tags)				
+				val r = new Recipe(recipeId, recipe.name, recipe.rating, recipe.imageRef)
+				val tags = extractTags(request.body.asFormUrlEncoded)
+				RecipeTag.findByRecipe(recipeId).map(recipeTag => 
+					if(!tags.contains(recipeTag.tagId)) {
+						RecipeTag.delete(recipeTag.id)
+					}
+				)				
+				tags.diff(RecipeTag.findByRecipe(recipeId).map(_.tagId)).map(tagId => RecipeTag.create(recipeId, tagId))
 				Recipe.update(r)
 				Redirect(routes.Application.recipeIngredients(recipeId))
 			}
@@ -182,5 +220,98 @@ object Application extends Controller {
 	def removePreparationStep(recipeId: Long, preparationStepId: Long) = Action {
 		PreparationStep.delete(preparationStepId)
 		Redirect(routes.Application.recipePreparation(recipeId))
+	}
+	
+	
+	// ---------------------------------------------------
+	
+	val mealForm : Form[MealFilter] = Form (
+		mapping (
+			"from"		-> date,			
+			"to"		-> date
+		)((from, to) => MealFilter(from, to))
+		 ((mealFilter: MealFilter) => Some((mealFilter.from, mealFilter.to)))
+	)
+	
+	private def findMeals(filter: MealFilter) = Meal.findByDate(from = filter.from, to = filter.to).map(meal => Meal.toDTO(meal)) 
+	
+	def meals =  Action { 
+		val DAY = 1000*60*60*24
+		val sdf = new SimpleDateFormat("yyyy-MM-dd");      
+		val today = sdf.parse(sdf.format(new Date()));
+		val defaultFilter = MealFilter(today, new Date(today.getTime() + DAY * 7))
+		Ok(views.html.meal_list(findMeals(defaultFilter), mealForm.fill(defaultFilter)))
+	}
+	
+	def mealsQuery =  Action { implicit request =>
+		mealForm.bindFromRequest.fold (
+			errors => BadRequest(views.html.meal_list(List[MealDTO](), errors)),
+			mealFilter => {
+				Ok(views.html.meal_list(findMeals(mealFilter), mealForm.fill(mealFilter)))
+			}
+	)}
+	
+	def mealsNewRecipe = showRecipes((recipes, form, tags) => views.html.meal_new_recipe(recipes, form, tags))
+	
+	def mealsNewRecipeQuery = showRecipesQuery((recipes, form, tags) => views.html.meal_new_recipe(recipes, form, tags))	
+	
+	def mealsNewDay(recipeId: Long) = Action {
+		val recipe = Recipe.findById(recipeId)
+		val form = newMealForm.fill(NewMealFilter(date = new Date()))
+		Ok(views.html.meal_new_day(recipe, form))
+	}
+	
+	val newMealForm : Form[NewMealFilter] = Form (
+		mapping (				
+			"date"		-> date
+		)((date) => NewMealFilter( date))
+		 ((filter: NewMealFilter) => Some((filter.date)))
+	)
+	
+	def mealsNew(recipeId: Long) = Action { implicit request =>
+		newMealForm.bindFromRequest.fold (
+			errors => BadRequest(views.html.meal_new_day(Recipe.findById(recipeId), errors)),
+			filter => {
+				Meal.create(recipeId, filter.date)			
+				Redirect(routes.Application.meals)
+			}
+	)}
+	
+	def mealRemove(mealId: Long) = Action {
+		Meal.delete(mealId)
+		Redirect(routes.Application.meals)
+	}
+	
+	def mealUpdate(recipeId: Long, mealId: Long) = Action { implicit request =>
+		newMealForm.bindFromRequest.fold (
+			errors => BadRequest(views.html.meal_new_day(Recipe.findById(recipeId), errors)),
+			filter => {
+				val meal = new Meal(mealId, recipeId, filter.date)
+				Meal.update(meal)			
+				Redirect(routes.Application.meals)
+			}
+	)}
+	
+	def mealEdit(mealId: Long) = Action {
+		val meal = Meal.findById(mealId)
+		val recipe = Recipe.findById(meal.recipeId)
+		val form = newMealForm.fill(NewMealFilter(date = meal.date))
+		Ok(views.html.meal_new_day(recipe, form, mealId))
+	}
+	
+	def mealShoppingList(from: String, to: String) = Action { implicit request =>
+		val sdf = new SimpleDateFormat("yyyy-MM-dd")    
+		val fromDate = sdf.parse(from)
+		val toDate = sdf.parse(to)
+		val filter = MealFilter(fromDate, toDate)
+		
+		var ingredients = Map[(String, String), Ingredient]()
+		findMeals(filter).map(meal => Ingredient.findByRecipe(meal.recipe.id)).flatten.sortWith((x,y) => x.name.compareTo(y.name) < 0).foreach( i =>
+			ingredients.get((i.name, i.unit)) match {
+				case None		=> ingredients+= (i.name, i.unit) -> i
+				case Some(x)	=> ingredients+= (i.name, i.unit) -> i.copy(amount = i.amount + x.amount)
+			}
+		)
+		Ok(views.html.meal_shopping_list(ingredients.values.toList))			
 	}
 }

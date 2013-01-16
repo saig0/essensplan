@@ -1,0 +1,66 @@
+@(meals: List[MealDTO], mealForm: Form[MealFilter])
+
+@import helper._
+@import tags._
+
+@formatDate(date: java.util.Date) = @{
+	new java.text.SimpleDateFormat("yyyy-MM-dd").format(date)
+}
+
+@dateMin = @{
+	formatDate(meals.head.date)
+}
+
+@dateMax = @{
+	formatDate(meals.reverse.head.date)
+}
+
+@main("Essensplan") {
+	
+	@form(routes.Application.mealsQuery) {	
+		<table>
+			<tr>
+				<td>@inputDate(mealForm("from"))</td>
+				<td> - </td>
+				<td>@inputDate(mealForm("to"))</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="zeigen" /></td>			
+			</tr>
+		</table>	
+	}
+	
+	<table border="1">
+		<tr>
+			<th>Datum</th>
+			<th>Mahlzeit</th>
+		</tr>
+	
+		@meals.map { meal =>
+			<tr>
+				<td>@meal.date</td>
+				<td>@meal.recipe.name</td>
+				<td>
+					@form(routes.Application.recipe(meal.recipe.id, "all")){
+						<input type='submit' value='Rezept öffnen' />
+					}				
+				</td>
+				<td>@form(routes.Application.mealEdit(meal.id)){
+						<input type='submit' value='bearbeiten' />
+					}
+				</td>
+				<td>@form(routes.Application.mealRemove(meal.id)){
+						<input type='submit' value='löschen' />
+					}
+				</td>
+			</tr>
+		}	
+	</table>
+	
+	@form(routes.Application.mealsNewRecipe) {
+		<input type="submit" value="neue Mahlzeit" />
+	}
+	@form(routes.Application.mealShoppingList(dateMin, dateMax)) {	
+		<input type="submit" value="Einkaufsliste erstellen" />
+	}
+}

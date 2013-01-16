@@ -1,4 +1,4 @@
-@(recipeForm: Form[Recipe], recipeId: Long = 0)
+@(recipeForm: Form[RecipeDTO], tags: Map[String, String], recipeId: Long = 0)
 
 @import helper._
 
@@ -13,7 +13,9 @@
 		@inputText(recipeForm("name"))
 		@inputRange(recipeForm("rating"), 0, 5)
 		@inputText(recipeForm("imageRef"))
-		@inputText(recipeForm("tags"))
+		@multiSelect(field = recipeForm("tags"), 
+			options = options(tags)
+		)
 		
 		<input type="submit" value="weiter" />		
 	}

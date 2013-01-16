@@ -1,11 +1,11 @@
-@(recipes: List[Recipe], searchForm: Form[RecipeFilter], render: Recipe => List[Html])(titel: String = "Rezepte")
+@(recipes: List[Recipe], searchForm: Form[RecipeFilter], tags: Map[String, String], render: Recipe => List[Html])(titel: String = "Rezepte")
 
 @import helper._
 
     
 	<h1>@titel</h1>	
 	
-	@form(routes.Application.recipes) {
+	@form(routes.Application.recipesQuery) {
 		@searchInput(searchForm("name"))
 		@select(
 			field = searchForm("sorting"), 
@@ -17,6 +17,10 @@
 		
 		<details>
 			<summary>erweiterte Suche</summary>
+			@select(field = searchForm("tag"), 
+				options = options(tags),
+				'_default -> "alle Tags"
+			)
 			@inputRange(searchForm("rating"), 0, 5)
 			@searchInput(searchForm("ingredient"))
 		</details>
@@ -24,7 +28,7 @@
 	<input type="submit" value="suchen" />
 	}
 	
-	<span>@recipes.size Rezepte gefunden</span>
+	<span>@recipes.size Rezept@{if(recipes.size > 1) "e"} gefunden</span>
 	
 	<table border="1">
 		<tr>

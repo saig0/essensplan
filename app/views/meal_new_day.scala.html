@@ -1,0 +1,19 @@
+@(recipe: Recipe, newMealForm: Form[NewMealFilter], mealId: Long = 0)
+
+@import helper._
+@import tags._
+
+@main("Essensplan") {
+	
+	@form(
+		if(mealId == 0) {
+			routes.Application.mealsNew(recipe.id)
+		} else {
+			routes.Application.mealUpdate(recipe.id, mealId)
+		}
+	) {		
+		@inputDate(newMealForm("date"))
+		
+		<input type='submit' value='eintragen' />
+	}	
+}
