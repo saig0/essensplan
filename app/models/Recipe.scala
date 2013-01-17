@@ -74,7 +74,7 @@ object Recipe {
 							on r.id = i.recipeId
 					where lower(r.name) like {name}
 						and r.rating >= {rating} 
-						and (i.name is not null and lower(i.name) like {ingredient})
+						and ({ingredient} = '' or (i.name is not null and lower(i.name) like {ingredient}))
 						and ({tag} = 0 or {tag} in (
 								select rt.tagId
 								from recipe_tag rt
@@ -88,7 +88,7 @@ object Recipe {
 				'name 		-> ("%" + name.toLowerCase + "%"),
 				'tag		-> ( if(!tag.isEmpty) { tag.toLong } else { 0 } ),
 				'rating 	-> rating,
-				'ingredient	-> ("%" + ingredient.toLowerCase + "%")
+				'ingredient	-> ( if(!ingredient.toLowerCase.isEmpty) { "%" + ingredient.toLowerCase + "%" } else { "" })
 			).as(recipe *)
 		}
 	}
