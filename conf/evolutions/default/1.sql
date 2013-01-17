@@ -2,7 +2,7 @@
 # --- !Ups
 
 CREATE TABLE recipe (
-    id 			integer AUTO_INCREMENT PRIMARY KEY,
+    id 			serial PRIMARY KEY,
     name 		varchar(255) NOT NULL,
 	rating 		integer NOT NULL,
 	imageRef 	varchar(255)
