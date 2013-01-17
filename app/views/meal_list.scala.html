@@ -8,11 +8,19 @@
 }
 
 @dateMin = @{
-	formatDate(meals.head.date)
+	if(!meals.isEmpty) {
+		formatDate(meals.head.date)
+	} else {
+		formatDate(new java.util.Date())
+	}
 }
 
 @dateMax = @{
-	formatDate(meals.reverse.head.date)
+	if(!meals.isEmpty) {
+		formatDate(meals.reverse.head.date)
+	} else {
+		formatDate(new java.util.Date())
+	}
 }
 
 @main("Essensplan") {

@@ -86,7 +86,7 @@ object Recipe {
 				""".format(scala.math.abs(sorting), mode)
 			).on(
 				'name 		-> ("%" + name.toLowerCase + "%"),
-				'tag		-> (if(!tag.isEmpty) tag.toLong else 0),
+				'tag		-> ( if(!tag.isEmpty) { tag.toLong } else { 0 } ),
 				'rating 	-> rating,
 				'ingredient	-> ("%" + ingredient.toLowerCase + "%")
 			).as(recipe *)
