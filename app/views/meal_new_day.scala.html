@@ -12,7 +12,7 @@
 			routes.Application.mealUpdate(recipe.id, mealId)
 		}
 	) {		
-		@inputDate(newMealForm("date"))
+		@inputDate(newMealForm("date"), '_label -> "Tag für die Mahlzeit")
 		
 		<input type='submit' value='eintragen' />
 	}	

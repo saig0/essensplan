@@ -5,7 +5,7 @@
 
 @main("Essensplan") {
 	
-	@recipe_list_view(recipes, searchForm, tagOptions, (recipe: Recipe) => {
+	@recipe_list_view(recipes, searchForm, tagOptions, routes.Application.mealsNewRecipeQuery, (recipe: Recipe) => {
 		var l = List[Html]().toBuffer
 		l += form(routes.Application.recipe(recipe.id, "all")) { Html("""
 						<input type='submit' value='öffnen' />

@@ -312,4 +312,45 @@ object Application extends Controller {
 		)
 		Ok(views.html.meal_shopping_list(ingredients.values.toList))			
 	}
+	
+	// ----------------
+	
+	def tags = Action {
+		Ok(views.html.tag_list(Tag.all, tagForm))
+	}
+	
+	val tagForm : Form[Tag] = Form (
+		mapping (				
+			"name"		-> nonEmptyText
+		)((name) => Tag(0, name))
+		 ((tag: Tag) => Some((tag.name)))
+	)
+	
+	def tagNew = Action { implicit request =>
+		tagForm.bindFromRequest.fold (
+			errors => BadRequest(views.html.tag_list(Tag.all, errors)),
+			filter => {
+				Tag.create(filter.name)
+				Redirect(routes.Application.tags)
+			}
+	)}
+	
+	def tagRemove(tagId: Long) = Action {
+		Tag.delete(tagId)
+		Redirect(routes.Application.tags)
+	}
+	
+	def tagEdit(tagId: Long) = Action { 
+		Ok(views.html.tag_list(Tag.all, tagForm.fill(Tag.findById(tagId)), tagId))
+	}
+	
+	def tagUpdate(tagId: Long) = Action { implicit request =>
+		tagForm.bindFromRequest.fold (
+			errors => BadRequest(views.html.tag_list(Tag.all, errors)),
+			filter => {
+				val tag = Tag.findById(tagId).copy(name = filter.name)
+				Tag.update(tag)
+				Redirect(routes.Application.tags)
+			}
+	)}
 }

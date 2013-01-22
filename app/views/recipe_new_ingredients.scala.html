@@ -13,7 +13,7 @@
 	})
 	
 	@form(routes.Application.addRecipeIngredient(recipe.id)) {
-		@inputText(ingredientForm("amount"))
+		@inputText(ingredientForm("amount"), '_label -> "Menge")
 		@select(
 			field = ingredientForm("unit"), 
 			options = options(
@@ -23,9 +23,10 @@
 				"l" -> "l",
 				"Stück" -> "Stück",
 				"Packung" -> "Packung", 
-				"Bund" -> "Bund")
+				"Bund" -> "Bund"), 
+				'_label -> "Einheit"
 		)
-		@inputText(ingredientForm("name"))
+		@inputText(ingredientForm("name"), '_label -> "Name der Zutat")
 		
 		<input type="submit" value="hinzufügen" />
 	}

@@ -10,11 +10,12 @@
 		if(recipeId == 0) routes.Application.createRecipe
 		else routes.Application.updateRecipe(recipeId)
 		){
-		@inputText(recipeForm("name"))
-		@inputRange(recipeForm("rating"), 0, 5)
-		@inputText(recipeForm("imageRef"))
+		@inputText(recipeForm("name"), '_label -> "Name des Rezepts")
+		@inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung")
+		@inputText(recipeForm("imageRef"), '_label -> "Link zu einem Bild")
 		@multiSelect(field = recipeForm("tags"), 
-			options = options(tags)
+			options = options(tags),
+			'_label -> "Stichwörter"
 		)
 		
 		<input type="submit" value="weiter" />		

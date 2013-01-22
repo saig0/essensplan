@@ -1,0 +1,49 @@
+@(tags: List[Tag], tagForm: Form[Tag], tagId: Long = 0)
+@import helper._
+    
+@main("Stichwörter verwalten") {
+
+	<h1>Stichwörter</h1>	
+	
+	<span>@tags.size Stich@{if(tags.size > 1) "wörter" else "worte"} gefunden</span>
+	
+	<table border="1">
+		<tr>
+			<th>Stichwort</th>
+		</tr>
+	
+		@tags.map { tag =>
+			<tr>
+				<td>@tag.name</td>
+				<td>
+					@form(routes.Application.tagEdit(tag.id)){
+						<input type="submit" value="bearbeiten" />
+					}
+				</td>
+				<td>
+					@form(routes.Application.tagRemove(tag.id)){
+						<input type="submit" value="entfernen" />
+					}
+				</td>
+			</tr>
+		}	
+	</table>
+	
+	@form(
+		if(tagId == 0) {
+			routes.Application.tagNew
+		} else {
+			routes.Application.tagUpdate(tagId)
+		}) {
+		
+		@inputText(tagForm("name"), '_label -> "Name des Stichworts")
+		
+		@{ if(tagId == 0) {
+			<input type="submit" value="erstellen" />
+		} else {
+			<input type="submit" value="ändern" />
+		}}
+	}
+}
+	
+	

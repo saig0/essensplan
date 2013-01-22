@@ -39,5 +39,12 @@ GET		/meals/:mealId/edit			controllers.Application.mealEdit(mealId: Long)
 POST	/meals/:mealId/:recipeId	controllers.Application.mealUpdate(recipeId: Long, mealId: Long)
 GET		/meals/shoppingList/:from/:to	controllers.Application.mealShoppingList(from: String, to: String)
 
+# Tags
+GET		/tags						controllers.Application.tags
+POST	/tags/create				controllers.Application.tagNew
+POST	/tags/:tagId/delete			controllers.Application.tagRemove(tagId: Long)
+GET		/tags/:tagId/edit			controllers.Application.tagEdit(tagId: Long)
+POST	/tags/:tagId				controllers.Application.tagUpdate(tagId: Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

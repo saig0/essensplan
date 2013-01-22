@@ -1,27 +1,29 @@
-@(recipes: List[Recipe], searchForm: Form[RecipeFilter], tags: Map[String, String], render: Recipe => List[Html])(titel: String = "Rezepte")
+@(recipes: List[Recipe], searchForm: Form[RecipeFilter], tags: Map[String, String], action: play.api.mvc.Call, render: Recipe => List[Html])(titel: String = "Rezepte")
 
 @import helper._
     
 	<h1>@titel</h1>	
 	
-	@form(routes.Application.recipesQuery) {
-		@searchInput(searchForm("name"))
+	@form(action) {
+		@searchInput(searchForm("name"), '_label -> "Name des Rezepts")
 		@select(
 			field = searchForm("sorting"), 
 			options = options(
 				"2"		-> "name",
 				"-3"	-> "rating"
-			)
+			),
+			'_label -> "Sortierung nach"
 		)
 		
 		<details>
 			<summary>erweiterte Suche</summary>
 			@select(field = searchForm("tag"), 
 				options = options(tags),
-				'_default -> "alle Tags"
+				'_default -> "alle Tags",
+				'_label -> "Stichwörter"
 			)
-			@inputRange(searchForm("rating"), 0, 5)
-			@searchInput(searchForm("ingredient"))
+			@inputRange(searchForm("rating"), 0, 5, '_label -> "Bewertung")
+			@searchInput(searchForm("ingredient"), '_label -> "Enthaltene Zutat")
 		</details>
 	
 	<input type="submit" value="suchen" />

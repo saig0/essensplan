@@ -36,8 +36,8 @@
 	
 	@form(routes.Application.addPreparationStep(recipe.id)) {
 		<input type="hidden" name="step" value="@(preparationSteps.size + 1)" />
-		@textarea(preparationStepForm("description"))
-		@inputText(preparationStepForm("imageRef"))
+		@textarea(preparationStepForm("description"), '_label -> "Anleitung")
+		@inputText(preparationStepForm("imageRef"), '_label -> "Link zu einem Bild")
 		
 		<input type="submit" value="hinzufügen" />
 	}
