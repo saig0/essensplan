@@ -29,11 +29,14 @@ object Application extends Controller {
 		Recipe.find(name = filter.name, tag = filter.tag, rating = filter.rating, ingredient = filter.ingredient, sorting = filter.sorting, userId = userId) 
 	}
 	
-	private def showRecipes(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) =  AuthenticatedRequired { implicit request =>
+	private def showRecipes(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) =  Authenticated { implicit request =>
 		val defaultFilter = RecipeFilter("", "", 0, "", 2, false, request.user.id)
 		Ok(html(findRecipes(defaultFilter), searchForm.fill(defaultFilter), tagOptions)) } 
+	{ implicit request =>
+		val defaultFilter = RecipeFilter("", "", 0, "", 2, false, 0)
+		Ok(html(findRecipes(defaultFilter), searchForm.fill(defaultFilter), tagOptions)) } 	
 	
-	private def showRecipesQuery(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) = AuthenticatedRequired { implicit request =>
+	private def showRecipesQuery(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) = Action { implicit request =>
 		searchForm.bindFromRequest.fold (
 			errors => BadRequest(html(Recipe.all, errors, tagOptions)),
 			filter => Ok(html(findRecipes(filter), searchForm.fill(filter), tagOptions))	
