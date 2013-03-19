@@ -33,20 +33,31 @@
 			</tr>
 		}	
 	</table>
+	</br>
 	
-	@form(routes.Application.addPreparationStep(recipe.id)) {
-		<input type="hidden" name="step" value="@(preparationSteps.size + 1)" />
-		@textarea(preparationStepForm("description"), '_label -> "Anleitung")
-		@inputText(preparationStepForm("imageRef"), '_label -> "Link zu einem Bild")
-		
-		<input type="submit" value="hinzufügen" />
-	}
+	<fieldset>
+		<legend>Neuer Zubereitungsschritt</legend>
+		@form(routes.Application.addPreparationStep(recipe.id)) {
+			<input type="hidden" name="step" value="@(preparationSteps.size + 1)" />
+			@textarea(preparationStepForm("description"), '_label -> "Anleitung")
+			@inputText(preparationStepForm("imageRef"), '_label -> "Link zu einem Bild")
+			
+			<input type="submit" value="hinzufügen" />
+		}
+	</fieldset>
 	
-	@form(routes.Application.recipes) {
-		<input type="submit" value="fertig" />
-	}
-
-	@form(routes.Application.recipeIngredients(recipe.id)) {
-		<input type="submit" value="zurück" />
-	}	
+	<table>
+		<tr>
+			<td>	
+				@form(routes.Application.recipeIngredients(recipe.id)) {
+					<input type="submit" value="zurück" />
+				}	
+			</td>
+			<td>
+				@form(routes.Application.recipes) {
+					<input type="submit" value="fertig" />
+				}
+			</td>
+		</tr>
+	</table>	
 }

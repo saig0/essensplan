@@ -2,7 +2,7 @@ package models
 
 import java.util.Date
 
-case class Meal(id: Long, recipeId: Long, date: Date)
+case class Meal(id: Long, recipeId: Long, date: Date, userId: Long)
 
 case class MealDTO(id: Long, date: Date, recipe: Recipe)
 
@@ -15,22 +15,25 @@ object Meal {
 	val meal = {
 		get[Long]("id") ~
 		get[Long]("recipeId") ~
-		get[Date]("date") map {
-			case id ~ recipeId ~ date =>
-				Meal(id, recipeId, date)
+		get[Date]("date") ~
+		get[Long]("userId") map {
+			case id ~ recipeId ~ date ~ userId =>
+				Meal(id, recipeId, date, userId)
 		}
 	}
 	
-	def findByRecipe(recipeId: Long): List[Meal] = DB.withConnection { implicit c =>
-		SQL("select * from meal where recipeId = {recipeId} order by date desc").on(
-			'recipeId -> recipeId
+	def findByRecipe(recipeId: Long, userId: Long): List[Meal] = DB.withConnection { implicit c =>
+		SQL("select * from meal where recipeId = {recipeId} and userId = {userId} order by date desc").on(
+			'recipeId	-> recipeId,
+			'userId		-> userId
 		).as(meal *)
 	}
 	
-	def findByDate(from: Date, to: Date): List[Meal] = DB.withConnection { implicit c =>
-		SQL("select * from meal where date >= {from} and date <= {to} order by date asc").on(
+	def findByDate(from: Date, to: Date, userId: Long): List[Meal] = DB.withConnection { implicit c =>
+		SQL("select * from meal where date >= {from} and date <= {to} and userId = {userId} order by date asc").on(
 			'from	-> from,
-			'to		-> to
+			'to		-> to,
+			'userId	-> userId
 		).as(meal *)
 	}
 	
@@ -40,11 +43,12 @@ object Meal {
 		).as(meal.single)
 	}
 	
-	def create(recipeId: Long, date: Date): Long = { 
+	def create(recipeId: Long, date: Date, userId: Long): Long = { 
 		DB.withConnection { implicit c =>
-			SQL("insert into meal (recipeId,date) values ({recipeId}, {date})").on(
+			SQL("insert into meal (recipeId,date,userId) values ({recipeId}, {date}, {userId})").on(
 				'recipeId 		-> recipeId,
-				'date 			-> date
+				'date 			-> date,
+				'userId			-> userId
 			).executeInsert() match {
 				case Some(id)	=> id
 				case None		=> 0

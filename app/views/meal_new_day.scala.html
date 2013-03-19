@@ -5,15 +5,19 @@
 
 @main("Essensplan") {
 	
-	@form(
-		if(mealId == 0) {
-			routes.Application.mealsNew(recipe.id)
-		} else {
-			routes.Application.mealUpdate(recipe.id, mealId)
-		}
-	) {		
-		@inputDate(newMealForm("date"), '_label -> "Tag für die Mahlzeit")
-		
-		<input type='submit' value='eintragen' />
-	}	
+	<h1>Tag auswählen</h1>
+	
+	<fieldset>
+		@form(
+			if(mealId == 0) {
+				routes.Application.mealsNew(recipe.id)
+			} else {
+				routes.Application.mealUpdate(recipe.id, mealId)
+			}
+		) {		
+			@inputDate(newMealForm("date"), '_label -> "Tag für die Mahlzeit")
+			
+			<input type='submit' value='eintragen' />
+		}	
+	</fieldset>
 }

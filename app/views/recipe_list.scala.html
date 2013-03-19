@@ -20,11 +20,27 @@
 		l.toList
 	})("Rezepte")
 	
-	@form(routes.Application.newRecipe) {
-		<input type="submit" value="neues Rezept" />
-	}
-	
-	@form(routes.Application.tags) {
-		<input type="submit" value="Stichwörter verwalten" />
-	}
+	<table>
+		<tr>
+			<td>
+				@form(routes.Application.newRecipe) {
+					<input type="submit" value="neues Rezept" />
+				}	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@form(routes.Application.importRecipe) {
+					<input type="submit" value="Rezept importieren" />
+				}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@form(routes.Application.tags) {
+					<input type="submit" value="Stichwörter verwalten" />
+				}
+			</td>
+		</tr>
+	</table>
 }

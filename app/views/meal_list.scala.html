@@ -25,18 +25,24 @@
 
 @main("Essensplan") {
 	
-	@form(routes.Application.mealsQuery) {	
-		<table>
-			<tr>
-				<td>@inputDate(mealForm("from"))</td>
-				<td> - </td>
-				<td>@inputDate(mealForm("to"))</td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="zeigen" /></td>			
-			</tr>
-		</table>	
-	}
+	<h1>Essensplan</h1>
+	
+	<fieldset>
+		<legend>Essensplan-Filter</legend>
+		@form(routes.Application.mealsQuery) {	
+			<table>
+				<tr>
+					<td>@inputDate(mealForm("from"), '_label -> "von")</td>
+					<td> - </td>
+					<td>@inputDate(mealForm("to"), '_label -> "bis")</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="suchen" /></td>			
+				</tr>
+			</table>	
+		}
+	</fieldset>
+	<br/>
 	
 	<table border="1">
 		<tr>
@@ -64,11 +70,25 @@
 			</tr>
 		}	
 	</table>
+	<br/>
 	
-	@form(routes.Application.mealsNewRecipe) {
-		<input type="submit" value="neue Mahlzeit" />
-	}
-	@form(routes.Application.mealShoppingList(dateMin, dateMax)) {	
-		<input type="submit" value="Einkaufsliste erstellen" />
-	}
+	<table>
+		<tr>
+			<td>
+				@form(routes.Application.mealsNewRecipe) {
+					<input type="submit" value="neue Mahlzeit" />
+				}	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@form(routes.Application.mealShoppingList(dateMin, dateMax)) {	
+					<input type="submit" value="Einkaufsliste erstellen" />
+				}
+			</td>
+		</tr>
+	</table>
+	
+	
+	
 }

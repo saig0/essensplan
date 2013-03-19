@@ -11,31 +11,42 @@
 			Html("""<input type='submit' value='entfernen' />""")}
 		l.toList
 	})
+	<br/>
 	
-	@form(routes.Application.addRecipeIngredient(recipe.id)) {
-		@inputText(ingredientForm("amount"), '_label -> "Menge")
-		@select(
-			field = ingredientForm("unit"), 
-			options = options(
-				"g" -> "g",
-				"kg" -> "kg",
-				"ml" -> "ml",
-				"l" -> "l",
-				"Stück" -> "Stück",
-				"Packung" -> "Packung", 
-				"Bund" -> "Bund"), 
-				'_label -> "Einheit"
-		)
-		@inputText(ingredientForm("name"), '_label -> "Name der Zutat")
-		
-		<input type="submit" value="hinzufügen" />
-	}
+	<fieldset>
+		<legend>Neue Zutat</legend>
+		@form(routes.Application.addRecipeIngredient(recipe.id)) {
+			@inputText(ingredientForm("amount"), '_label -> "Menge")
+			@select(
+				field = ingredientForm("unit"), 
+				options = options(
+					"g" -> "g",
+					"kg" -> "kg",
+					"ml" -> "ml",
+					"l" -> "l",
+					"Stück" -> "Stück",
+					"Packung" -> "Packung", 
+					"Bund" -> "Bund"), 
+					'_label -> "Einheit"
+			)
+			@inputText(ingredientForm("name"), '_label -> "Name der Zutat")
+			
+			<input type="submit" value="hinzufügen" />
+		}
+	</fieldset>
 	
-	@form(routes.Application.recipePreparation(recipe.id)) {
-		<input type="submit" value="weiter" />
-	}
-
-	@form(routes.Application.editRecipe(recipe.id)) {
-		<input type="submit" value="zurück" />
-	}	
+	<table>
+		<tr>
+			<td>	
+				@form(routes.Application.editRecipe(recipe.id)) {
+					<input type="submit" value="zurück" />
+				}
+			</td>
+			<td>
+				@form(routes.Application.recipePreparation(recipe.id)) {
+					<input type="submit" value="weiter" />
+				}
+			</td>
+		</tr>
+	</table>
 }

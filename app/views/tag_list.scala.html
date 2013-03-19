@@ -28,22 +28,26 @@
 			</tr>
 		}	
 	</table>
+	<br/>
 	
-	@form(
-		if(tagId == 0) {
-			routes.Application.tagNew
-		} else {
-			routes.Application.tagUpdate(tagId)
-		}) {
-		
-		@inputText(tagForm("name"), '_label -> "Name des Stichworts")
-		
-		@{ if(tagId == 0) {
-			<input type="submit" value="erstellen" />
-		} else {
-			<input type="submit" value="ändern" />
-		}}
-	}
+	<fieldset>
+		<legend>Neuer Tag</legend>
+		@form(
+			if(tagId == 0) {
+				routes.Application.tagNew
+			} else {
+				routes.Application.tagUpdate(tagId)
+			}) {
+			
+			@inputText(tagForm("name"), '_label -> "Name des Stichworts")
+			
+			@{ if(tagId == 0) {
+				<input type="submit" value="hinzufügen" />
+			} else {
+				<input type="submit" value="ändern" />
+			}}
+		}
+	</fieldset>
 }
 	
 	

@@ -6,22 +6,28 @@
     
 	<h1>Neues Rezepte</h1>
 	
-	@form(
-		if(recipeId == 0) routes.Application.createRecipe
-		else routes.Application.updateRecipe(recipeId)
-		){
-		@inputText(recipeForm("name"), '_label -> "Name des Rezepts")
-		@inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung")
-		@inputText(recipeForm("imageRef"), '_label -> "Link zu einem Bild")
-		@multiSelect(field = recipeForm("tags"), 
-			options = options(tags),
-			'_label -> "Stichwörter"
-		)
-		
-		<input type="submit" value="weiter" />		
-	}
+	<fieldset>
+		<legend>Informationen</legend>
+		@form(
+			if(recipeId == 0) routes.Application.createRecipe
+			else routes.Application.updateRecipe(recipeId)
+			){
+			@inputText(recipeForm("name"), '_label -> "Name des Rezepts")
+			@inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung")
+			@inputText(recipeForm("imageRef"), '_label -> "Link zu einem Bild")
+			@multiSelect(field = recipeForm("tags"), 
+				options = options(tags),
+				'_label -> "Stichwörter"
+			)
+	
+	</fieldset>	
 
-	@form(routes.Application.recipes) {
-		<input type="submit" value="abbrechen" />
-	}
+		<input type="submit" value="weiter" />
+		}
+	
+	<!--
+		@form(routes.Application.recipes) {
+			<input type="submit" value="abbrechen" />
+		}
+	-->			
 }

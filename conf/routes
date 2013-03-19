@@ -3,12 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.meals
-
-# Essen
-GET		/essen						controllers.Application.essen
-POST	/essen						controllers.Application.neuesEssen
-POST	/essen/:name/delete			controllers.Application.entferneEssen(name: String)
+GET     /                           controllers.Application.index
 
 # Rezepte
 GET		/recipes					controllers.Application.recipes
@@ -38,6 +33,7 @@ POST	/meals/:mealId/delete		controllers.Application.mealRemove(mealId: Long)
 GET		/meals/:mealId/edit			controllers.Application.mealEdit(mealId: Long)
 POST	/meals/:mealId/:recipeId	controllers.Application.mealUpdate(recipeId: Long, mealId: Long)
 GET		/meals/shoppingList/:from/:to	controllers.Application.mealShoppingList(from: String, to: String)
+GET		/meals/proposal				controllers.Application.mealProposal
 
 # Tags
 GET		/tags						controllers.Application.tags
@@ -45,6 +41,15 @@ POST	/tags/create				controllers.Application.tagNew
 POST	/tags/:tagId/delete			controllers.Application.tagRemove(tagId: Long)
 GET		/tags/:tagId/edit			controllers.Application.tagEdit(tagId: Long)
 POST	/tags/:tagId				controllers.Application.tagUpdate(tagId: Long)
+
+# Import
+GET		/import						controllers.Application.importRecipe
+POST	/import/chefkoch/			controllers.Application.importRecipeWithId
+
+# Login
+GET		/login						controllers.Application.login
+GET		/login/openId				controllers.Application.openIDCallback
+GET		/logout						controllers.Application.logout
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
