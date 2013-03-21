@@ -17,20 +17,20 @@ object User {
 	}
 	
 	def findById(id: Long): User = DB.withConnection { implicit c =>
-		SQL("select * from user where id = {id}").on(
+		SQL("select * from users where id = {id}").on(
 			'id -> id
 		).as(user.single)
 	}
 	
 	def findByEmail(email: String): Option[User] = DB.withConnection { implicit c =>
-		SQL("select * from user where email = {email}").on(
+		SQL("select * from users where email = {email}").on(
 			'email -> email
 		).as(user.singleOpt)
 	}
 	
 	def create(email: String): Long = { 
 		DB.withConnection { implicit c =>
-			SQL("insert into user (email) values ({email})").on(
+			SQL("insert into users (email) values ({email})").on(
 				'email 		-> email
 			).executeInsert() match {
 				case Some(id)	=> id

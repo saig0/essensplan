@@ -1,21 +1,127 @@
-2013-03-20 00:52:57,012 - [INFO] - from play in main 
+2013-03-21 23:23:24,100 - [INFO] - from play in main 
 Listening for HTTP on port 9000...
 
-2013-03-20 00:53:05,619 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+2013-03-21 23:23:54,330 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-20 00:53:05,827 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
-Application started (Dev)
+2013-03-21 23:23:54,493 - [ERROR] - from application in New I/O  worker #1 
 
-2013-03-20 00:56:56,841 - [INFO] - from play in play-akka.actor.default-dispatcher-4 
+
+! @6dl3cic6g - Internal server error, for request [GET /] ->
+
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution! [An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:427) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
+
+2013-03-21 23:23:56,706 - [WARN] - from play in New I/O  worker #1 
+Applying evolution script for database 'default':
+
+# --- Rev:1,Ups - 7db23c2
+CREATE TABLE recipe (
+id 			serial PRIMARY KEY,
+name 		varchar(255) NOT NULL,
+rating 		integer NOT NULL,
+imageRef 	varchar(255)
+);
+
+# --- Rev:2,Ups - 201fe81
+CREATE TABLE ingredient (
+id 			serial PRIMARY KEY,
+recipeId	integer NOT NULL REFERENCES recipe(id) ON DELETE CASCADE,
+amount 		integer NOT NULL,
+unit	 	varchar(255) NOT NULL,
+name 		varchar(255) NOT NULL
+);
+
+# --- Rev:3,Ups - 36ff7df
+CREATE TABLE preparation_step (
+id 			serial PRIMARY KEY,
+recipeId	integer NOT NULL REFERENCES recipe(id) ON DELETE CASCADE,
+step 		integer NOT NULL,
+description	varchar(255) NOT NULL,
+imageRef	varchar(255) NOT NULL
+);
+
+# --- Rev:4,Ups - cb3f3cd
+CREATE TABLE meal (
+id 			serial PRIMARY KEY,
+recipeId	integer NOT NULL REFERENCES recipe(id) ON DELETE CASCADE,
+date 		date NOT NULL
+);
+
+# --- Rev:5,Ups - e40a9f6
+CREATE TABLE tag (
+id 			serial PRIMARY KEY,
+name 		varchar(255) NOT NULL
+);
+
+# --- Rev:6,Ups - 40e3f9e
+CREATE TABLE recipe_tag (
+id 			serial PRIMARY KEY,
+recipeId	integer NOT NULL REFERENCES recipe(id) ON DELETE CASCADE,
+tagId 		integer NOT NULL REFERENCES tag(id) ON DELETE CASCADE
+);
+
+# --- Rev:7,Ups - d9727e8
+INSERT INTO tag (name) VALUES ('Lieblingsessen');
+INSERT INTO tag (name) VALUES ('vegetarisch');
+INSERT INTO tag (name) VALUES ('warme Speise');
+INSERT INTO tag (name) VALUES ('kalte Speise');
+INSERT INTO tag (name) VALUES ('Salat');
+INSERT INTO tag (name) VALUES ('Suppe');
+INSERT INTO tag (name) VALUES ('Pasta');
+INSERT INTO tag (name) VALUES ('Curry');
+INSERT INTO tag (name) VALUES ('Fisch');
+
+# --- Rev:8,Ups - 33b778e
+ALTER TABLE preparation_step
+ALTER COLUMN description	varchar(4000) NOT NULL;
+
+CREATE TABLE users (
+id 			serial PRIMARY KEY,
+email		varchar(255) NOT NULL
+);
+
+ALTER TABLE recipe
+ADD COLUMN userId integer NOT NULL;
+ALTER TABLE recipe
+ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
+
+ALTER TABLE meal
+ADD COLUMN userId integer NOT NULL;
+ALTER TABLE meal
+ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
+
+
+2013-03-21 23:23:57,531 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-20 00:56:56,863 - [INFO] - from play in play-akka.actor.default-dispatcher-4 
-Application started (Dev)
-
-2013-03-20 00:57:42,740 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-20 00:57:42,761 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
+2013-03-21 23:23:57,557 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 Application started (Dev)
 
