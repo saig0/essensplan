@@ -392,7 +392,6 @@ object Application extends Controller {
 							val xml = loadFromString(response.body)
 							val id = parseChefkochPage(xml, request.user)
 							Ok(views.html.importRecipe(importRecipeForm, id))
-							// Redirect(routes.Application.recipe(id, "all"))
 						} catch {
 							case _ => 
 								Ok(views.html.importRecipe(importRecipeForm.fill(recipeId), -1))
