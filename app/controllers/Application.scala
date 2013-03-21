@@ -231,7 +231,8 @@ object Application extends Controller {
 		 ((mealFilter: MealFilter) => Some((mealFilter.from, mealFilter.to)))
 	)
 	
-	private def findMeals(filter: MealFilter, userId: Long) = Meal.findByDate(from = filter.from, to = filter.to, userId).map(meal => Meal.toDTO(meal)) 
+	private def findMeals(filter: MealFilter, userId: Long) = 
+		Meal.findByDate(from = filter.from, to = filter.to, userId).map(meal => Meal.toDTO(meal)) 
 	
 	def meals = AuthenticatedRequired { implicit request =>
 		val DAY = 1000*60*60*24
