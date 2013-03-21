@@ -42,7 +42,8 @@ object Application extends Controller {
 			filter => Ok(html(findRecipes(filter), searchForm.fill(filter), tagOptions))	
 	)}
 		
-	def recipes = showRecipes((recipes, form, tags) => views.html.recipe_list(recipes, form, tags))
+	def recipes = showRecipes((recipes, form, tags) => 
+		views.html.recipe_list(recipes, form, tags))
 	
 	def recipesQuery =  showRecipesQuery((recipes, form, tags) => views.html.recipe_list(recipes, form, tags))
 	
