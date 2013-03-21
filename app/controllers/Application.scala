@@ -45,7 +45,8 @@ object Application extends Controller {
 	def recipes = showRecipes((recipes, form, tags) => 
 		views.html.recipe_list(recipes, form, tags))
 	
-	def recipesQuery =  showRecipesQuery((recipes, form, tags) => views.html.recipe_list(recipes, form, tags))
+	def recipesQuery =  showRecipesQuery((recipes, form, tags) => 
+		views.html.recipe_list(recipes, form, tags))
 	
 	private def showNewRecipe(form: Form[RecipeDTO], recipeId: Long = 0) = AuthenticatedRequired { implicit request =>
 		Ok(views.html.recipe_new(form, tagOptions, recipeId))
