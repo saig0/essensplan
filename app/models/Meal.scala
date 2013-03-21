@@ -16,21 +16,21 @@ object Meal {
 		get[Long]("id") ~
 		get[Long]("recipeId") ~
 		get[Date]("date") ~
-		get[Long]("userId") map {
+		get[Long]("user_id") map {
 			case id ~ recipeId ~ date ~ userId =>
 				Meal(id, recipeId, date, userId)
 		}
 	}
 	
 	def findByRecipe(recipeId: Long, userId: Long): List[Meal] = DB.withConnection { implicit c =>
-		SQL("select * from meal where recipeId = {recipeId} and userId = {userId} order by date desc").on(
+		SQL("select * from meal where recipeId = {recipeId} and user_id = {userId} order by date desc").on(
 			'recipeId	-> recipeId,
 			'userId		-> userId
 		).as(meal *)
 	}
 	
 	def findByDate(from: Date, to: Date, userId: Long): List[Meal] = DB.withConnection { implicit c =>
-		SQL("select * from meal where date >= {from} and date <= {to} and userId = {userId} order by date asc").on(
+		SQL("select * from meal where date >= {from} and date <= {to} and user_id = {userId} order by date asc").on(
 			'from	-> from,
 			'to		-> to,
 			'userId	-> userId
@@ -45,7 +45,7 @@ object Meal {
 	
 	def create(recipeId: Long, date: Date, userId: Long): Long = { 
 		DB.withConnection { implicit c =>
-			SQL("insert into meal (recipeId,date,userId) values ({recipeId}, {date}, {userId})").on(
+			SQL("insert into meal (recipeId,date,user_id) values ({recipeId}, {date}, {userId})").on(
 				'recipeId 		-> recipeId,
 				'date 			-> date,
 				'userId			-> userId

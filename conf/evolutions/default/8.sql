@@ -10,13 +10,13 @@ CREATE TABLE users (
 );	
 	
 ALTER TABLE recipe
-	ADD COLUMN userId integer NOT NULL;
+	ADD COLUMN user_id integer NOT NULL;
 ALTER TABLE recipe
-	ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
+	ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
 
 ALTER TABLE meal
-	ADD COLUMN userId integer NOT NULL;	
+	ADD COLUMN user_id integer NOT NULL;	
 ALTER TABLE meal
-	ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
+	ADD FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
 	
 # --- !Downs
