@@ -16,7 +16,7 @@ object Recipe {
 		get[String]("name") ~
 		get[Int]("rating") ~
 		get[String]("imageRef")	~
-		get[Long]("user_id") map {
+		get[Long]("userId") map {
 			case id~name~rating~imageRef~userId => Recipe(id, name, rating, imageRef, userId)
 		}
 	}
@@ -27,7 +27,7 @@ object Recipe {
 	
 	def create(name: String, rating: Int, imageRef: String, userId: Long): Long = { 
 		DB.withConnection { implicit c =>
-			SQL("insert into recipe (name,rating,imageRef, user_id) values ({name}, {rating}, {imageRef}, {userId})").on(
+			SQL("insert into recipe (name,rating,imageRef, userId) values ({name}, {rating}, {imageRef}, {userId})").on(
 				'name 		-> name,
 				'rating 	-> rating,
 				'imageRef 	-> imageRef,
@@ -76,7 +76,7 @@ object Recipe {
 							on r.id = i.recipeId
 					where lower(r.name) like {name}
 						and r.rating >= {rating} 
-						and ({userId} = 0 or r.user_id = {userId})
+						and ({userId} = 0 or r.userId = {userId})
 						and ({ingredient} = '' or (i.name is not null and lower(i.name) like {ingredient}))
 						and ({tag} = 0 or {tag} in (
 								select rt.tagId

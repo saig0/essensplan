@@ -1,13 +1,13 @@
-2013-03-21 23:23:24,100 - [INFO] - from play in main 
+2013-03-22 00:20:11,249 - [INFO] - from play in main 
 Listening for HTTP on port 9000...
 
-2013-03-21 23:23:54,330 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+2013-03-22 00:20:21,367 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-21 23:23:54,493 - [ERROR] - from application in New I/O  worker #1 
+2013-03-22 00:20:21,471 - [ERROR] - from application in New I/O  worker #1 
 
 
-! @6dl3cic6g - Internal server error, for request [GET /] ->
+! @6dl3k48b1 - Internal server error, for request [GET /meals] ->
 
 play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution! [An SQL script need to be run on your database.]
 	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:427) ~[play_2.9.1.jar:2.0.4]
@@ -39,7 +39,7 @@ play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evoluti
 	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
 	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
 
-2013-03-21 23:23:56,706 - [WARN] - from play in New I/O  worker #1 
+2013-03-22 00:20:25,873 - [WARN] - from play in New I/O  worker #1 
 Applying evolution script for database 'default':
 
 # --- Rev:1,Ups - 7db23c2
@@ -99,9 +99,9 @@ INSERT INTO tag (name) VALUES ('Pasta');
 INSERT INTO tag (name) VALUES ('Curry');
 INSERT INTO tag (name) VALUES ('Fisch');
 
-# --- Rev:8,Ups - 33b778e
+# --- Rev:8,Ups - 5463b56
 ALTER TABLE preparation_step
-ALTER COLUMN description	varchar(4000) NOT NULL;
+ALTER COLUMN description	varchar(255) NOT NULL;
 
 CREATE TABLE users (
 id 			serial PRIMARY KEY,
@@ -119,9 +119,103 @@ ALTER TABLE meal
 ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
 
 
-2013-03-21 23:23:57,531 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+2013-03-22 00:20:26,626 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-21 23:23:57,557 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+2013-03-22 00:20:26,651 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+Application started (Dev)
+
+2013-03-22 00:20:26,927 - [ERROR] - from application in play-akka.actor.actions-dispatcher-7 
+
+
+! @6dl3k48b2 - Internal server error, for request [GET /meals] ->
+
+play.core.ActionInvoker$$anonfun$receive$1$$anon$1: Execution exception [[RuntimeException: SqlMappingError(No rows when expecting a single one)]]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:134) [play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:115) [play_2.9.1.jar:2.0.4]
+	at akka.actor.Actor$class.apply(Actor.scala:318) [akka-actor.jar:2.0.2]
+	at play.core.ActionInvoker.apply(Invoker.scala:113) [play_2.9.1.jar:2.0.4]
+	at akka.actor.ActorCell.invoke(ActorCell.scala:626) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:197) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Mailbox.run(Mailbox.scala:179) [akka-actor.jar:2.0.2]
+	at akka.dispatch.ForkJoinExecutorConfigurator$MailboxExecutionTask.exec(AbstractDispatcher.scala:516) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+Caused by: java.lang.RuntimeException: SqlMappingError(No rows when expecting a single one)
+	at scala.sys.package$.error(package.scala:27) ~[scala-library.jar:na]
+	at anorm.Sql$.as(Anorm.scala:513) ~[anorm_2.9.1.jar:2.0.4]
+	at anorm.Sql$class.as(Anorm.scala:433) ~[anorm_2.9.1.jar:2.0.4]
+	at anorm.SimpleSql.as(Anorm.scala:359) ~[anorm_2.9.1.jar:2.0.4]
+	at models.User$$anonfun$findById$1.apply(User.scala:22) ~[classes/:na]
+	at models.User$$anonfun$findById$1.apply(User.scala:19) ~[classes/:na]
+	at play.api.db.DBApi$class.withConnection(DB.scala:79) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.BoneCPApi.withConnection(DB.scala:273) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.DB$$anonfun$withConnection$3.apply(DB.scala:158) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.DB$$anonfun$withConnection$3.apply(DB.scala:158) ~[play_2.9.1.jar:2.0.4]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at play.api.db.DB$.withConnection(DB.scala:158) ~[play_2.9.1.jar:2.0.4]
+	at models.User$.findById(User.scala:19) ~[classes/:na]
+	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:512) ~[classes/:na]
+	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:509) ~[classes/:na]
+	at play.api.mvc.Action$$anon$1.apply(Action.scala:170) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1$$anonfun$6.apply(Invoker.scala:126) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1$$anonfun$6.apply(Invoker.scala:126) ~[play_2.9.1.jar:2.0.4]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:17) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:125) [play_2.9.1.jar:2.0.4]
+	... 11 common frames omitted
+
+2013-03-22 00:21:43,833 - [ERROR] - from application in play-akka.actor.actions-dispatcher-2 
+
+
+! @6dl3k48b3 - Internal server error, for request [GET /] ->
+
+play.core.ActionInvoker$$anonfun$receive$1$$anon$1: Execution exception [[RuntimeException: SqlMappingError(No rows when expecting a single one)]]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:134) [play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:115) [play_2.9.1.jar:2.0.4]
+	at akka.actor.Actor$class.apply(Actor.scala:318) [akka-actor.jar:2.0.2]
+	at play.core.ActionInvoker.apply(Invoker.scala:113) [play_2.9.1.jar:2.0.4]
+	at akka.actor.ActorCell.invoke(ActorCell.scala:626) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:197) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Mailbox.run(Mailbox.scala:179) [akka-actor.jar:2.0.2]
+	at akka.dispatch.ForkJoinExecutorConfigurator$MailboxExecutionTask.exec(AbstractDispatcher.scala:516) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+Caused by: java.lang.RuntimeException: SqlMappingError(No rows when expecting a single one)
+	at scala.sys.package$.error(package.scala:27) ~[scala-library.jar:na]
+	at anorm.Sql$.as(Anorm.scala:513) ~[anorm_2.9.1.jar:2.0.4]
+	at anorm.Sql$class.as(Anorm.scala:433) ~[anorm_2.9.1.jar:2.0.4]
+	at anorm.SimpleSql.as(Anorm.scala:359) ~[anorm_2.9.1.jar:2.0.4]
+	at models.User$$anonfun$findById$1.apply(User.scala:22) ~[classes/:na]
+	at models.User$$anonfun$findById$1.apply(User.scala:19) ~[classes/:na]
+	at play.api.db.DBApi$class.withConnection(DB.scala:79) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.BoneCPApi.withConnection(DB.scala:273) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.DB$$anonfun$withConnection$3.apply(DB.scala:158) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.DB$$anonfun$withConnection$3.apply(DB.scala:158) ~[play_2.9.1.jar:2.0.4]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at play.api.db.DB$.withConnection(DB.scala:158) ~[play_2.9.1.jar:2.0.4]
+	at models.User$.findById(User.scala:19) ~[classes/:na]
+	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:512) ~[classes/:na]
+	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:509) ~[classes/:na]
+	at play.api.mvc.Action$$anon$1.apply(Action.scala:170) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1$$anonfun$6.apply(Invoker.scala:126) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1$$anonfun$6.apply(Invoker.scala:126) ~[play_2.9.1.jar:2.0.4]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:17) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:125) [play_2.9.1.jar:2.0.4]
+	... 11 common frames omitted
+
+2013-03-22 00:42:04,796 - [INFO] - from play in play-akka.actor.default-dispatcher-4 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-22 00:42:04,814 - [INFO] - from play in play-akka.actor.default-dispatcher-4 
+Application started (Dev)
+
+2013-03-22 00:46:43,466 - [INFO] - from play in play-akka.actor.default-dispatcher-6 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-22 00:46:43,483 - [INFO] - from play in play-akka.actor.default-dispatcher-6 
 Application started (Dev)
 
