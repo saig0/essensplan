@@ -1,8 +1,5 @@
 
 # --- !Ups
-
-ALTER TABLE preparation_step 
-    ALTER COLUMN description	varchar(255) NOT NULL;
 	
 CREATE TABLE users (
     id 			serial PRIMARY KEY,
