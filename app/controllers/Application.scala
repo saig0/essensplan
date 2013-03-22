@@ -250,7 +250,8 @@ object Application extends Controller {
 			}
 	)}
 	
-	def mealsNewRecipe = showRecipes((recipes, form, tags) => views.html.meal_new_recipe(recipes, form, tags))
+	def mealsNewRecipe = showRecipes((recipes, form, tags) => 
+		views.html.meal_new_recipe(recipes, form, tags))
 	
 	def mealsNewRecipeQuery = showRecipesQuery((recipes, form, tags) => 		views.html.meal_new_recipe(recipes, form, tags))	
 	
