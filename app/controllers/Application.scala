@@ -430,6 +430,7 @@ object Application extends Controller {
 					}
 				)
 				
+				PreparationStep.create(recipeId, 1, descriptions, "")
 				/*
 				var step = 1
 				for(description <- descriptions.split("\\.")){
@@ -438,7 +439,6 @@ object Application extends Controller {
 					step += 1
 				}
 				*/
-				PreparationStep.create(recipeId, 1, descriptions, "")
 				
 				return recipeId;			
 	}
