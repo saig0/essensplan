@@ -432,14 +432,13 @@ object Application extends Controller {
 				
 				// einfache Lösung
 				PreparationStep.create(recipeId, 1, descriptions, "")
-				/* 
+				/* Trennung teilweise nicht sinnvoll
 				var step = 1
 				for(description <- descriptions.split("\\.")){
 					val desc = if(description.length < 255) description else description.substring(0,255) 
 					PreparationStep.create(recipeId, step, desc, "")
 					step += 1
-				}
-				*/
+				}  */
 				
 				return recipeId;			
 	}
