@@ -419,7 +419,7 @@ object Application extends Controller {
 						x <- 0 to i1.size -1
 					} yield i1(x) -> i2(x)
 				
-				val descriptions = ( xml \\ "div" filter ( div => ( div \ "@class" ).text == "instructions" ) ) .text.trim.split("\\.")
+				val descriptions = ( xml \\ "div" filter ( div => ( div \ "@class" ).text == "instructions" ) ) .text.trim
 				
 				val recipeId = Recipe.create(recipeName, rating, imageRef, user.id) 
 				
@@ -430,12 +430,15 @@ object Application extends Controller {
 					}
 				)
 				
+				/*
 				var step = 1
-				for(description <- descriptions){
+				for(description <- descriptions.split("\\.")){
 					val desc = if(description.length < 255) description else description.substring(0,255) 
 					PreparationStep.create(recipeId, step, desc, "")
 					step += 1
 				}
+				*/
+				PreparationStep.create(recipeId, 1, descriptions, "")
 				
 				return recipeId;			
 	}
