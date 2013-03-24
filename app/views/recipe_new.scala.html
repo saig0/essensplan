@@ -4,7 +4,7 @@
 
 @main("Rezepte") {
     
-	<h1>Neues Rezepte</h1>
+	<h1>@{if(recipeId == 0) "Neues Rezepte" else "Rezept ändern"}</h1>
 	
 	<fieldset>
 		<legend>Informationen</legend>

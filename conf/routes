@@ -46,6 +46,11 @@ POST	/tags/:tagId				controllers.Application.tagUpdate(tagId: Long)
 GET		/import						controllers.Application.importRecipe
 POST	/import/chefkoch/			controllers.Application.importRecipeWithId
 
+# Kopieren
+GET		/copyRecipe					controllers.Application.copyRecipe
+GET		/copyRecipe/query			controllers.Application.copyRecipeQuery
+POST	/copyRecipe/:recipeId		controllers.Application.copyRecipeToUser(recipeId: Long)
+
 # Login
 GET		/login						controllers.Application.login
 GET		/login/openId				controllers.Application.openIDCallback

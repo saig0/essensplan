@@ -1,6 +1,6 @@
 // @SOURCE:E:/Eigene Dateien/workspace-scala/essensplan/conf/routes
-// @HASH:30e1908b2ecb3de7baee3947e886d6492852c909
-// @DATE:Sat Mar 16 01:56:07 CET 2013
+// @HASH:2005fe15ec47e6c48dd956f004d5774a1df1a4e3
+// @DATE:Sun Mar 24 11:08:59 CET 2013
 
 import play.core._
 import play.core.Router._
@@ -12,6 +12,9 @@ import play.api.mvc._
 import Router.queryString
 
 
+// @LINE:60
+// @LINE:57
+// @LINE:56
 // @LINE:55
 // @LINE:52
 // @LINE:51
@@ -52,6 +55,9 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
+// @LINE:57
+// @LINE:56
+// @LINE:55
 // @LINE:52
 // @LINE:51
 // @LINE:50
@@ -130,7 +136,7 @@ def mealEdit(mealId:Long) = {
 }
                                                         
  
-// @LINE:50
+// @LINE:55
 def login() = {
    Call("GET", "/login")
 }
@@ -168,7 +174,7 @@ def mealRemove(mealId:Long) = {
 }
                                                         
  
-// @LINE:52
+// @LINE:57
 def logout() = {
    Call("GET", "/logout")
 }
@@ -192,7 +198,7 @@ def recipes() = {
 }
                                                         
  
-// @LINE:51
+// @LINE:56
 def openIDCallback() = {
    Call("GET", "/login/openId")
 }
@@ -258,6 +264,12 @@ def index() = {
 }
                                                         
  
+// @LINE:51
+def copyRecipeQuery() = {
+   Call("GET", "/copyRecipe/query")
+}
+                                                        
+ 
 // @LINE:41
 def tagRemove(tagId:Long) = {
    Call("POST", "/tags/" + implicitly[PathBindable[Long]].unbind("tagId", tagId) + "/delete")
@@ -294,6 +306,18 @@ def mealsQuery() = {
 }
                                                         
  
+// @LINE:52
+def copyRecipeToUser(recipeId:Long) = {
+   Call("POST", "/copyRecipe/" + implicitly[PathBindable[Long]].unbind("recipeId", recipeId))
+}
+                                                        
+ 
+// @LINE:50
+def copyRecipe() = {
+   Call("GET", "/copyRecipe")
+}
+                                                        
+ 
 // @LINE:29
 def mealsNewRecipeQuery() = {
    Call("GET", "/meals/create/recipe/query")
@@ -323,13 +347,13 @@ def mealsNewDay(recipeId:Long) = {
 }
                             
 
-// @LINE:55
+// @LINE:60
 class ReverseAssets {
     
 
 
  
-// @LINE:55
+// @LINE:60
 def at(file:String) = {
    Call("GET", "/assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -343,6 +367,9 @@ def at(file:String) = {
                     
 
 
+// @LINE:60
+// @LINE:57
+// @LINE:56
 // @LINE:55
 // @LINE:52
 // @LINE:51
@@ -383,6 +410,9 @@ def at(file:String) = {
 // @LINE:6
 package controllers.javascript {
 
+// @LINE:57
+// @LINE:56
+// @LINE:55
 // @LINE:52
 // @LINE:51
 // @LINE:50
@@ -491,7 +521,7 @@ def mealEdit = JavascriptReverseRoute(
 )
                                                         
  
-// @LINE:50
+// @LINE:55
 def login = JavascriptReverseRoute(
    "controllers.Application.login",
    """
@@ -552,7 +582,7 @@ def mealRemove = JavascriptReverseRoute(
 )
                                                         
  
-// @LINE:52
+// @LINE:57
 def logout = JavascriptReverseRoute(
    "controllers.Application.logout",
    """
@@ -596,7 +626,7 @@ def recipes = JavascriptReverseRoute(
 )
                                                         
  
-// @LINE:51
+// @LINE:56
 def openIDCallback = JavascriptReverseRoute(
    "controllers.Application.openIDCallback",
    """
@@ -717,6 +747,17 @@ def index = JavascriptReverseRoute(
 )
                                                         
  
+// @LINE:51
+def copyRecipeQuery = JavascriptReverseRoute(
+   "controllers.Application.copyRecipeQuery",
+   """
+      function() {
+      return _wA({method:"GET", url:"/copyRecipe/query"})
+      }
+   """
+)
+                                                        
+ 
 // @LINE:41
 def tagRemove = JavascriptReverseRoute(
    "controllers.Application.tagRemove",
@@ -783,6 +824,28 @@ def mealsQuery = JavascriptReverseRoute(
 )
                                                         
  
+// @LINE:52
+def copyRecipeToUser = JavascriptReverseRoute(
+   "controllers.Application.copyRecipeToUser",
+   """
+      function(recipeId) {
+      return _wA({method:"POST", url:"/copyRecipe/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("recipeId", recipeId)})
+      }
+   """
+)
+                                                        
+ 
+// @LINE:50
+def copyRecipe = JavascriptReverseRoute(
+   "controllers.Application.copyRecipe",
+   """
+      function() {
+      return _wA({method:"GET", url:"/copyRecipe"})
+      }
+   """
+)
+                                                        
+ 
 // @LINE:29
 def mealsNewRecipeQuery = JavascriptReverseRoute(
    "controllers.Application.mealsNewRecipeQuery",
@@ -832,13 +895,13 @@ def mealsNewDay = JavascriptReverseRoute(
 }
                             
 
-// @LINE:55
+// @LINE:60
 class ReverseAssets {
     
 
 
  
-// @LINE:55
+// @LINE:60
 def at = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -857,6 +920,9 @@ def at = JavascriptReverseRoute(
                     
 
 
+// @LINE:60
+// @LINE:57
+// @LINE:56
 // @LINE:55
 // @LINE:52
 // @LINE:51
@@ -897,6 +963,9 @@ def at = JavascriptReverseRoute(
 // @LINE:6
 package controllers.ref {
 
+// @LINE:57
+// @LINE:56
+// @LINE:55
 // @LINE:52
 // @LINE:51
 // @LINE:50
@@ -975,7 +1044,7 @@ def mealEdit(mealId:Long) = new play.api.mvc.HandlerRef(
 )
                               
  
-// @LINE:50
+// @LINE:55
 def login() = new play.api.mvc.HandlerRef(
    controllers.Application.login(), HandlerDef(this, "controllers.Application", "login", Seq())
 )
@@ -1005,7 +1074,7 @@ def mealRemove(mealId:Long) = new play.api.mvc.HandlerRef(
 )
                               
  
-// @LINE:52
+// @LINE:57
 def logout() = new play.api.mvc.HandlerRef(
    controllers.Application.logout(), HandlerDef(this, "controllers.Application", "logout", Seq())
 )
@@ -1029,7 +1098,7 @@ def recipes() = new play.api.mvc.HandlerRef(
 )
                               
  
-// @LINE:51
+// @LINE:56
 def openIDCallback() = new play.api.mvc.HandlerRef(
    controllers.Application.openIDCallback(), HandlerDef(this, "controllers.Application", "openIDCallback", Seq())
 )
@@ -1095,6 +1164,12 @@ def index() = new play.api.mvc.HandlerRef(
 )
                               
  
+// @LINE:51
+def copyRecipeQuery() = new play.api.mvc.HandlerRef(
+   controllers.Application.copyRecipeQuery(), HandlerDef(this, "controllers.Application", "copyRecipeQuery", Seq())
+)
+                              
+ 
 // @LINE:41
 def tagRemove(tagId:Long) = new play.api.mvc.HandlerRef(
    controllers.Application.tagRemove(tagId), HandlerDef(this, "controllers.Application", "tagRemove", Seq(classOf[Long]))
@@ -1131,6 +1206,18 @@ def mealsQuery() = new play.api.mvc.HandlerRef(
 )
                               
  
+// @LINE:52
+def copyRecipeToUser(recipeId:Long) = new play.api.mvc.HandlerRef(
+   controllers.Application.copyRecipeToUser(recipeId), HandlerDef(this, "controllers.Application", "copyRecipeToUser", Seq(classOf[Long]))
+)
+                              
+ 
+// @LINE:50
+def copyRecipe() = new play.api.mvc.HandlerRef(
+   controllers.Application.copyRecipe(), HandlerDef(this, "controllers.Application", "copyRecipe", Seq())
+)
+                              
+ 
 // @LINE:29
 def mealsNewRecipeQuery() = new play.api.mvc.HandlerRef(
    controllers.Application.mealsNewRecipeQuery(), HandlerDef(this, "controllers.Application", "mealsNewRecipeQuery", Seq())
@@ -1160,13 +1247,13 @@ def mealsNewDay(recipeId:Long) = new play.api.mvc.HandlerRef(
 }
                             
 
-// @LINE:55
+// @LINE:60
 class ReverseAssets {
     
 
 
  
-// @LINE:55
+// @LINE:60
 def at(path:String, file:String) = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]))
 )

@@ -472,6 +472,27 @@ object Application extends Controller {
 		scala.xml.XML.loadString(writer.toString()) 
   }
   
+  // ----------------
+  
+	def copyRecipe = 
+		showRecipes((recipes, form, tags) => 
+		views.html.copy_recipe(recipes, form, tags))
+	
+	def copyRecipeQuery = showRecipesQuery((recipes, form, tags) => 					
+		views.html.copy_recipe(recipes, form, tags))	
+	
+	def copyRecipeToUser(recipeId: Long) = AuthenticatedRequired { implicit request =>
+		val recipe = Recipe.findById(recipeId)
+		val copiedRecipeId = Recipe.create(recipe.name, recipe.rating, recipe.imageRef, request.user.id)
+		Ingredient.findByRecipe(recipe.id) map ( ingredient =>
+			Ingredient.create(copiedRecipeId, ingredient.amount, ingredient.unit, ingredient.name)
+		)
+		PreparationStep.findByRecipe(recipe.id) map ( preparationStep =>
+			PreparationStep.create(copiedRecipeId, preparationStep.step, preparationStep.description, preparationStep.imageRef)
+		)
+		Redirect(routes.Application.recipes)
+	}
+  
   // -----------------
   
 	val openid = "www.google.com/accounts/o8/id"

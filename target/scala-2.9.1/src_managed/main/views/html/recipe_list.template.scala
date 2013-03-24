@@ -59,9 +59,16 @@ Seq[Any](format.raw/*1.90*/("""
 		</tr>
 		<tr>
 			<td>
-				"""),_display_(Seq[Any](/*40.6*/form(routes.Application.tags)/*40.35*/ {_display_(Seq[Any](format.raw/*40.37*/("""
-					<input type="submit" value="Stichwörter verwalten" />
+				"""),_display_(Seq[Any](/*40.6*/form(routes.Application.copyRecipe)/*40.41*/ {_display_(Seq[Any](format.raw/*40.43*/("""
+					<input type="submit" value="Rezept kopieren" />
 				""")))})),format.raw/*42.6*/("""
+			</td>
+		</tr>
+		<tr>
+			<td>
+				"""),_display_(Seq[Any](/*47.6*/form(routes.Application.tags)/*47.35*/ {_display_(Seq[Any](format.raw/*47.37*/("""
+					<input type="submit" value="Stichwörter verwalten" />
+				""")))})),format.raw/*49.6*/("""
 			</td>
 		</tr>
 	</table>
@@ -77,11 +84,11 @@ Seq[Any](format.raw/*1.90*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 20 00:00:17 CET 2013
+                    DATE: Sun Mar 24 11:12:54 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/recipe_list.scala.html
-                    HASH: 2b1a2a27d5db445b1510d12d3ddca11aec1d835a
-                    MATRIX: 556->1|752->89|780->123|817->126|840->141|879->143|918->148|1476->684|1543->716|1586->750|1626->752|1713->808|1787->847|1833->884|1873->886|1966->948|2039->986|2077->1015|2117->1017|2213->1082
-                    LINES: 19->1|25->1|27->5|29->7|29->7|29->7|31->9|43->21|48->26|48->26|48->26|50->28|55->33|55->33|55->33|57->35|62->40|62->40|62->40|64->42
+                    HASH: f826c7619e4cbf35a83393617f03638be6262b77
+                    MATRIX: 556->1|752->89|780->123|817->126|840->141|879->143|918->148|1476->684|1543->716|1586->750|1626->752|1713->808|1787->847|1833->884|1873->886|1966->948|2039->986|2083->1021|2123->1023|2213->1082|2286->1120|2324->1149|2364->1151|2460->1216
+                    LINES: 19->1|25->1|27->5|29->7|29->7|29->7|31->9|43->21|48->26|48->26|48->26|50->28|55->33|55->33|55->33|57->35|62->40|62->40|62->40|64->42|69->47|69->47|69->47|71->49
                     -- GENERATED --
                 */
             
