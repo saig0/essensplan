@@ -1,210 +1,261 @@
-2013-03-24 10:52:02,958 - [INFO] - from play in main 
+2013-03-24 20:06:22,141 - [INFO] - from play in main 
 Listening for HTTP on port 9000...
 
-2013-03-24 10:52:40,840 - [ERROR] - from com.jolbox.bonecp.hooks.AbstractConnectionHook in play-akka.actor.default-dispatcher-2 
-Failed to obtain initial connection Sleeping for 0ms and trying again. Attempts left: 0. Exception: null
-
-2013-03-24 10:52:40,884 - [ERROR] - from application in New I/O  worker #2 
-
-
-! @6dlld6o2k - Internal server error, for request [GET /] ->
-
-play.api.Configuration$$anon$1: Configuration error [Cannot connect to database [default]]
-	at play.api.Configuration$.play$api$Configuration$$configError(Configuration.scala:71) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Configuration.reportError(Configuration.scala:258) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.BoneCPPlugin$$anonfun$onStart$1.apply(DB.scala:249) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.BoneCPPlugin$$anonfun$onStart$1.apply(DB.scala:240) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:194) ~[scala-library.jar:0.11.3]
-	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:194) ~[scala-library.jar:0.11.3]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at scala.collection.TraversableLike$class.map(TraversableLike.scala:194) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.map(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.db.BoneCPPlugin.onStart(DB.scala:240) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
-Caused by: org.postgresql.util.PSQLException: Der Server verlangt passwortbasierte Authentifizierung, jedoch wurde kein Passwort angegeben.
-	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:337) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:108) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:66) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.jdbc2.AbstractJdbc2Connection.<init>(AbstractJdbc2Connection.java:125) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.jdbc3.AbstractJdbc3Connection.<init>(AbstractJdbc3Connection.java:30) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.jdbc3g.AbstractJdbc3gConnection.<init>(AbstractJdbc3gConnection.java:22) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.jdbc4.AbstractJdbc4Connection.<init>(AbstractJdbc4Connection.java:30) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.jdbc4.Jdbc4Connection.<init>(Jdbc4Connection.java:24) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.Driver.makeConnection(Driver.java:393) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at org.postgresql.Driver.connect(Driver.java:267) ~[postgresql-8.4-702.jdbc4.jar:na]
-	at java.sql.DriverManager.getConnection(Unknown Source) ~[na:1.7.0_11]
-	at java.sql.DriverManager.getConnection(Unknown Source) ~[na:1.7.0_11]
-	at com.jolbox.bonecp.BoneCP.obtainRawInternalConnection(BoneCP.java:256) ~[bonecp.jar:0.7.1.RELEASE]
-	at com.jolbox.bonecp.BoneCP.<init>(BoneCP.java:305) ~[bonecp.jar:0.7.1.RELEASE]
-	at com.jolbox.bonecp.BoneCPDataSource.maybeInit(BoneCPDataSource.java:150) ~[bonecp.jar:0.7.1.RELEASE]
-	at com.jolbox.bonecp.BoneCPDataSource.getConnection(BoneCPDataSource.java:112) ~[bonecp.jar:0.7.1.RELEASE]
-	at play.api.db.BoneCPPlugin$$anonfun$onStart$1.apply(DB.scala:242) ~[play_2.9.1.jar:2.0.4]
-	... 29 common frames omitted
-
-2013-03-24 10:53:12,405 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
+2013-03-24 20:06:34,526 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 10:53:12,524 - [ERROR] - from application in New I/O  worker #2 
-
-
-! @6dlld6o2l - Internal server error, for request [GET /] ->
-
-play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution! [An SQL script need to be run on your database.]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:427) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
-
-2013-03-24 10:53:17,183 - [WARN] - from play in New I/O  worker #2 
-Applying evolution script for database 'default':
-
-# !!! WARNING! This script contains DOWNS evolutions that are likely destructives
-
-# --- Rev:8,Downs - 5463b56
-
-
-# --- Rev:8,Ups - 114e9fb
-ALTER TABLE preparation_step
-ALTER COLUMN description TYPE varchar(4000);
-
-ALTER TABLE preparation_step
-ALTER COLUMN description SET NOT NULL;
-
-# --- Rev:9,Ups - f1c22bb
-CREATE TABLE users (
-id 			serial PRIMARY KEY,
-email		varchar(255) NOT NULL
-);
-
-ALTER TABLE recipe
-ADD COLUMN userId integer;
-
-ALTER TABLE recipe
-ALTER COLUMN userId SET NOT NULL;
-
-ALTER TABLE recipe
-ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
-
-ALTER TABLE meal
-ADD COLUMN userId integer;
-
-ALTER TABLE meal
-ALTER COLUMN userId SET NOT NULL;
-
-ALTER TABLE meal
-ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
-
-
-2013-03-24 10:53:17,694 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 10:53:17,721 - [ERROR] - from application in New I/O  worker #2 
-
-
-! @6dlld6o2m - Internal server error, for request [GET /] ->
-
-play.api.db.evolutions.InconsistentDatabase: Database 'default' is in inconsistent state! [An evolution has not been applied properly. Please check the problem and resolve it manually before marking it as resolved.]
-	at play.api.db.evolutions.Evolutions$.checkEvolutionsState(Evolutions.scala:157) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.Evolutions$.databaseEvolutions(Evolutions.scala:310) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.Evolutions$.evolutionScript(Evolutions.scala:286) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:415) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
-
-2013-03-24 10:53:23,976 - [WARN] - from play in New I/O  worker #2 
-Resolving evolution [9] for database 'default'
-
-2013-03-24 10:53:24,421 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 10:53:24,443 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
+2013-03-24 20:06:34,722 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
 Application started (Dev)
 
-2013-03-24 11:12:59,853 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+2013-03-24 20:09:56,315 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 11:12:59,868 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+2013-03-24 20:09:56,342 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 Application started (Dev)
 
-2013-03-24 11:19:54,349 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+2013-03-24 20:11:06,754 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 11:19:54,363 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+2013-03-24 20:11:06,782 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
 Application started (Dev)
 
-2013-03-24 11:25:04,915 - [INFO] - from play in play-akka.actor.default-dispatcher-26 
+2013-03-24 20:11:42,701 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 11:25:04,928 - [INFO] - from play in play-akka.actor.default-dispatcher-26 
+2013-03-24 20:11:42,729 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
 Application started (Dev)
+
+2013-03-24 20:13:26,298 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:13:26,317 - [INFO] - from play in play-akka.actor.default-dispatcher-5 
+Application started (Dev)
+
+2013-03-24 20:13:56,256 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:13:56,276 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+Application started (Dev)
+
+2013-03-24 20:15:00,459 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:15:00,477 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+Application started (Dev)
+
+2013-03-24 20:16:04,373 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:16:04,386 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+Application started (Dev)
+
+2013-03-24 20:17:19,529 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:17:19,546 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+Application started (Dev)
+
+2013-03-24 20:17:25,630 - [ERROR] - from play in play-akka.actor.promises-dispatcher-77 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1$$anonfun$3.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) [scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:118) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply$mcV$sp(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) [akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+
+2013-03-24 20:17:33,061 - [ERROR] - from play in play-akka.actor.promises-dispatcher-78 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$BAD_RESPONSE$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$BAD_RESPONSE$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2$$anonfun$apply$3.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) ~[scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise.redeem(Promise.scala:166) ~[play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anonfun$onFailure$1.apply(Future.scala:500) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anonfun$onFailure$1.apply(Future.scala:499) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.KeptPromise$$anonfun$onComplete$2.apply$mcV$sp(Future.scala:956) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply$mcV$sp(Future.scala:386) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:57) ~[scala-library.jar:na]
+	at akka.dispatch.Future$$anon$4.run(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+
+2013-03-24 20:17:36,009 - [ERROR] - from play in play-akka.actor.promises-dispatcher-81 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$BAD_RESPONSE$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$BAD_RESPONSE$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2$$anonfun$apply$3.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) ~[scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise.redeem(Promise.scala:166) ~[play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anonfun$onFailure$1.apply(Future.scala:500) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anonfun$onFailure$1.apply(Future.scala:499) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.KeptPromise$$anonfun$onComplete$2.apply$mcV$sp(Future.scala:956) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply$mcV$sp(Future.scala:386) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:57) ~[scala-library.jar:na]
+	at akka.dispatch.Future$$anon$4.run(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+
+2013-03-24 20:17:45,965 - [ERROR] - from play in play-akka.actor.promises-dispatcher-83 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$BAD_RESPONSE$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$BAD_RESPONSE$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2$$anonfun$apply$3.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) ~[scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) ~[scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise.redeem(Promise.scala:166) ~[play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.AkkaPromise$$anonfun$extend$2.apply(Akka.scala:37) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anonfun$onFailure$1.apply(Future.scala:500) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anonfun$onFailure$1.apply(Future.scala:499) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.KeptPromise$$anonfun$onComplete$2.apply$mcV$sp(Future.scala:956) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply$mcV$sp(Future.scala:386) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$4$$anonfun$run$1.apply(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at scala.util.DynamicVariable.withValue(DynamicVariable.scala:57) ~[scala-library.jar:na]
+	at akka.dispatch.Future$$anon$4.run(Future.scala:378) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+
+2013-03-24 20:19:35,113 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:19:35,126 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+Application started (Dev)
+
+2013-03-24 20:21:45,061 - [INFO] - from play in play-akka.actor.default-dispatcher-14 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:21:45,097 - [INFO] - from play in play-akka.actor.default-dispatcher-14 
+Application started (Dev)
+
+2013-03-24 20:22:42,726 - [INFO] - from play in play-akka.actor.default-dispatcher-15 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:22:42,750 - [INFO] - from play in play-akka.actor.default-dispatcher-15 
+Application started (Dev)
+
+2013-03-24 20:22:51,990 - [ERROR] - from play in play-akka.actor.promises-dispatcher-140 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1$$anonfun$3.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) [scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:118) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply$mcV$sp(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) [akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+
+2013-03-24 20:23:13,446 - [ERROR] - from play in play-akka.actor.promises-dispatcher-147 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:517) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1$$anonfun$3.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) [scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:118) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply$mcV$sp(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) [akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+
+2013-03-24 20:25:33,603 - [INFO] - from play in play-akka.actor.default-dispatcher-18 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-24 20:25:33,615 - [INFO] - from play in play-akka.actor.default-dispatcher-18 
+Application started (Dev)
+
+2013-03-24 20:25:39,574 - [ERROR] - from play in play-akka.actor.promises-dispatcher-176 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:513) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$36.apply(Application.scala:513) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1$$anonfun$3.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) [scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:118) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply$mcV$sp(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) [akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
 

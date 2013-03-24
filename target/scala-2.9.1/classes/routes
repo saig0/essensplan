@@ -52,8 +52,8 @@ GET		/copyRecipe/query			controllers.Application.copyRecipeQuery
 POST	/copyRecipe/:recipeId		controllers.Application.copyRecipeToUser(recipeId: Long)
 
 # Login
-GET		/login						controllers.Application.login
-GET		/login/openId				controllers.Application.openIDCallback
+GET		/login/*uri					controllers.Application.login(uri)
+GET		/openId/*uri				controllers.Application.openIDCallback(uri)
 GET		/logout						controllers.Application.logout
 
 # Map static resources from the /public folder to the /assets URL path

@@ -1,6 +1,6 @@
 // @SOURCE:E:/Eigene Dateien/workspace-scala/essensplan/conf/routes
-// @HASH:2005fe15ec47e6c48dd956f004d5774a1df1a4e3
-// @DATE:Sun Mar 24 11:08:59 CET 2013
+// @HASH:05ae0b628c4589109eeaaec244d10374ad5fdaa3
+// @DATE:Sun Mar 24 20:17:05 CET 2013
 
 package controllers;
 

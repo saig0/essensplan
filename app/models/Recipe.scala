@@ -1,8 +1,8 @@
 package models
 
-case class Recipe(id: Long, name: String,  rating: Int, imageRef: String, userId: Long)
+case class Recipe(id: Long, name: String,  rating: Int, imageRef: String, source: String, userId: Long)
 
-case class RecipeDTO(id: Long, name: String,  rating: Int, imageRef: String, tags: List[Tag])
+case class RecipeDTO(id: Long, name: String,  rating: Int, imageRef: String, source: String, tags: List[Tag])
 
 object Recipe {
 
@@ -16,8 +16,9 @@ object Recipe {
 		get[String]("name") ~
 		get[Int]("rating") ~
 		get[String]("imageRef")	~
+		get[String]("source") ~
 		get[Long]("userId") map {
-			case id~name~rating~imageRef~userId => Recipe(id, name, rating, imageRef, userId)
+			case id~name~rating~imageRef~source~userId => Recipe(id, name, rating, imageRef, source,userId)
 		}
 	}
 	
@@ -25,12 +26,13 @@ object Recipe {
 		SQL("select * from recipe").as(recipe *)
 	}
 	
-	def create(name: String, rating: Int, imageRef: String, userId: Long): Long = { 
+	def create(name: String, rating: Int, imageRef: String, source: String, userId: Long): Long = { 
 		DB.withConnection { implicit c =>
-			SQL("insert into recipe (name,rating,imageRef, userId) values ({name}, {rating}, {imageRef}, {userId})").on(
+			SQL("insert into recipe (name,rating,imageRef, source, userId) values ({name}, {rating}, {imageRef}, {source}, {userId})").on(
 				'name 		-> name,
 				'rating 	-> rating,
 				'imageRef 	-> imageRef,
+				'source		-> source,
 				'userId		-> userId
 			).executeInsert() match {
 				case Some(id)	=> id
@@ -54,11 +56,12 @@ object Recipe {
 	}
 
 	def update(recipe: Recipe) { DB.withConnection { implicit c =>
-		SQL("update recipe SET name = {name}, rating = {rating}, imageRef = {imageRef} where id = {id}").on(
+		SQL("update recipe SET name = {name}, rating = {rating}, imageRef = {imageRef}, source = {source} where id = {id}").on(
 				'id 		-> recipe.id,
 				'name 		-> recipe.name,
 				'rating 	-> recipe.rating,
-				'imageRef 	-> recipe.imageRef
+				'imageRef 	-> recipe.imageRef,
+				'source		-> recipe.source
 			).executeUpdate()
 		}
 	}
@@ -99,6 +102,6 @@ object Recipe {
 	
 	def toDto(recipe: Recipe): RecipeDTO = {
 		val tags = RecipeTag.findByRecipe(recipe.id).map(recipeTag => Tag.findById(recipeTag.tagId))
-		RecipeDTO(recipe.id, recipe.name, recipe.rating, recipe.imageRef, tags)
+		RecipeDTO(recipe.id, recipe.name, recipe.rating, recipe.imageRef, recipe.source, tags)
 	}
 }

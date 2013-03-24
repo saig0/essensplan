@@ -36,22 +36,23 @@ Seq[Any](format.raw/*1.78*/("""
 			"""),_display_(Seq[Any](/*15.5*/inputText(recipeForm("name"), '_label -> "Name des Rezepts"))),format.raw/*15.65*/("""
 			"""),_display_(Seq[Any](/*16.5*/inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung"))),format.raw/*16.67*/("""
 			"""),_display_(Seq[Any](/*17.5*/inputText(recipeForm("imageRef"), '_label -> "Link zu einem Bild"))),format.raw/*17.71*/("""
-			"""),_display_(Seq[Any](/*18.5*/multiSelect(field = recipeForm("tags"), 
+			"""),_display_(Seq[Any](/*18.5*/inputText(recipeForm("source"), '_label -> "Quelle"))),format.raw/*18.57*/("""
+			"""),_display_(Seq[Any](/*19.5*/multiSelect(field = recipeForm("tags"), 
 				options = options(tags),
 				'_label -> "Stichwörter"
-			))),format.raw/*21.5*/("""
+			))),format.raw/*22.5*/("""
 	
 	</fieldset>	
 
 		<input type="submit" value="weiter" />
-		""")))})),format.raw/*26.4*/("""
+		""")))})),format.raw/*27.4*/("""
 	
 	<!--
-		"""),_display_(Seq[Any](/*29.4*/form(routes.Application.recipes)/*29.36*/ {_display_(Seq[Any](format.raw/*29.38*/("""
+		"""),_display_(Seq[Any](/*30.4*/form(routes.Application.recipes)/*30.36*/ {_display_(Seq[Any](format.raw/*30.38*/("""
 			<input type="submit" value="abbrechen" />
-		""")))})),format.raw/*31.4*/("""
+		""")))})),format.raw/*32.4*/("""
 	-->			
-""")))})),format.raw/*33.2*/("""
+""")))})),format.raw/*34.2*/("""
 """))}
     }
     
@@ -64,11 +65,11 @@ Seq[Any](format.raw/*1.78*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Sun Mar 24 11:25:00 CET 2013
+                    DATE: Sun Mar 24 13:51:09 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/recipe_new.scala.html
-                    HASH: 3038730f324e3477ae5b2223c944e8e2743e91a8
-                    MATRIX: 544->1|713->77|741->96|777->98|800->113|839->115|885->127|962->183|1053->239|1174->352|1212->353|1252->358|1334->418|1374->423|1458->485|1498->490|1586->556|1626->561|1750->664|1843->726|1890->738|1931->770|1971->772|2051->821|2092->831
-                    LINES: 19->1|23->1|25->4|26->5|26->5|26->5|28->7|28->7|32->11|35->14|35->14|36->15|36->15|37->16|37->16|38->17|38->17|39->18|42->21|47->26|50->29|50->29|50->29|52->31|54->33
+                    HASH: 117f4bd419e5fefce61b38118a0dc5932dd5b457
+                    MATRIX: 544->1|713->77|741->96|777->98|800->113|839->115|885->127|962->183|1053->239|1174->352|1212->353|1252->358|1334->418|1374->423|1458->485|1498->490|1586->556|1626->561|1700->613|1740->618|1864->721|1957->783|2004->795|2045->827|2085->829|2165->878|2206->888
+                    LINES: 19->1|23->1|25->4|26->5|26->5|26->5|28->7|28->7|32->11|35->14|35->14|36->15|36->15|37->16|37->16|38->17|38->17|39->18|39->18|40->19|43->22|48->27|51->30|51->30|51->30|53->32|55->34
                     -- GENERATED --
                 */
             

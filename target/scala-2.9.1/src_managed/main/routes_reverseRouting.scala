@@ -1,6 +1,6 @@
 // @SOURCE:E:/Eigene Dateien/workspace-scala/essensplan/conf/routes
-// @HASH:2005fe15ec47e6c48dd956f004d5774a1df1a4e3
-// @DATE:Sun Mar 24 11:08:59 CET 2013
+// @HASH:05ae0b628c4589109eeaaec244d10374ad5fdaa3
+// @DATE:Sun Mar 24 20:17:05 CET 2013
 
 import play.core._
 import play.core.Router._
@@ -136,12 +136,6 @@ def mealEdit(mealId:Long) = {
 }
                                                         
  
-// @LINE:55
-def login() = {
-   Call("GET", "/login")
-}
-                                                        
- 
 // @LINE:19
 // @LINE:18
 def recipe(recipeId:Long, page:String) = {
@@ -198,12 +192,6 @@ def recipes() = {
 }
                                                         
  
-// @LINE:56
-def openIDCallback() = {
-   Call("GET", "/login/openId")
-}
-                                                        
- 
 // @LINE:35
 def mealShoppingList(from:String, to:String) = {
    Call("GET", "/meals/shoppingList/" + implicitly[PathBindable[String]].unbind("from", from) + "/" + implicitly[PathBindable[String]].unbind("to", to))
@@ -213,6 +201,12 @@ def mealShoppingList(from:String, to:String) = {
 // @LINE:14
 def removeRecipeIngredient(recipeId:Long, ingredientId:Long) = {
    Call("POST", "/recipes/" + implicitly[PathBindable[Long]].unbind("recipeId", recipeId) + "/ingredients/" + implicitly[PathBindable[Long]].unbind("ingredientId", ingredientId) + "/delete")
+}
+                                                        
+ 
+// @LINE:56
+def openIDCallback(uri:String) = {
+   Call("GET", "/openId/" + implicitly[PathBindable[String]].unbind("uri", uri))
 }
                                                         
  
@@ -339,6 +333,12 @@ def mealProposal() = {
 // @LINE:30
 def mealsNewDay(recipeId:Long) = {
    Call("GET", "/meals/create/day/" + implicitly[PathBindable[Long]].unbind("recipeId", recipeId))
+}
+                                                        
+ 
+// @LINE:55
+def login(uri:String) = {
+   Call("GET", "/login/" + implicitly[PathBindable[String]].unbind("uri", uri))
 }
                                                         
 
@@ -521,17 +521,6 @@ def mealEdit = JavascriptReverseRoute(
 )
                                                         
  
-// @LINE:55
-def login = JavascriptReverseRoute(
-   "controllers.Application.login",
-   """
-      function() {
-      return _wA({method:"GET", url:"/login"})
-      }
-   """
-)
-                                                        
- 
 // @LINE:19
 // @LINE:18
 def recipe = JavascriptReverseRoute(
@@ -626,17 +615,6 @@ def recipes = JavascriptReverseRoute(
 )
                                                         
  
-// @LINE:56
-def openIDCallback = JavascriptReverseRoute(
-   "controllers.Application.openIDCallback",
-   """
-      function() {
-      return _wA({method:"GET", url:"/login/openId"})
-      }
-   """
-)
-                                                        
- 
 // @LINE:35
 def mealShoppingList = JavascriptReverseRoute(
    "controllers.Application.mealShoppingList",
@@ -654,6 +632,17 @@ def removeRecipeIngredient = JavascriptReverseRoute(
    """
       function(recipeId,ingredientId) {
       return _wA({method:"POST", url:"/recipes/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("recipeId", recipeId) + "/ingredients/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("ingredientId", ingredientId) + "/delete"})
+      }
+   """
+)
+                                                        
+ 
+// @LINE:56
+def openIDCallback = JavascriptReverseRoute(
+   "controllers.Application.openIDCallback",
+   """
+      function(uri) {
+      return _wA({method:"GET", url:"/openId/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("uri", uri)})
       }
    """
 )
@@ -889,6 +878,17 @@ def mealsNewDay = JavascriptReverseRoute(
    """
 )
                                                         
+ 
+// @LINE:55
+def login = JavascriptReverseRoute(
+   "controllers.Application.login",
+   """
+      function(uri) {
+      return _wA({method:"GET", url:"/login/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("uri", uri)})
+      }
+   """
+)
+                                                        
 
                       
     
@@ -1044,12 +1044,6 @@ def mealEdit(mealId:Long) = new play.api.mvc.HandlerRef(
 )
                               
  
-// @LINE:55
-def login() = new play.api.mvc.HandlerRef(
-   controllers.Application.login(), HandlerDef(this, "controllers.Application", "login", Seq())
-)
-                              
- 
 // @LINE:18
 def recipe(recipeId:Long, page:String) = new play.api.mvc.HandlerRef(
    controllers.Application.recipe(recipeId, page), HandlerDef(this, "controllers.Application", "recipe", Seq(classOf[Long], classOf[String]))
@@ -1098,12 +1092,6 @@ def recipes() = new play.api.mvc.HandlerRef(
 )
                               
  
-// @LINE:56
-def openIDCallback() = new play.api.mvc.HandlerRef(
-   controllers.Application.openIDCallback(), HandlerDef(this, "controllers.Application", "openIDCallback", Seq())
-)
-                              
- 
 // @LINE:35
 def mealShoppingList(from:String, to:String) = new play.api.mvc.HandlerRef(
    controllers.Application.mealShoppingList(from, to), HandlerDef(this, "controllers.Application", "mealShoppingList", Seq(classOf[String], classOf[String]))
@@ -1113,6 +1101,12 @@ def mealShoppingList(from:String, to:String) = new play.api.mvc.HandlerRef(
 // @LINE:14
 def removeRecipeIngredient(recipeId:Long, ingredientId:Long) = new play.api.mvc.HandlerRef(
    controllers.Application.removeRecipeIngredient(recipeId, ingredientId), HandlerDef(this, "controllers.Application", "removeRecipeIngredient", Seq(classOf[Long], classOf[Long]))
+)
+                              
+ 
+// @LINE:56
+def openIDCallback(uri:String) = new play.api.mvc.HandlerRef(
+   controllers.Application.openIDCallback(uri), HandlerDef(this, "controllers.Application", "openIDCallback", Seq(classOf[String]))
 )
                               
  
@@ -1239,6 +1233,12 @@ def mealProposal() = new play.api.mvc.HandlerRef(
 // @LINE:30
 def mealsNewDay(recipeId:Long) = new play.api.mvc.HandlerRef(
    controllers.Application.mealsNewDay(recipeId), HandlerDef(this, "controllers.Application", "mealsNewDay", Seq(classOf[Long]))
+)
+                              
+ 
+// @LINE:55
+def login(uri:String) = new play.api.mvc.HandlerRef(
+   controllers.Application.login(uri), HandlerDef(this, "controllers.Application", "login", Seq(classOf[String]))
 )
                               
 

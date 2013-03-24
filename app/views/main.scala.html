@@ -1,5 +1,4 @@
 @(title: String)(content: Html)
-
 @import helper._
 
 <!DOCTYPE html>
@@ -14,25 +13,22 @@
     <body>
 	
 		<nav>
-			<a href="/recipes">Rezepte</a> |
-			<a href="/meals">Essensplan</a> |
-			Einkaufsliste 
-		</nav>
-    
-		<table>
-			<tr>
-				<td>
-					@form(routes.Application.login) {
-						<input type="submit" value="Login" />
-					}
-				</td>
-				<td>
-					@form(routes.Application.logout) {
-						<input type="submit" value="Logout" />
-					}
-				</td>
-			</tr>
-		</table>
+			<table border="0" frame="vsides" rules="cols" cellpadding="5">
+				<tr>
+					<td>
+						<a href="/recipes">Rezepte</a> 
+					</td>
+					<td>
+						<a href="/meals">Essensplan</a>
+					</td>
+					<td>
+						@form(routes.Application.logout) {
+							<input type="submit" value="Abmelden" />
+						}
+					</td>
+				</tr>
+			</table>
+		</nav>		
 
 		@content
     </body>

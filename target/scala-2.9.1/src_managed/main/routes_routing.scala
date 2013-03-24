@@ -1,6 +1,6 @@
 // @SOURCE:E:/Eigene Dateien/workspace-scala/essensplan/conf/routes
-// @HASH:2005fe15ec47e6c48dd956f004d5774a1df1a4e3
-// @DATE:Sun Mar 24 11:08:59 CET 2013
+// @HASH:05ae0b628c4589109eeaaec244d10374ad5fdaa3
+// @DATE:Sun Mar 24 20:17:05 CET 2013
 
 import play.core._
 import play.core.Router._
@@ -163,11 +163,11 @@ val controllers_Application_copyRecipeToUser36 = Route("POST", PathPattern(List(
                     
 
 // @LINE:55
-val controllers_Application_login37 = Route("GET", PathPattern(List(StaticPart("/login"))))
+val controllers_Application_login37 = Route("GET", PathPattern(List(StaticPart("/login/"),DynamicPart("uri", """.+"""))))
                     
 
 // @LINE:56
-val controllers_Application_openIDCallback38 = Route("GET", PathPattern(List(StaticPart("/login/openId"))))
+val controllers_Application_openIDCallback38 = Route("GET", PathPattern(List(StaticPart("/openId/"),DynamicPart("uri", """.+"""))))
                     
 
 // @LINE:57
@@ -177,7 +177,7 @@ val controllers_Application_logout39 = Route("GET", PathPattern(List(StaticPart(
 // @LINE:60
 val controllers_Assets_at40 = Route("GET", PathPattern(List(StaticPart("/assets/"),DynamicPart("file", """.+"""))))
                     
-def documentation = List(("""GET""","""/""","""controllers.Application.index"""),("""GET""","""/recipes""","""controllers.Application.recipes"""),("""GET""","""/recipes/query""","""controllers.Application.recipesQuery"""),("""GET""","""/recipes/new""","""controllers.Application.newRecipe"""),("""GET""","""/recipes/$recipeId<[^/]+>/ingredients""","""controllers.Application.recipeIngredients(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/ingredients/new""","""controllers.Application.addRecipeIngredient(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/ingredients/$ingredientId<[^/]+>/delete""","""controllers.Application.removeRecipeIngredient(recipeId:Long, ingredientId:Long)"""),("""POST""","""/recipes/create""","""controllers.Application.createRecipe"""),("""POST""","""/recipes/$recipeId<[^/]+>""","""controllers.Application.updateRecipe(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/delete""","""controllers.Application.removeRecipe(recipeId:Long)"""),("""GET""","""/recipes/$recipeId<[^/]+>""","""controllers.Application.recipe(recipeId:Long, page:String = "all")"""),("""GET""","""/recipes/$recipeId<[^/]+>/page/$page<[^/]+>""","""controllers.Application.recipe(recipeId:Long, page:String)"""),("""GET""","""/recipes/$recipeId<[^/]+>/edit""","""controllers.Application.editRecipe(recipeId:Long)"""),("""GET""","""/recipes/$recipeId<[^/]+>/preparationStep""","""controllers.Application.recipePreparation(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/preparationStep/new""","""controllers.Application.addPreparationStep(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/preparationStep/$preparationStepId<[^/]+>/delete""","""controllers.Application.removePreparationStep(recipeId:Long, preparationStepId:Long)"""),("""GET""","""/meals""","""controllers.Application.meals"""),("""GET""","""/meals/query""","""controllers.Application.mealsQuery"""),("""GET""","""/meals/create/recipe""","""controllers.Application.mealsNewRecipe"""),("""GET""","""/meals/create/recipe/query""","""controllers.Application.mealsNewRecipeQuery"""),("""GET""","""/meals/create/day/$recipeId<[^/]+>""","""controllers.Application.mealsNewDay(recipeId:Long)"""),("""POST""","""/meals/create/$recipeId<[^/]+>""","""controllers.Application.mealsNew(recipeId:Long)"""),("""POST""","""/meals/$mealId<[^/]+>/delete""","""controllers.Application.mealRemove(mealId:Long)"""),("""GET""","""/meals/$mealId<[^/]+>/edit""","""controllers.Application.mealEdit(mealId:Long)"""),("""POST""","""/meals/$mealId<[^/]+>/$recipeId<[^/]+>""","""controllers.Application.mealUpdate(recipeId:Long, mealId:Long)"""),("""GET""","""/meals/shoppingList/$from<[^/]+>/$to<[^/]+>""","""controllers.Application.mealShoppingList(from:String, to:String)"""),("""GET""","""/meals/proposal""","""controllers.Application.mealProposal"""),("""GET""","""/tags""","""controllers.Application.tags"""),("""POST""","""/tags/create""","""controllers.Application.tagNew"""),("""POST""","""/tags/$tagId<[^/]+>/delete""","""controllers.Application.tagRemove(tagId:Long)"""),("""GET""","""/tags/$tagId<[^/]+>/edit""","""controllers.Application.tagEdit(tagId:Long)"""),("""POST""","""/tags/$tagId<[^/]+>""","""controllers.Application.tagUpdate(tagId:Long)"""),("""GET""","""/import""","""controllers.Application.importRecipe"""),("""POST""","""/import/chefkoch/""","""controllers.Application.importRecipeWithId"""),("""GET""","""/copyRecipe""","""controllers.Application.copyRecipe"""),("""GET""","""/copyRecipe/query""","""controllers.Application.copyRecipeQuery"""),("""POST""","""/copyRecipe/$recipeId<[^/]+>""","""controllers.Application.copyRecipeToUser(recipeId:Long)"""),("""GET""","""/login""","""controllers.Application.login"""),("""GET""","""/login/openId""","""controllers.Application.openIDCallback"""),("""GET""","""/logout""","""controllers.Application.logout"""),("""GET""","""/assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""))
+def documentation = List(("""GET""","""/""","""controllers.Application.index"""),("""GET""","""/recipes""","""controllers.Application.recipes"""),("""GET""","""/recipes/query""","""controllers.Application.recipesQuery"""),("""GET""","""/recipes/new""","""controllers.Application.newRecipe"""),("""GET""","""/recipes/$recipeId<[^/]+>/ingredients""","""controllers.Application.recipeIngredients(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/ingredients/new""","""controllers.Application.addRecipeIngredient(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/ingredients/$ingredientId<[^/]+>/delete""","""controllers.Application.removeRecipeIngredient(recipeId:Long, ingredientId:Long)"""),("""POST""","""/recipes/create""","""controllers.Application.createRecipe"""),("""POST""","""/recipes/$recipeId<[^/]+>""","""controllers.Application.updateRecipe(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/delete""","""controllers.Application.removeRecipe(recipeId:Long)"""),("""GET""","""/recipes/$recipeId<[^/]+>""","""controllers.Application.recipe(recipeId:Long, page:String = "all")"""),("""GET""","""/recipes/$recipeId<[^/]+>/page/$page<[^/]+>""","""controllers.Application.recipe(recipeId:Long, page:String)"""),("""GET""","""/recipes/$recipeId<[^/]+>/edit""","""controllers.Application.editRecipe(recipeId:Long)"""),("""GET""","""/recipes/$recipeId<[^/]+>/preparationStep""","""controllers.Application.recipePreparation(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/preparationStep/new""","""controllers.Application.addPreparationStep(recipeId:Long)"""),("""POST""","""/recipes/$recipeId<[^/]+>/preparationStep/$preparationStepId<[^/]+>/delete""","""controllers.Application.removePreparationStep(recipeId:Long, preparationStepId:Long)"""),("""GET""","""/meals""","""controllers.Application.meals"""),("""GET""","""/meals/query""","""controllers.Application.mealsQuery"""),("""GET""","""/meals/create/recipe""","""controllers.Application.mealsNewRecipe"""),("""GET""","""/meals/create/recipe/query""","""controllers.Application.mealsNewRecipeQuery"""),("""GET""","""/meals/create/day/$recipeId<[^/]+>""","""controllers.Application.mealsNewDay(recipeId:Long)"""),("""POST""","""/meals/create/$recipeId<[^/]+>""","""controllers.Application.mealsNew(recipeId:Long)"""),("""POST""","""/meals/$mealId<[^/]+>/delete""","""controllers.Application.mealRemove(mealId:Long)"""),("""GET""","""/meals/$mealId<[^/]+>/edit""","""controllers.Application.mealEdit(mealId:Long)"""),("""POST""","""/meals/$mealId<[^/]+>/$recipeId<[^/]+>""","""controllers.Application.mealUpdate(recipeId:Long, mealId:Long)"""),("""GET""","""/meals/shoppingList/$from<[^/]+>/$to<[^/]+>""","""controllers.Application.mealShoppingList(from:String, to:String)"""),("""GET""","""/meals/proposal""","""controllers.Application.mealProposal"""),("""GET""","""/tags""","""controllers.Application.tags"""),("""POST""","""/tags/create""","""controllers.Application.tagNew"""),("""POST""","""/tags/$tagId<[^/]+>/delete""","""controllers.Application.tagRemove(tagId:Long)"""),("""GET""","""/tags/$tagId<[^/]+>/edit""","""controllers.Application.tagEdit(tagId:Long)"""),("""POST""","""/tags/$tagId<[^/]+>""","""controllers.Application.tagUpdate(tagId:Long)"""),("""GET""","""/import""","""controllers.Application.importRecipe"""),("""POST""","""/import/chefkoch/""","""controllers.Application.importRecipeWithId"""),("""GET""","""/copyRecipe""","""controllers.Application.copyRecipe"""),("""GET""","""/copyRecipe/query""","""controllers.Application.copyRecipeQuery"""),("""POST""","""/copyRecipe/$recipeId<[^/]+>""","""controllers.Application.copyRecipeToUser(recipeId:Long)"""),("""GET""","""/login/$uri<.+>""","""controllers.Application.login(uri:String)"""),("""GET""","""/openId/$uri<.+>""","""controllers.Application.openIDCallback(uri:String)"""),("""GET""","""/logout""","""controllers.Application.logout"""),("""GET""","""/assets/$file<.+>""","""controllers.Assets.at(path:String = "/public", file:String)"""))
              
     
 def routes:PartialFunction[RequestHeader,Handler] = {        
@@ -480,16 +480,16 @@ case controllers_Application_copyRecipeToUser36(params) => {
 
 // @LINE:55
 case controllers_Application_login37(params) => {
-   call { 
-        invokeHandler(_root_.controllers.Application.login, HandlerDef(this, "controllers.Application", "login", Nil))
+   call(params.fromPath[String]("uri", None)) { (uri) =>
+        invokeHandler(_root_.controllers.Application.login(uri), HandlerDef(this, "controllers.Application", "login", Seq(classOf[String])))
    }
 }
                     
 
 // @LINE:56
 case controllers_Application_openIDCallback38(params) => {
-   call { 
-        invokeHandler(_root_.controllers.Application.openIDCallback, HandlerDef(this, "controllers.Application", "openIDCallback", Nil))
+   call(params.fromPath[String]("uri", None)) { (uri) =>
+        invokeHandler(_root_.controllers.Application.openIDCallback(uri), HandlerDef(this, "controllers.Application", "openIDCallback", Seq(classOf[String])))
    }
 }
                     

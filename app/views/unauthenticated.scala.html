@@ -1,10 +1,15 @@
-@(message: String = "Anmeldung für diese Seite erforderlich!")
+@(uri: String)
 
 @import helper._
 @import tags._
 
 @main("Anmeldung") {
 	
-	<h1>@{message}</h1>
+	<h1>Anmeldung für diese Seite erforderlich!</h1>
 	
+	<p>Authentifizierung über Google-Account</p>
+	
+	@form(routes.Application.login(uri)) {
+		<input type="submit" value="anmelden" />
+	}
 }

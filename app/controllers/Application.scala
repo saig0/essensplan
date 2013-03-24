@@ -61,7 +61,7 @@ object Application extends Controller {
 			val filledRecipeForm = recipeForm.fill(recipe)
 			Ok(views.html.recipe_new(filledRecipeForm, tagOptions, recipeId))
 		} else {
-			Ok(views.html.unauthenticated("Nur der Author darf das Rezept ändern!"))
+			Ok(views.html.index("Nur der Author darf das Rezept ändern!"))
 		}
 	}
 	
@@ -82,9 +82,10 @@ object Application extends Controller {
 			"name"		-> nonEmptyText,
 			"rating"	-> number(min=0, max=5),	
 			"imageRef"	-> text,
+			"source"	-> text,
 			"tags"		-> list(text)
-		)((name, rating, image, tags) => RecipeDTO(0, name, rating, image, tags.map(tag => new Tag(tag.toInt, ""))))
-		 ((recipe: RecipeDTO) => Some((recipe.name, recipe.rating, recipe.imageRef, recipe.tags.map(_.id.toString))))
+		)((name, rating, image, source, tags) => RecipeDTO(0, name, rating, image, source, tags.map(tag => new Tag(tag.toInt, ""))))
+		 ((recipe: RecipeDTO) => Some((recipe.name, recipe.rating, recipe.imageRef, recipe.source,  recipe.tags.map(_.id.toString))))
 	)
 	
 	val ingredientForm : Form[Ingredient] = Form (
@@ -111,7 +112,7 @@ object Application extends Controller {
 			Recipe.delete(recipeId)
 			Redirect(routes.Application.recipes)
 		} else {
-			Ok(views.html.unauthenticated("Nur der Author darf das Rezept löschen!"))
+			Ok(views.html.index("Nur der Author darf das Rezept löschen!"))
 		}		
 	}
 	
@@ -121,10 +122,10 @@ object Application extends Controller {
 				BadRequest(views.html.recipe_new(errors, tagOptions))
 			},
 			recipe => {
-				val id = Recipe.create(recipe.name, recipe.rating, recipe.imageRef, request.user.id)				
+				val id = Recipe.create(recipe.name, recipe.rating, recipe.imageRef, recipe.source, request.user.id)				
 				val tags = extractTags(request.body.asFormUrlEncoded)				
 				tags.map(tagId => RecipeTag.create(id, tagId))
-				val r = new Recipe(id, recipe.name, recipe.rating, recipe.imageRef, request.user.id)
+				val r = new Recipe(id, recipe.name, recipe.rating, recipe.imageRef, recipe.source, request.user.id)
 				Redirect(routes.Application.recipeIngredients(r.id))
 			}
 	)}
@@ -139,7 +140,7 @@ object Application extends Controller {
 		}			
 	}
 	
-	def recipeIngredients(recipeId: Long) = Action {
+	def recipeIngredients(recipeId: Long) = Action { implicit request =>
 		val recipe = Recipe.findById(recipeId)		
 		var ingredients = Ingredient.findByRecipe(recipeId)
 		Ok(views.html.recipe_new_ingredients(recipe, ingredients, ingredientForm))
@@ -157,12 +158,12 @@ object Application extends Controller {
 			}
 	)}	
 	
-	def removeRecipeIngredient(recipeId:Long, ingredientId: Long) = Action {
+	def removeRecipeIngredient(recipeId:Long, ingredientId: Long) = Action { implicit request =>
 		Ingredient.delete(ingredientId)
 		Redirect(routes.Application.recipeIngredients(recipeId))
 	}
 		 
-	def recipe(recipeId: Long, page: String) = Action {
+	def recipe(recipeId: Long, page: String) = Action { implicit request =>
 		val recipe = Recipe.toDto(Recipe.findById(recipeId))		
 		var ingredients = Ingredient.findByRecipe(recipeId)
 		var preparationSteps = PreparationStep.findByRecipe(recipeId)
@@ -184,7 +185,7 @@ object Application extends Controller {
 				BadRequest(views.html.recipe_new(errors, tagOptions))
 			},
 			recipe => {
-				val r = new Recipe(recipeId, recipe.name, recipe.rating, recipe.imageRef, 0)
+				val r = new Recipe(recipeId, recipe.name, recipe.rating, recipe.imageRef, recipe.source, 0)
 				val tags = extractTags(request.body.asFormUrlEncoded)
 				RecipeTag.findByRecipe(recipeId).map(recipeTag => 
 					if(!tags.contains(recipeTag.tagId)) {
@@ -197,7 +198,7 @@ object Application extends Controller {
 			}
 	)}
 	
-	def recipePreparation(recipeId: Long) = Action {
+	def recipePreparation(recipeId: Long) = Action { implicit request =>
 		val recipe = Recipe.findById(recipeId)		
 		var preparationSteps = PreparationStep.findByRecipe(recipeId)
 		Ok(views.html.recipe_new_preparation(recipe, preparationSteps, preparationStepForm))
@@ -215,7 +216,7 @@ object Application extends Controller {
 			}
 	)}	
 	
-	def removePreparationStep(recipeId: Long, preparationStepId: Long) = Action {
+	def removePreparationStep(recipeId: Long, preparationStepId: Long) = Action { implicit request =>
 		PreparationStep.delete(preparationStepId)
 		Redirect(routes.Application.recipePreparation(recipeId))
 	}
@@ -255,7 +256,7 @@ object Application extends Controller {
 	
 	def mealsNewRecipeQuery = showRecipesQuery((recipes, form, tags) => 		views.html.meal_new_recipe(recipes, form, tags))	
 	
-	def mealsNewDay(recipeId: Long) = Action {
+	def mealsNewDay(recipeId: Long) = Action { implicit request =>
 		val recipe = Recipe.findById(recipeId)
 		val form = newMealForm.fill(NewMealFilter(date = new Date()))
 		Ok(views.html.meal_new_day(recipe, form))
@@ -277,7 +278,7 @@ object Application extends Controller {
 			}
 	)}
 	
-	def mealRemove(mealId: Long) = Action {
+	def mealRemove(mealId: Long) = Action { implicit request =>
 		Meal.delete(mealId)
 		Redirect(routes.Application.meals)
 	}
@@ -292,7 +293,7 @@ object Application extends Controller {
 			}
 	)}
 	
-	def mealEdit(mealId: Long) = Action {
+	def mealEdit(mealId: Long) = Action { implicit request =>
 		val meal = Meal.findById(mealId)
 		val recipe = Recipe.findById(meal.recipeId)
 		val form = newMealForm.fill(NewMealFilter(date = meal.date))
@@ -326,7 +327,7 @@ object Application extends Controller {
 		)(MealProposals.apply)(MealProposals.unapply)
 	)
 	
-	def mealProposal = Action {
+	def mealProposal = Action { implicit request =>
 		val proposals = MealProposals(List(MealProposal(1), MealProposal(2)))
 		Ok(views.html.meal_proposal(mealProposalForm.fill(proposals)))
 	}
@@ -353,12 +354,12 @@ object Application extends Controller {
 			}
 	)}
 	
-	def tagRemove(tagId: Long) = Action {
+	def tagRemove(tagId: Long) = Action { implicit request =>
 		Tag.delete(tagId)
 		Redirect(routes.Application.tags)
 	}
 	
-	def tagEdit(tagId: Long) = Action { 
+	def tagEdit(tagId: Long) = Action { implicit request =>
 		Ok(views.html.tag_list(Tag.all, tagForm.fill(Tag.findById(tagId)), tagId))
 	}
 	
@@ -391,7 +392,7 @@ object Application extends Controller {
 					WS.url(url).get().map { response =>
 						try {
 							val xml = loadFromString(response.body)
-							val id = parseChefkochPage(xml, request.user)
+							val id = parseChefkochPage(xml, url, request.user)
 							Ok(views.html.importRecipe(importRecipeForm, id))
 						} catch {
 							case _ => 
@@ -403,7 +404,7 @@ object Application extends Controller {
 		)
 	}
 	
-	def parseChefkochPage(xml: Node, user: User): Long = {			
+	def parseChefkochPage(xml: Node, url: String, user: User): Long = {			
 				val recipeName = ( xml \\ "h1" filter ( h1 => ( h1 \ "@class" ).text == "page-title fn" ) ).text
 			 	
 				val imageRef = (( xml \\ "img" filter ( img => ( img \ "@class" ).text == "slideshow-image" ) ) \ "@src").text
@@ -421,7 +422,7 @@ object Application extends Controller {
 				
 				val descriptions = ( xml \\ "div" filter ( div => ( div \ "@class" ).text == "instructions" ) ) .text.trim
 				
-				val recipeId = Recipe.create(recipeName, rating, imageRef, user.id) 
+				val recipeId = Recipe.create(recipeName, rating, imageRef, url, user.id) 
 				
 				ingredients map ( ingredient => 
 					ingredient match {
@@ -483,7 +484,7 @@ object Application extends Controller {
 	
 	def copyRecipeToUser(recipeId: Long) = AuthenticatedRequired { implicit request =>
 		val recipe = Recipe.findById(recipeId)
-		val copiedRecipeId = Recipe.create(recipe.name, recipe.rating, recipe.imageRef, request.user.id)
+		val copiedRecipeId = Recipe.create(recipe.name, recipe.rating, recipe.imageRef, recipe.source, request.user.id)
 		Ingredient.findByRecipe(recipe.id) map ( ingredient =>
 			Ingredient.create(copiedRecipeId, ingredient.amount, ingredient.unit, ingredient.name)
 		)
@@ -497,8 +498,9 @@ object Application extends Controller {
   
 	val openid = "www.google.com/accounts/o8/id"
   
-	def login = Action { implicit request =>	
-		AsyncResult(OpenID.redirectURL(openid, routes.Application.openIDCallback.absoluteURL(),
+	def login(uri: String) = Action { implicit request =>	
+		val redirectUrl =  routes.Application.openIDCallback(uri.substring(1)).absoluteURL()
+		AsyncResult(OpenID.redirectURL(openid, redirectUrl,
 			Seq("email" -> "http://schema.openid.net/contact/email"))
 			  .extend( _.value match {
 				  case Redeemed(url) => Redirect(url)
@@ -506,7 +508,7 @@ object Application extends Controller {
 			  }))
 	}
 	
-	def openIDCallback = Action { implicit request =>
+	def openIDCallback(uri: String) = Action { implicit request =>
 		  AsyncResult(
 			OpenID.verifiedId.extend( _.value match {
 			  case Redeemed(info) => {
@@ -515,7 +517,8 @@ object Application extends Controller {
 					case Some(user)	=> user.id
 					case None		=> User.create(email)
 				}
-				Redirect(routes.Application.index).withSession(
+				val redirectUrl = "http://" + request.host + "/" +uri
+				Redirect(redirectUrl).withSession(
 					session + ("user" -> userId.toString)
 				)
 			  }
@@ -525,9 +528,7 @@ object Application extends Controller {
 	}
 	
 	def logout = Action { implicit request =>
-		Redirect(routes.Application.index).withSession (
-			session - "user"
-		)
+		Redirect(routes.Application.index).withNewSession
 	}
 		
 	case class AuthenticatedRequest(
@@ -548,7 +549,7 @@ object Application extends Controller {
 	
 	def AuthenticatedRequired(authRequest: AuthenticatedRequest => Result) = 
 		Authenticated(authRequest){ implicit request => 
-			Ok(views.html.unauthenticated()) 
+			Ok(views.html.unauthenticated(request.uri)) 
 		}
 	
 }

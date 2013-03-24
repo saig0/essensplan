@@ -15,6 +15,7 @@
 			@inputText(recipeForm("name"), '_label -> "Name des Rezepts")
 			@inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung")
 			@inputText(recipeForm("imageRef"), '_label -> "Link zu einem Bild")
+			@inputText(recipeForm("source"), '_label -> "Quelle")
 			@multiSelect(field = recipeForm("tags"), 
 				options = options(tags),
 				'_label -> "Stichwörter"

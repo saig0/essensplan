@@ -29,13 +29,24 @@ Seq[Any](format.raw/*1.93*/("""
     
 	<h1>Rezept: """),_display_(Seq[Any](/*8.15*/recipe/*8.21*/.name)),format.raw/*8.26*/("""</h1>
 	
-	"""),_display_(Seq[Any](/*10.3*/form(routes.Application.recipe(recipe.id, "info"))/*10.53*/ {_display_(Seq[Any](format.raw/*10.55*/("""
-		<input type="submit" value="Schritt-für-Schritt-Anleitung" />
-	""")))})),format.raw/*12.3*/("""
+	<table>
+		<tr>
+			<td>
+				"""),_display_(Seq[Any](/*13.6*/form(routes.Application.recipe(recipe.id, "info"))/*13.56*/ {_display_(Seq[Any](format.raw/*13.58*/("""
+					<input type="submit" value="Schritt-für-Schritt-Anleitung" />
+				""")))})),format.raw/*15.6*/("""
+			</td>
+			<td>
+				"""),_display_(Seq[Any](/*18.6*/form(routes.Application.editRecipe(recipe.id))/*18.52*/ {_display_(Seq[Any](format.raw/*18.54*/("""
+					<input type="submit" value="bearbeiten" />
+				""")))})),format.raw/*20.6*/("""
+			</td>
+		</tr>
+	<table>
 	
-	"""),_display_(Seq[Any](/*14.3*/recipe_info_view(recipe))),format.raw/*14.27*/("""
+	"""),_display_(Seq[Any](/*25.3*/recipe_info_view(recipe))),format.raw/*25.27*/("""
 	
-	"""),_display_(Seq[Any](/*16.3*/recipe_ingredients_view(recipe.id, ingredients))),format.raw/*16.50*/("""
+	"""),_display_(Seq[Any](/*27.3*/recipe_ingredients_view(recipe.id, ingredients))),format.raw/*27.50*/("""
 	
 	<h2>Zubereitung</h2>
 	
@@ -46,17 +57,17 @@ Seq[Any](format.raw/*1.93*/("""
 			<th>Bild</th>
 		</tr>
 	
-		"""),_display_(Seq[Any](/*27.4*/preparationSteps/*27.20*/.map/*27.24*/ { preparationStep =>_display_(Seq[Any](format.raw/*27.45*/("""
+		"""),_display_(Seq[Any](/*38.4*/preparationSteps/*38.20*/.map/*38.24*/ { preparationStep =>_display_(Seq[Any](format.raw/*38.45*/("""
 			<tr>
-				<td valign="top">"""),_display_(Seq[Any](/*29.23*/preparationStep/*29.38*/.step)),format.raw/*29.43*/("""</td>
-				<td valign="top">"""),_display_(Seq[Any](/*30.23*/preparationStep/*30.38*/.description)),format.raw/*30.50*/("""</td>
+				<td valign="top">"""),_display_(Seq[Any](/*40.23*/preparationStep/*40.38*/.step)),format.raw/*40.43*/("""</td>
+				<td valign="top">"""),_display_(Seq[Any](/*41.23*/preparationStep/*41.38*/.description)),format.raw/*41.50*/("""</td>
 				<td>
-					"""),_display_(Seq[Any](/*32.7*/if(!preparationStep.imageRef.isEmpty)/*32.44*/ {_display_(Seq[Any](format.raw/*32.46*/("""
-						<img src=""""),_display_(Seq[Any](/*33.18*/preparationStep/*33.33*/.imageRef)),format.raw/*33.42*/("""" alt="Schritt """),_display_(Seq[Any](/*33.58*/preparationStep/*33.73*/.step)),format.raw/*33.78*/("""" width="250px"/> 
-					""")))})),format.raw/*34.7*/(""" 
+					"""),_display_(Seq[Any](/*43.7*/if(!preparationStep.imageRef.isEmpty)/*43.44*/ {_display_(Seq[Any](format.raw/*43.46*/("""
+						<img src=""""),_display_(Seq[Any](/*44.18*/preparationStep/*44.33*/.imageRef)),format.raw/*44.42*/("""" alt="Schritt """),_display_(Seq[Any](/*44.58*/preparationStep/*44.73*/.step)),format.raw/*44.78*/("""" width="250px"/> 
+					""")))})),format.raw/*45.7*/(""" 
 				</td>
 			</tr>
-		""")))})),format.raw/*37.4*/("""	
+		""")))})),format.raw/*48.4*/("""	
 	</table>
 """)))})))}
     }
@@ -70,11 +81,11 @@ Seq[Any](format.raw/*1.93*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Jan 11 00:40:26 CET 2013
+                    DATE: Sun Mar 24 13:38:23 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/recipe_view.scala.html
-                    HASH: 1de7f8b6cc0e5706cbcc237a3bd51f60b05dcd92
-                    MATRIX: 553->1|752->92|780->126|816->128|838->142|877->144|932->164|946->170|972->175|1017->185|1076->235|1116->237|1214->304|1254->309|1300->333|1340->338|1409->385|1573->514|1598->530|1611->534|1670->555|1737->586|1761->601|1788->606|1852->634|1876->649|1910->661|1966->682|2012->719|2052->721|2106->739|2130->754|2161->763|2213->779|2237->794|2264->799|2320->824|2375->848
-                    LINES: 19->1|25->1|27->5|28->6|28->6|28->6|30->8|30->8|30->8|32->10|32->10|32->10|34->12|36->14|36->14|38->16|38->16|49->27|49->27|49->27|49->27|51->29|51->29|51->29|52->30|52->30|52->30|54->32|54->32|54->32|55->33|55->33|55->33|55->33|55->33|55->33|56->34|59->37
+                    HASH: 945b8381501fdd10b87c2ef248399db24d194570
+                    MATRIX: 553->1|752->92|780->126|816->128|838->142|877->144|932->164|946->170|972->175|1044->212|1103->262|1143->264|1247->337|1305->360|1360->406|1400->408|1485->462|1551->493|1597->517|1637->522|1706->569|1870->698|1895->714|1908->718|1967->739|2034->770|2058->785|2085->790|2149->818|2173->833|2207->845|2263->866|2309->903|2349->905|2403->923|2427->938|2458->947|2510->963|2534->978|2561->983|2617->1008|2672->1032
+                    LINES: 19->1|25->1|27->5|28->6|28->6|28->6|30->8|30->8|30->8|35->13|35->13|35->13|37->15|40->18|40->18|40->18|42->20|47->25|47->25|49->27|49->27|60->38|60->38|60->38|60->38|62->40|62->40|62->40|63->41|63->41|63->41|65->43|65->43|65->43|66->44|66->44|66->44|66->44|66->44|66->44|67->45|70->48
                     -- GENERATED --
                 */
             

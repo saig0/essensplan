@@ -7,9 +7,20 @@
     
 	<h1>Rezept: @recipe.name</h1>
 	
-	@form(routes.Application.recipe(recipe.id, "info")) {
-		<input type="submit" value="Schritt-für-Schritt-Anleitung" />
-	}
+	<table>
+		<tr>
+			<td>
+				@form(routes.Application.recipe(recipe.id, "info")) {
+					<input type="submit" value="Schritt-für-Schritt-Anleitung" />
+				}
+			</td>
+			<td>
+				@form(routes.Application.editRecipe(recipe.id)) {
+					<input type="submit" value="bearbeiten" />
+				}
+			</td>
+		</tr>
+	<table>
 	
 	@recipe_info_view(recipe)
 	
