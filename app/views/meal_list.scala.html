@@ -7,6 +7,10 @@
 	new java.text.SimpleDateFormat("yyyy-MM-dd").format(date)
 }
 
+@dayOfWeek(date: java.util.Date) = @{
+	new java.text.SimpleDateFormat("EEEE").format(date)
+}
+
 @dateMin = @{
 	if(!meals.isEmpty) {
 		formatDate(meals.head.date)
@@ -47,12 +51,14 @@
 	<table border="1">
 		<tr>
 			<th>Datum</th>
+			<th>Wochentag</th>
 			<th>Mahlzeit</th>
 		</tr>
 	
 		@meals.map { meal =>
 			<tr>
 				<td>@meal.date</td>
+				<td>@dayOfWeek(meal.date)</td>
 				<td>@meal.recipe.name</td>
 				<td>
 					@form(routes.Application.recipe(meal.recipe.id, "all")){
