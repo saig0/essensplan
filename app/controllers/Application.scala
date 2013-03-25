@@ -31,15 +31,19 @@ object Application extends Controller {
 	
 	private def showRecipes(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) =  Authenticated { implicit request =>
 		val defaultFilter = RecipeFilter("", "", 0, "", 2, false, request.user.id)
-		Ok(html(findRecipes(defaultFilter), searchForm.fill(defaultFilter), tagOptions)) } 
+		Ok(html(findRecipes(defaultFilter), searchForm.fill(defaultFilter), tagOptions(request.user.id))) } 
 	{ implicit request =>
 		val defaultFilter = RecipeFilter("", "", 0, "", 2, false, 0)
-		Ok(html(findRecipes(defaultFilter), searchForm.fill(defaultFilter), tagOptions)) } 	
+		Ok(html(findRecipes(defaultFilter), searchForm.fill(defaultFilter), tagOptions(0))) } 	
 	
-	private def showRecipesQuery(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) = Action { implicit request =>
+	private def showRecipesQuery(html: (List[Recipe], Form[RecipeFilter], Map[String, String]) => Html) = Authenticated { implicit request =>
 		searchForm.bindFromRequest.fold (
-			errors => BadRequest(html(Recipe.all, errors, tagOptions)),
-			filter => Ok(html(findRecipes(filter), searchForm.fill(filter), tagOptions))	
+			errors => BadRequest(html(Recipe.all, errors, tagOptions(request.user.id))),
+			filter => Ok(html(findRecipes(filter), searchForm.fill(filter), tagOptions(request.user.id)))	
+	)}{ implicit request =>
+		searchForm.bindFromRequest.fold (
+			errors => BadRequest(html(Recipe.all, errors, tagOptions(0))),
+			filter => Ok(html(findRecipes(filter), searchForm.fill(filter), tagOptions(0)))	
 	)}
 		
 	def recipes = showRecipes((recipes, form, tags) => 
@@ -49,7 +53,7 @@ object Application extends Controller {
 		views.html.recipe_list(recipes, form, tags))
 	
 	private def showNewRecipe(form: Form[RecipeDTO], recipeId: Long = 0) = AuthenticatedRequired { implicit request =>
-		Ok(views.html.recipe_new(form, tagOptions, recipeId))
+		Ok(views.html.recipe_new(form, tagOptions(request.user.id), recipeId))
 	}
 	
 	def newRecipe = showNewRecipe(recipeForm)
@@ -59,7 +63,7 @@ object Application extends Controller {
 		if(r.userId == request.user.id){		
 			val recipe = Recipe.toDto(r)
 			val filledRecipeForm = recipeForm.fill(recipe)
-			Ok(views.html.recipe_new(filledRecipeForm, tagOptions, recipeId))
+			Ok(views.html.recipe_new(filledRecipeForm, tagOptions(request.user.id), recipeId))
 		} else {
 			Ok(views.html.index("Nur der Author darf das Rezept ändern!"))
 		}
@@ -84,7 +88,7 @@ object Application extends Controller {
 			"imageRef"	-> text,
 			"source"	-> text,
 			"tags"		-> list(text)
-		)((name, rating, image, source, tags) => RecipeDTO(0, name, rating, image, source, tags.map(tag => new Tag(tag.toInt, ""))))
+		)((name, rating, image, source, tags) => RecipeDTO(0, name, rating, image, source, tags.map(tag => new Tag(tag.toInt, "", 0))))
 		 ((recipe: RecipeDTO) => Some((recipe.name, recipe.rating, recipe.imageRef, recipe.source,  recipe.tags.map(_.id.toString))))
 	)
 	
@@ -119,7 +123,7 @@ object Application extends Controller {
 	def createRecipe = AuthenticatedRequired { implicit request =>		
 		recipeForm.bindFromRequest.fold (
 			errors => {
-				BadRequest(views.html.recipe_new(errors, tagOptions))
+				BadRequest(views.html.recipe_new(errors, tagOptions(request.user.id)))
 			},
 			recipe => {
 				val id = Recipe.create(recipe.name, recipe.rating, recipe.imageRef, recipe.source, request.user.id)				
@@ -130,7 +134,8 @@ object Application extends Controller {
 			}
 	)}
 	
-	private def tagOptions = Tag.all.map(tag => tag.id.toString -> tag.name).toMap
+	private def tagOptions(userId: Long) = 
+		Tag.findByUser(userId).map(tag => tag.id.toString -> tag.name).toMap
 	
 	private def extractTags(url: Option[Map[String, Seq[String]]]): List[Long] = url match {
 		case None			=> List[Long]()
@@ -182,7 +187,7 @@ object Application extends Controller {
 	def updateRecipe(recipeId: Long) = AuthenticatedRequired { implicit request =>
 		recipeForm.bindFromRequest.fold (
 			errors => {
-				BadRequest(views.html.recipe_new(errors, tagOptions))
+				BadRequest(views.html.recipe_new(errors, tagOptions(request.user.id)))
 			},
 			recipe => {
 				val r = new Recipe(recipeId, recipe.name, recipe.rating, recipe.imageRef, recipe.source, 0)
@@ -335,37 +340,37 @@ object Application extends Controller {
 	// ----------------
 	
 	def tags = AuthenticatedRequired { implicit request =>
-		Ok(views.html.tag_list(Tag.all, tagForm))
+		Ok(views.html.tag_list(Tag.findByUser(request.user.id), tagForm))
 	}
 	
 	val tagForm : Form[Tag] = Form (
 		mapping (				
 			"name"		-> nonEmptyText
-		)((name) => Tag(0, name))
+		)((name) => Tag(0, name, 0))
 		 ((tag: Tag) => Some((tag.name)))
 	)
 	
-	def tagNew = Action { implicit request =>
+	def tagNew = AuthenticatedRequired { implicit request =>
 		tagForm.bindFromRequest.fold (
-			errors => BadRequest(views.html.tag_list(Tag.all, errors)),
+			errors => BadRequest(views.html.tag_list(Tag.findByUser(request.user.id), errors)),
 			filter => {
-				Tag.create(filter.name)
+				Tag.create(filter.name, request.user.id)
 				Redirect(routes.Application.tags)
 			}
 	)}
 	
-	def tagRemove(tagId: Long) = Action { implicit request =>
+	def tagRemove(tagId: Long) = AuthenticatedRequired { implicit request =>
 		Tag.delete(tagId)
 		Redirect(routes.Application.tags)
 	}
 	
-	def tagEdit(tagId: Long) = Action { implicit request =>
-		Ok(views.html.tag_list(Tag.all, tagForm.fill(Tag.findById(tagId)), tagId))
+	def tagEdit(tagId: Long) = AuthenticatedRequired { implicit request =>
+		Ok(views.html.tag_list(Tag.findByUser(request.user.id), tagForm.fill(Tag.findById(tagId)), tagId))
 	}
 	
-	def tagUpdate(tagId: Long) = Action { implicit request =>
+	def tagUpdate(tagId: Long) = AuthenticatedRequired { implicit request =>
 		tagForm.bindFromRequest.fold (
-			errors => BadRequest(views.html.tag_list(Tag.all, errors)),
+			errors => BadRequest(views.html.tag_list(Tag.findByUser(request.user.id), errors)),
 			filter => {
 				val tag = Tag.findById(tagId).copy(name = filter.name)
 				Tag.update(tag)

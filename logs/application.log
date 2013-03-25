@@ -1,81 +1,251 @@
-2013-03-24 20:51:36,187 - [INFO] - from play in main 
+2013-03-25 10:19:43,786 - [INFO] - from play in main 
 Listening for HTTP on port 9000...
 
-2013-03-24 20:51:43,431 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
+2013-03-25 10:19:51,047 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 20:51:43,621 - [INFO] - from play in play-akka.actor.default-dispatcher-2 
+2013-03-25 10:19:51,244 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
 Application started (Dev)
 
-2013-03-24 20:57:47,920 - [INFO] - from play in play-akka.actor.default-dispatcher-8 
+2013-03-25 10:27:36,503 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 20:57:47,959 - [INFO] - from play in play-akka.actor.default-dispatcher-8 
+2013-03-25 10:27:36,546 - [ERROR] - from application in New I/O  worker #4 
+
+
+! @6dm2g2a46 - Internal server error, for request [GET /tags?] ->
+
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution! [An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:427) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
+
+2013-03-25 10:27:43,417 - [WARN] - from play in New I/O  worker #4 
+Applying evolution script for database 'default':
+
+# --- Rev:11,Ups - 48113a3
+ALTER TABLE tag
+ADD COLUMN userId integer;
+
+ALTER TABLE tag
+ALTER COLUMN userId SET NOT NULL;
+
+ALTER TABLE tag
+ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
+
+
+2013-03-25 10:27:43,949 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-25 10:27:43,967 - [ERROR] - from application in New I/O  worker #4 
+
+
+! @6dm2g2a47 - Internal server error, for request [GET /tags?] ->
+
+play.api.db.evolutions.InconsistentDatabase: Database 'default' is in inconsistent state! [An evolution has not been applied properly. Please check the problem and resolve it manually before marking it as resolved.]
+	at play.api.db.evolutions.Evolutions$.checkEvolutionsState(Evolutions.scala:157) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.Evolutions$.databaseEvolutions(Evolutions.scala:310) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.Evolutions$.evolutionScript(Evolutions.scala:286) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:415) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
+
+2013-03-25 10:28:06,710 - [WARN] - from play in New I/O  worker #4 
+Resolving evolution [11] for database 'default'
+
+2013-03-25 10:28:07,159 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-25 10:28:07,179 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 Application started (Dev)
 
-2013-03-24 20:58:31,037 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+2013-03-25 10:54:20,947 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 20:58:31,063 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+2013-03-25 10:54:20,963 - [ERROR] - from application in New I/O  worker #6 
+
+
+! @6dm2g2a48 - Internal server error, for request [GET /] ->
+
+play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution! [An SQL script need to be run on your database.]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:427) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
+
+2013-03-25 10:54:22,224 - [WARN] - from play in New I/O  worker #6 
+Applying evolution script for database 'default':
+
+# !!! WARNING! This script contains DOWNS evolutions that are likely destructives
+
+# --- Rev:11,Downs - 48113a3
+
+
+# --- Rev:11,Ups - cf18817
+DELETE FROM tag
+WHERE userId is null;
+
+ALTER TABLE tag
+ADD COLUMN userId integer;
+
+ALTER TABLE tag
+ALTER COLUMN userId SET NOT NULL;
+
+ALTER TABLE tag
+ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
+
+
+2013-03-25 10:54:22,631 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-25 10:54:22,650 - [ERROR] - from application in New I/O  worker #6 
+
+
+! @6dm2g2a49 - Internal server error, for request [GET /] ->
+
+play.api.db.evolutions.InconsistentDatabase: Database 'default' is in inconsistent state! [An evolution has not been applied properly. Please check the problem and resolve it manually before marking it as resolved.]
+	at play.api.db.evolutions.Evolutions$.checkEvolutionsState(Evolutions.scala:157) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.Evolutions$.databaseEvolutions(Evolutions.scala:310) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.Evolutions$.evolutionScript(Evolutions.scala:286) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:415) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
+	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
+	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
+	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
+
+2013-03-25 10:54:27,862 - [WARN] - from play in New I/O  worker #6 
+Resolving evolution [11] for database 'default'
+
+2013-03-25 10:54:28,234 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-25 10:54:28,254 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 Application started (Dev)
 
-2013-03-24 20:58:42,708 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+2013-03-25 10:55:00,238 - [ERROR] - from play in play-akka.actor.promises-dispatcher-58 
+Waiting for a promise, but got an error: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+scala.MatchError: Thrown(play.api.libs.openid.Errors$AUTH_ERROR$) (of class play.api.libs.concurrent.Thrown)
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$38.apply(Application.scala:518) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$openIDCallback$1$$anonfun$apply$38.apply(Application.scala:518) ~[classes/:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1$$anonfun$3.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch$$anonfun$either$1.apply(Exception.scala:110) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.apply(Exception.scala:88) [scala-library.jar:na]
+	at scala.util.control.Exception$Catch.either(Exception.scala:110) [scala-library.jar:na]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:119) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$extend$1.apply(Promise.scala:118) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply$mcV$sp(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at play.api.libs.concurrent.STMPromise$$anonfun$play$api$libs$concurrent$STMPromise$$invoke$1.apply(Promise.scala:163) [play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) [akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+
+2013-03-25 10:59:11,079 - [INFO] - from play in play-akka.actor.default-dispatcher-15 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-24 20:58:42,747 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
-Application started (Dev)
-
-2013-03-24 20:59:18,951 - [INFO] - from play in play-akka.actor.default-dispatcher-11 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 20:59:18,990 - [INFO] - from play in play-akka.actor.default-dispatcher-11 
-Application started (Dev)
-
-2013-03-24 20:59:29,110 - [INFO] - from play in play-akka.actor.default-dispatcher-12 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 20:59:29,135 - [INFO] - from play in play-akka.actor.default-dispatcher-12 
-Application started (Dev)
-
-2013-03-24 20:59:43,085 - [INFO] - from play in play-akka.actor.default-dispatcher-13 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 20:59:43,110 - [INFO] - from play in play-akka.actor.default-dispatcher-13 
-Application started (Dev)
-
-2013-03-24 21:00:00,529 - [INFO] - from play in play-akka.actor.default-dispatcher-14 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 21:00:00,541 - [INFO] - from play in play-akka.actor.default-dispatcher-14 
-Application started (Dev)
-
-2013-03-24 21:00:07,194 - [INFO] - from play in play-akka.actor.default-dispatcher-14 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 21:00:07,213 - [INFO] - from play in play-akka.actor.default-dispatcher-14 
-Application started (Dev)
-
-2013-03-24 21:00:16,386 - [INFO] - from play in play-akka.actor.default-dispatcher-15 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 21:00:16,411 - [INFO] - from play in play-akka.actor.default-dispatcher-15 
-Application started (Dev)
-
-2013-03-24 21:00:48,967 - [INFO] - from play in play-akka.actor.default-dispatcher-16 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 21:00:48,985 - [INFO] - from play in play-akka.actor.default-dispatcher-16 
-Application started (Dev)
-
-2013-03-24 21:02:05,995 - [INFO] - from play in play-akka.actor.default-dispatcher-17 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 21:02:06,020 - [INFO] - from play in play-akka.actor.default-dispatcher-17 
-Application started (Dev)
-
-2013-03-24 21:07:28,259 - [INFO] - from play in play-akka.actor.default-dispatcher-18 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-24 21:07:28,281 - [INFO] - from play in play-akka.actor.default-dispatcher-18 
+2013-03-25 10:59:11,095 - [INFO] - from play in play-akka.actor.default-dispatcher-15 
 Application started (Dev)
 

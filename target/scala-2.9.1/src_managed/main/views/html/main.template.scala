@@ -26,7 +26,7 @@ Seq[Any](format.raw/*1.32*/("""
 
 <html>
     <head>
-        <title>Speiseplan - """),_display_(Seq[Any](/*8.30*/title)),format.raw/*8.35*/("""</title>
+        <title>Essensplan - """),_display_(Seq[Any](/*8.30*/title)),format.raw/*8.35*/("""</title>
         <link rel="stylesheet" media="screen" href=""""),_display_(Seq[Any](/*9.54*/routes/*9.60*/.Assets.at("stylesheets/main.css"))),format.raw/*9.94*/("""">
         <link rel="shortcut icon" type="image/png" href=""""),_display_(Seq[Any](/*10.59*/routes/*10.65*/.Assets.at("images/favicon.png"))),format.raw/*10.97*/("""">
         <script src=""""),_display_(Seq[Any](/*11.23*/routes/*11.29*/.Assets.at("javascripts/jquery-1.7.1.min.js"))),format.raw/*11.74*/("""" type="text/javascript"></script>
@@ -40,7 +40,7 @@ Seq[Any](format.raw/*1.32*/("""
 						<a href="/recipes">Rezepte</a> 
 					</td>
 					<td>
-						<a href="/meals">Speiseplan</a>
+						<a href="/meals">Essensplan</a>
 					</td>
 					<td>
 						"""),_display_(Seq[Any](/*25.8*/form(routes.Application.logout)/*25.39*/ {_display_(Seq[Any](format.raw/*25.41*/("""
@@ -68,9 +68,9 @@ Seq[Any](format.raw/*1.32*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Sun Mar 24 21:07:26 CET 2013
+                    DATE: Mon Mar 25 10:54:15 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/main.scala.html
-                    HASH: 0f5bd5d5e288c4553f621073315af3b97f59869c
+                    HASH: 80bb1f56244bd7b5c6899d31a53e6eb213fdcf80
                     MATRIX: 509->1|632->31|659->49|759->114|785->119|882->181|896->187|951->221|1048->282|1063->288|1117->320|1178->345|1193->351|1260->396|1575->676|1615->707|1655->709|1742->765|1834->822|1863->829
                     LINES: 19->1|23->1|24->3|29->8|29->8|30->9|30->9|30->9|31->10|31->10|31->10|32->11|32->11|32->11|46->25|46->25|46->25|48->27|56->35|56->35
                     -- GENERATED --

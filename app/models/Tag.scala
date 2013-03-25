@@ -1,6 +1,6 @@
 package models
 
-case class Tag(id: Long, name: String)
+case class Tag(id: Long, name: String, userId: Long)
 
 object Tag {
 
@@ -11,23 +11,25 @@ object Tag {
 
 	val tag = {
 		get[Long]("id") ~ 
-		get[String]("name") map {
-			case id~name => Tag(id, name)
+		get[String]("name") ~
+		get[Long]("userId")	map {
+			case id~name~userId => Tag(id, name, userId)
 		}
 	}
 	
 	def all: List[Tag] = DB.withConnection { implicit c =>
 		SQL("select * from tag").as(tag *)
 	}
-	
+		
 	def tagNames: List[String] = DB.withConnection { implicit c =>
 		SQL("select name from tag order by name asc").as(get[String]("name") *)
 	}
 	
-	def create(name: String): Long = { 
+	def create(name: String, userId: Long): Long = { 
 		DB.withConnection { implicit c =>
-			SQL("insert into tag (name) values ({name})").on(
-				'name 		-> name
+			SQL("insert into tag (name, userId) values ({name}, {userId})").on(
+				'name 		-> name,
+				'userId		-> userId
 			).executeInsert() match {
 				case Some(id)	=> id
 				case None		=> 0
@@ -49,6 +51,11 @@ object Tag {
 		).as(tag.single)
 	}
 
+	def findByUser(userId: Long): List[Tag] = DB.withConnection { implicit c =>
+		SQL("select * from tag where userId = {userId}").on(
+			'userId	-> userId
+		).as(tag *)
+	}
 	
 	def update(tag: Tag) { DB.withConnection { implicit c =>
 		SQL("update tag SET name = {name} where id = {id}").on(
