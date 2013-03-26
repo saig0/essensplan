@@ -1,140 +1,42 @@
-2013-03-25 11:05:18,412 - [INFO] - from play in main 
+2013-03-26 23:03:38,302 - [INFO] - from play in main 
 Listening for HTTP on port 9000...
 
-2013-03-25 11:05:39,699 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
+2013-03-26 23:04:01,093 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-25 11:05:39,877 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
+2013-03-26 23:04:01,436 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 Application started (Dev)
 
-2013-03-25 11:26:50,976 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+2013-03-26 23:06:44,134 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-25 11:26:51,018 - [ERROR] - from application in New I/O  worker #7 
-
-
-! @6dm2m1pcf - Internal server error, for request [GET /meals] ->
-
-play.api.db.evolutions.InvalidDatabaseRevision: Database 'default' needs evolution! [An SQL script need to be run on your database.]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:427) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
-
-2013-03-25 11:26:52,660 - [WARN] - from play in New I/O  worker #7 
-Applying evolution script for database 'default':
-
-# !!! WARNING! This script contains DOWNS evolutions that are likely destructives
-
-# --- Rev:11,Downs - cf18817
-
-
-# --- Rev:11,Ups - 21a3ddb
-ALTER TABLE tag
-ADD COLUMN userId integer;
-
-DELETE FROM tag
-WHERE userId is null;
-
-ALTER TABLE tag
-ALTER COLUMN userId SET NOT NULL;
-
-ALTER TABLE tag
-ADD FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE;
-
-
-2013-03-25 11:26:53,104 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-25 11:26:53,126 - [ERROR] - from application in New I/O  worker #7 
-
-
-! @6dm2m1pcg - Internal server error, for request [GET /meals] ->
-
-play.api.db.evolutions.InconsistentDatabase: Database 'default' is in inconsistent state! [An evolution has not been applied properly. Please check the problem and resolve it manually before marking it as resolved.]
-	at play.api.db.evolutions.Evolutions$.checkEvolutionsState(Evolutions.scala:157) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.Evolutions$.databaseEvolutions(Evolutions.scala:310) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.Evolutions$.evolutionScript(Evolutions.scala:286) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1$$anonfun$apply$1.apply$mcV$sp(Evolutions.scala:415) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin.withLock(Evolutions.scala:448) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:414) ~[play_2.9.1.jar:2.0.4]
-	at play.api.db.evolutions.EvolutionsPlugin$$anonfun$onStart$1.apply(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.db.evolutions.EvolutionsPlugin.onStart(Evolutions.scala:412) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.api.Play$$anonfun$start$1.apply(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at play.api.Play$.start(Play.scala:60) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:125) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:112) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$3.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at scala.Either$RightProjection.flatMap(Either.scala:277) ~[scala-library.jar:0.11.3]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
-	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
-	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
-
-2013-03-25 11:26:58,498 - [WARN] - from play in New I/O  worker #7 
-Resolving evolution [11] for database 'default'
-
-2013-03-25 11:26:58,890 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
-database [default] connected at jdbc:h2:db/essensplan-db
-
-2013-03-25 11:26:58,910 - [INFO] - from play in play-akka.actor.default-dispatcher-7 
+2013-03-26 23:06:44,171 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 Application started (Dev)
 
-2013-03-25 11:27:25,584 - [INFO] - from play in play-akka.actor.default-dispatcher-8 
+2013-03-26 23:07:06,134 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-25 11:27:25,605 - [INFO] - from play in play-akka.actor.default-dispatcher-8 
+2013-03-26 23:07:06,158 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
 Application started (Dev)
 
-2013-03-25 11:29:04,559 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+2013-03-26 23:07:34,136 - [INFO] - from play in play-akka.actor.default-dispatcher-6 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-25 11:29:04,577 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+2013-03-26 23:07:34,191 - [INFO] - from play in play-akka.actor.default-dispatcher-6 
 Application started (Dev)
 
-2013-03-25 11:29:04,658 - [ERROR] - from application in play-akka.actor.actions-dispatcher-4 
+2013-03-26 23:08:52,215 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+database [default] connected at jdbc:h2:db/essensplan-db
+
+2013-03-26 23:08:52,242 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+Application started (Dev)
+
+2013-03-26 23:08:52,396 - [ERROR] - from application in play-akka.actor.actions-dispatcher-1 
 
 
-! @6dm2m1pch - Internal server error, for request [GET /meals] ->
+! @6dmdjbp5c - Internal server error, for request [GET /meals/shoppingList/26.03.2013/01.04.2013?] ->
 
-play.core.ActionInvoker$$anonfun$receive$1$$anon$1: Execution exception [[IllegalArgumentException: Illegal pattern character 'e']]
+play.core.ActionInvoker$$anonfun$receive$1$$anon$1: Execution exception [[ParseException: Unparseable date: "26.03.2013"]]
 	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:134) [play_2.9.1.jar:2.0.4]
 	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:115) [play_2.9.1.jar:2.0.4]
 	at akka.actor.Actor$class.apply(Actor.scala:318) [akka-actor.jar:2.0.2]
@@ -147,23 +49,10 @@ play.core.ActionInvoker$$anonfun$receive$1$$anon$1: Execution exception [[Illega
 	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
 	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
 	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
-Caused by: java.lang.IllegalArgumentException: Illegal pattern character 'e'
-	at java.text.SimpleDateFormat.compile(Unknown Source) ~[na:1.7.0_11]
-	at java.text.SimpleDateFormat.initialize(Unknown Source) ~[na:1.7.0_11]
-	at java.text.SimpleDateFormat.<init>(Unknown Source) ~[na:1.7.0_11]
-	at java.text.SimpleDateFormat.<init>(Unknown Source) ~[na:1.7.0_11]
-	at views.html.meal_list$.dayOfWeek$1(meal_list.template.scala:27) ~[classes/:na]
-	at views.html.meal_list$$anonfun$apply$2.apply(meal_list.template.scala:83) ~[classes/:na]
-	at views.html.meal_list$$anonfun$apply$2.apply(meal_list.template.scala:80) ~[classes/:na]
-	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:194) ~[scala-library.jar:0.11.3]
-	at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:194) ~[scala-library.jar:0.11.3]
-	at scala.collection.LinearSeqOptimized$class.foreach(LinearSeqOptimized.scala:59) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.foreach(List.scala:45) ~[scala-library.jar:0.11.3]
-	at scala.collection.TraversableLike$class.map(TraversableLike.scala:194) ~[scala-library.jar:0.11.3]
-	at scala.collection.immutable.List.map(List.scala:45) ~[scala-library.jar:0.11.3]
-	at views.html.meal_list$.apply(meal_list.template.scala:80) ~[classes/:na]
-	at controllers.Application$$anonfun$meals$1.apply(Application.scala:248) ~[classes/:2.0.4]
-	at controllers.Application$$anonfun$meals$1.apply(Application.scala:243) ~[classes/:2.0.4]
+Caused by: java.text.ParseException: Unparseable date: "26.03.2013"
+	at java.text.DateFormat.parse(Unknown Source) ~[na:1.7.0_11]
+	at controllers.Application$$anonfun$mealShoppingList$1.apply(Application.scala:310) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$mealShoppingList$1.apply(Application.scala:308) ~[classes/:2.0.4]
 	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:548) ~[classes/:2.0.4]
 	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:544) ~[classes/:2.0.4]
 	at play.api.mvc.Action$$anon$1.apply(Action.scala:170) ~[play_2.9.1.jar:2.0.4]
@@ -173,15 +62,46 @@ Caused by: java.lang.IllegalArgumentException: Illegal pattern character 'e'
 	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:125) [play_2.9.1.jar:2.0.4]
 	... 11 common frames omitted
 
-2013-03-25 11:29:13,215 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+2013-03-26 23:10:04,727 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-25 11:29:13,228 - [INFO] - from play in play-akka.actor.default-dispatcher-9 
+2013-03-26 23:10:04,754 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
 Application started (Dev)
 
-2013-03-25 11:30:23,365 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+2013-03-26 23:10:19,290 - [ERROR] - from application in play-akka.actor.actions-dispatcher-1 
+
+
+! @6dmdjbp5d - Internal server error, for request [GET /meals/shoppingList/26.03.2013/01.04.2013?] ->
+
+play.core.ActionInvoker$$anonfun$receive$1$$anon$1: Execution exception [[ParseException: Unparseable date: "26.03.2013"]]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:134) [play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:115) [play_2.9.1.jar:2.0.4]
+	at akka.actor.Actor$class.apply(Actor.scala:318) [akka-actor.jar:2.0.2]
+	at play.core.ActionInvoker.apply(Invoker.scala:113) [play_2.9.1.jar:2.0.4]
+	at akka.actor.ActorCell.invoke(ActorCell.scala:626) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:197) [akka-actor.jar:2.0.2]
+	at akka.dispatch.Mailbox.run(Mailbox.scala:179) [akka-actor.jar:2.0.2]
+	at akka.dispatch.ForkJoinExecutorConfigurator$MailboxExecutionTask.exec(AbstractDispatcher.scala:516) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) [akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) [akka-actor.jar:2.0.2]
+Caused by: java.text.ParseException: Unparseable date: "26.03.2013"
+	at java.text.DateFormat.parse(Unknown Source) ~[na:1.7.0_11]
+	at controllers.Application$$anonfun$mealShoppingList$1.apply(Application.scala:310) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$mealShoppingList$1.apply(Application.scala:308) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:548) ~[classes/:2.0.4]
+	at controllers.Application$$anonfun$Authenticated$1.apply(Application.scala:544) ~[classes/:2.0.4]
+	at play.api.mvc.Action$$anon$1.apply(Action.scala:170) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1$$anonfun$6.apply(Invoker.scala:126) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1$$anonfun$6.apply(Invoker.scala:126) ~[play_2.9.1.jar:2.0.4]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:17) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ActionInvoker$$anonfun$receive$1.apply(Invoker.scala:125) [play_2.9.1.jar:2.0.4]
+	... 11 common frames omitted
+
+2013-03-26 23:10:54,094 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-25 11:30:23,376 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
+2013-03-26 23:10:54,108 - [INFO] - from play in play-akka.actor.default-dispatcher-10 
 Application started (Dev)
 

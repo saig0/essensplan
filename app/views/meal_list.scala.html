@@ -3,12 +3,14 @@
 @import helper._
 @import tags._
 
+@locale = @{ java.util.Locale.GERMAN }
+
 @formatDate(date: java.util.Date) = @{
-	new java.text.SimpleDateFormat("yyyy-MM-dd").format(date)
+	new java.text.SimpleDateFormat("dd.MM.yyyy").format(date)
 }
 
 @dayOfWeek(date: java.util.Date) = @{
-	new java.text.SimpleDateFormat("EEEE").format(date)
+	new java.text.SimpleDateFormat("EEEE",locale).format(date)
 }
 
 @dateMin = @{
@@ -57,7 +59,7 @@
 	
 		@meals.map { meal =>
 			<tr>
-				<td>@meal.date</td>
+				<td>@formatDate(meal.date)</td>
 				<td>@dayOfWeek(meal.date)</td>
 				<td>@meal.recipe.name</td>
 				<td>

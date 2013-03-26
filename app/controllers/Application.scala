@@ -306,7 +306,7 @@ object Application extends Controller {
 	}
 	
 	def mealShoppingList(from: String, to: String) = AuthenticatedRequired { implicit request =>
-		val sdf = new SimpleDateFormat("yyyy-MM-dd")    
+		val sdf = new SimpleDateFormat("dd.MM.yyyy")    
 		val fromDate = sdf.parse(from)
 		val toDate = sdf.parse(to)
 		val filter = MealFilter(fromDate, toDate)
