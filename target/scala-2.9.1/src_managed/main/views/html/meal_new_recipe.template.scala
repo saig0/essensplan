@@ -50,7 +50,7 @@ Seq[Any](format.raw/*1.90*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Tue Jan 22 21:53:50 CET 2013
+                    DATE: Wed Mar 27 10:57:19 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/meal_new_recipe.scala.html
                     HASH: 1bb60d070ed92d30532615a445953423f538c876
                     MATRIX: 560->1|756->89|784->123|820->125|846->143|885->145|924->150|1373->577

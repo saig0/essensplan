@@ -83,7 +83,7 @@ Seq[Any](format.raw/*1.83*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 20 00:14:44 CET 2013
+                    DATE: Wed Mar 27 10:57:19 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/recipe_new_ingredients.scala.html
                     HASH: db832fc00a97fceeb0067c899fcf46b75b23aa07
                     MATRIX: 556->1|745->82|773->116|809->118|832->133|871->135|913->143|1199->408|1289->463|1353->518|1393->520|1433->525|1510->580|1550->585|1821->835|1861->840|1945->902|2030->956|2111->1002|2166->1048|2206->1050|2287->1100|2345->1123|2407->1176|2447->1178|2528->1228

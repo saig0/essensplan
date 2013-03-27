@@ -56,7 +56,7 @@ Seq[Any](format.raw/*1.106*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Sun Dec 23 16:47:34 CET 2012
+                    DATE: Wed Mar 27 10:57:19 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/tags/recipe_ingredients_view.scala.html
                     HASH: ed11c5cb89ecb48ec33a1132ce1f3dbbbb69b492
                     MATRIX: 590->1|788->105|816->124|973->246|993->257|1006->261|1060->277|1114->295|1133->305|1162->312|1213->327|1232->337|1259->342|1310->357|1329->367|1356->372|1402->383|1429->401|1442->405|1492->417|1540->429|1568->435|1611->447|1655->460

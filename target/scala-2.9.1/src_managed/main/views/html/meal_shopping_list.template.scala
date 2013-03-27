@@ -56,7 +56,7 @@ Seq[Any](format.raw/*1.33*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 20 00:34:53 CET 2013
+                    DATE: Wed Mar 27 10:57:19 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/meal_shopping_list.scala.html
                     HASH: 01f50487767ad3eeb79bb01a387a3f62d9cf1ff2
                     MATRIX: 528->1|667->32|695->66|731->68|760->89|799->91|962->219|982->230|995->234|1049->250|1103->268|1122->278|1149->283|1200->298|1219->308|1248->315|1299->330|1318->340|1345->345|1394->363
