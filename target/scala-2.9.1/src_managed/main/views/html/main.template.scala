@@ -43,7 +43,7 @@ Seq[Any](format.raw/*1.32*/("""
 						<a href="/meals">Essensplan</a>
 					</td>
 					<td align="right">
-						"""),_display_(Seq[Any](/*25.8*/form(routes.Application.logout)/*25.39*/ {_display_(Seq[Any](format.raw/*25.41*/("""
+						"""),_display_(Seq[Any](/*25.8*/form(routes.AuthenticationController.logout)/*25.52*/ {_display_(Seq[Any](format.raw/*25.54*/("""
 							<input type="submit" value="Abmelden" />
 						""")))})),format.raw/*27.8*/("""
 					</td>
@@ -68,10 +68,10 @@ Seq[Any](format.raw/*1.32*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 27 11:25:15 CET 2013
+                    DATE: Wed Mar 27 22:54:53 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/main.scala.html
-                    HASH: 48037a84921f38a2ac05eff84d42ad852e23c67d
-                    MATRIX: 509->1|633->31|661->51|766->121|792->126|890->189|904->195|959->229|1057->291|1072->297|1126->329|1188->355|1203->361|1270->406|1652->753|1692->784|1732->786|1821->844|1921->909|1950->916
+                    HASH: 86a0e80392d99ed6ce253c8b637d52528fa667a6
+                    MATRIX: 509->1|633->31|661->51|766->121|792->126|890->189|904->195|959->229|1057->291|1072->297|1126->329|1188->355|1203->361|1270->406|1652->753|1705->797|1745->799|1834->857|1934->922|1963->929
                     LINES: 19->1|23->1|24->3|29->8|29->8|30->9|30->9|30->9|31->10|31->10|31->10|32->11|32->11|32->11|46->25|46->25|46->25|48->27|56->35|56->35
                     -- GENERATED --
                 */

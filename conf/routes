@@ -6,55 +6,55 @@
 GET     /                           controllers.Application.index
 
 # Rezepte
-GET		/recipes					controllers.Application.recipes
-GET		/recipes/query				controllers.Application.recipesQuery
-GET		/recipes/new				controllers.Application.newRecipe
-GET		/recipes/:recipeId/ingredients					controllers.Application.recipeIngredients(recipeId: Long) 
-POST	/recipes/:recipeId/ingredients/new								controllers.Application.addRecipeIngredient(recipeId: Long)
-POST	/recipes/:recipeId/ingredients/:ingredientId/delete controllers.Application.removeRecipeIngredient(recipeId:Long, ingredientId: Long)
-POST	/recipes/create				controllers.Application.createRecipe
-POST	/recipes/:recipeId			controllers.Application.updateRecipe(recipeId: Long)
-POST	/recipes/:recipeId/delete	controllers.Application.removeRecipe(recipeId: Long)
-GET		/recipes/:recipeId			controllers.Application.recipe(recipeId: Long, page="all")
-GET		/recipes/:recipeId/page/:page	controllers.Application.recipe(recipeId: Long, page: String)
-GET		/recipes/:recipeId/edit		controllers.Application.editRecipe(recipeId: Long)
-GET		/recipes/:recipeId/preparationStep					controllers.Application.recipePreparation(recipeId: Long) 
-POST	/recipes/:recipeId/preparationStep/new								controllers.Application.addPreparationStep(recipeId: Long)
-POST	/recipes/:recipeId/preparationStep/:preparationStepId/delete controllers.Application.removePreparationStep(recipeId:Long, preparationStepId: Long)
+GET		/recipes					controllers.RecipeController.recipes
+GET		/recipes/query				controllers.RecipeController.recipesQuery
+GET		/recipes/new				controllers.RecipeCreator.newRecipe
+GET		/recipes/:recipeId/ingredients					controllers.RecipeCreator.recipeIngredients(recipeId: Long) 
+POST	/recipes/:recipeId/ingredients/new								controllers.RecipeCreator.addRecipeIngredient(recipeId: Long)
+POST	/recipes/:recipeId/ingredients/:ingredientId/delete controllers.RecipeCreator.removeRecipeIngredient(recipeId:Long, ingredientId: Long)
+POST	/recipes/create				controllers.RecipeCreator.createRecipe
+POST	/recipes/:recipeId			controllers.RecipeCreator.updateRecipe(recipeId: Long)
+POST	/recipes/:recipeId/delete	controllers.RecipeCreator.removeRecipe(recipeId: Long)
+GET		/recipes/:recipeId			controllers.RecipeController.recipe(recipeId: Long, page="all")
+GET		/recipes/:recipeId/page/:page	controllers.RecipeController.recipe(recipeId: Long, page: String)
+GET		/recipes/:recipeId/edit		controllers.RecipeCreator.editRecipe(recipeId: Long)
+GET		/recipes/:recipeId/preparationStep					controllers.RecipeCreator.recipePreparation(recipeId: Long) 
+POST	/recipes/:recipeId/preparationStep/new								controllers.RecipeCreator.addPreparationStep(recipeId: Long)
+POST	/recipes/:recipeId/preparationStep/:preparationStepId/delete controllers.RecipeCreator.removePreparationStep(recipeId:Long, preparationStepId: Long)
 
 # Essensplan
-GET		/meals						controllers.Application.meals
-GET		/meals/query				controllers.Application.mealsQuery
-GET		/meals/create/recipe		controllers.Application.mealsNewRecipe
-GET		/meals/create/recipe/query	controllers.Application.mealsNewRecipeQuery
-GET		/meals/create/day/:recipeId	controllers.Application.mealsNewDay(recipeId: Long)
-POST	/meals/create/:recipeId		controllers.Application.mealsNew(recipeId: Long)
-POST	/meals/:mealId/delete		controllers.Application.mealRemove(mealId: Long)
-GET		/meals/:mealId/edit			controllers.Application.mealEdit(mealId: Long)
-POST	/meals/:mealId/:recipeId	controllers.Application.mealUpdate(recipeId: Long, mealId: Long)
-GET		/meals/shoppingList/:from/:to	controllers.Application.mealShoppingList(from: String, to: String)
-GET		/meals/proposal				controllers.Application.mealProposal
+GET		/meals						controllers.MealController.meals
+GET		/meals/query				controllers.MealController.mealsQuery
+GET		/meals/create/recipe		controllers.MealController.mealsNewRecipe
+GET		/meals/create/recipe/query	controllers.MealController.mealsNewRecipeQuery
+GET		/meals/create/day/:recipeId	controllers.MealController.mealsNewDay(recipeId: Long)
+POST	/meals/create/:recipeId		controllers.MealController.mealsNew(recipeId: Long)
+POST	/meals/:mealId/delete		controllers.MealController.mealRemove(mealId: Long)
+GET		/meals/:mealId/edit			controllers.MealController.mealEdit(mealId: Long)
+POST	/meals/:mealId/:recipeId	controllers.MealController.mealUpdate(recipeId: Long, mealId: Long)
+GET		/meals/shoppingList/:from/:to	controllers.MealController.mealShoppingList(from: String, to: String)
+GET		/meals/proposal				controllers.MealController.mealProposal
 
 # Tags
-GET		/tags						controllers.Application.tags
-POST	/tags/create				controllers.Application.tagNew
-POST	/tags/:tagId/delete			controllers.Application.tagRemove(tagId: Long)
-GET		/tags/:tagId/edit			controllers.Application.tagEdit(tagId: Long)
-POST	/tags/:tagId				controllers.Application.tagUpdate(tagId: Long)
+GET		/tags						controllers.TagController.tags
+POST	/tags/create				controllers.TagController.tagNew
+POST	/tags/:tagId/delete			controllers.TagController.tagRemove(tagId: Long)
+GET		/tags/:tagId/edit			controllers.TagController.tagEdit(tagId: Long)
+POST	/tags/:tagId				controllers.TagController.tagUpdate(tagId: Long)
 
 # Import
-GET		/import						controllers.Application.importRecipe
-POST	/import/chefkoch/			controllers.Application.importRecipeWithId
+GET		/import						controllers.RecipeImport.importRecipe
+POST	/import/chefkoch/			controllers.RecipeImport.importRecipeWithId
 
 # Kopieren
-GET		/copyRecipe					controllers.Application.copyRecipe
-GET		/copyRecipe/query			controllers.Application.copyRecipeQuery
-POST	/copyRecipe/:recipeId		controllers.Application.copyRecipeToUser(recipeId: Long)
+GET		/copyRecipe					controllers.RecipeController.copyRecipe
+GET		/copyRecipe/query			controllers.RecipeController.copyRecipeQuery
+POST	/copyRecipe/:recipeId		controllers.RecipeController.copyRecipeToUser(recipeId: Long)
 
 # Login
-GET		/login/*uri					controllers.Application.login(uri)
-GET		/openId/*uri				controllers.Application.openIDCallback(uri)
-GET		/logout						controllers.Application.logout
+GET		/login/*uri					controllers.AuthenticationController.login(uri)
+GET		/openId/*uri				controllers.AuthenticationController.openIDCallback(uri)
+GET		/logout						controllers.AuthenticationController.logout
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

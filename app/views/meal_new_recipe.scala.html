@@ -5,12 +5,12 @@
 
 @main("Essensplan") {
 	
-	@recipe_list_view(recipes, searchForm, tagOptions, routes.Application.mealsNewRecipeQuery, (recipe: Recipe) => {
+	@recipe_list_view(recipes, searchForm, tagOptions, routes.MealController.mealsNewRecipeQuery, (recipe: Recipe) => {
 		var l = List[Html]().toBuffer
-		l += form(routes.Application.recipe(recipe.id, "all")) { Html("""
+		l += form(routes.RecipeController.recipe(recipe.id, "all")) { Html("""
 						<input type='submit' value='öffnen' />
 						""")}
-		l+=	form(routes.Application.mealsNewDay(recipe.id)) { Html("""
+		l+=	form(routes.MealController.mealsNewDay(recipe.id)) { Html("""
 						<input type='submit' value='auswählen' />
 					""")}
 		l.toList

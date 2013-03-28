@@ -1,0 +1,28 @@
+@(recipe: RecipeDTO)
+
+@import helper._
+
+	
+	<h2>Informationen</h2>
+	
+	@if(!recipe.imageRef.isEmpty) {
+		<img src="@recipe.imageRef" alt="Bild vom Essen" width="250px"/>
+	}
+	
+	<table border="1">
+		<tr>
+			<td>Bewertung</td>
+			<td>
+				<input type="range" id="rating" name="rating" value="@recipe.rating" min="0" max="5" disabled="disabled" />
+			</td>
+		</tr>
+		<tr>
+			<td>Quelle</td>
+			<td>@recipe.source</td>
+		</tr>
+		<tr>
+			<td>Tags</td>
+			<td>@recipe.tags.map(_.name).mkString(",")</td>
+		</tr>
+	</table>
+	

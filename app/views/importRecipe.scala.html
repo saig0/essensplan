@@ -11,7 +11,7 @@
 	</p>
 	
 	<fieldset>
-		@form(routes.Application.importRecipeWithId) {
+		@form(routes.RecipeImport.importRecipeWithId) {
 			
 			@inputText(importForm("recipeId"), '_label -> "Chefkoch-Rezept-Id")
 			
@@ -19,9 +19,9 @@
 		}
 	</fieldset>
 		
-	@{ 	if(recipeId > 0) {
+	@{ if(recipeId > 0) {
 			
-			form(routes.Application.recipe(recipeId, "all")){ Html("""
+			form(routes.RecipeController.recipe(recipeId, "all")){ Html("""
 				<p>Das Rezept wurde erfolgreich importiert!</p>
 				<input type="submit" value="zum Rezept" />
 				""")

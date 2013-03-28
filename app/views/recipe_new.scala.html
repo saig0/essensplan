@@ -9,8 +9,8 @@
 	<fieldset>
 		<legend>Informationen</legend>
 		@form(
-			if(recipeId == 0) routes.Application.createRecipe
-			else routes.Application.updateRecipe(recipeId)
+			if(recipeId == 0) routes.RecipeCreator.createRecipe
+			else routes.RecipeCreator.updateRecipe(recipeId)
 			){
 			@inputText(recipeForm("name"), '_label -> "Name des Rezepts")
 			@inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung")
@@ -23,12 +23,7 @@
 	
 	</fieldset>	
 
-		<input type="submit" value="weiter" />
+	<input type="submit" value="weiter" />
+
 		}
-	
-	<!--
-		@form(routes.Application.recipes) {
-			<input type="submit" value="abbrechen" />
-		}
-	-->			
 }

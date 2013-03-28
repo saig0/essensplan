@@ -1,9 +1,39 @@
-2013-03-27 21:46:59,578 - [INFO] - from play in main 
+2013-03-28 12:09:28,024 - [INFO] - from play in main 
 Listening for HTTP on port 9000...
 
-2013-03-27 21:47:45,524 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+2013-03-28 12:10:34,623 - [ERROR] - from application in New I/O  worker #1 
+
+
+! Internal server error, for request [GET /meals] ->
+
+sbt.PlayExceptions$CompilationException: Compilation error [value recipeIngredients is not a member of controllers.ReverseApplication]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3$$anonfun$4$$anonfun$apply$12$$anonfun$apply$13.apply(PlayReloader.scala:236) ~[na:na]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3$$anonfun$4$$anonfun$apply$12$$anonfun$apply$13.apply(PlayReloader.scala:236) ~[na:na]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3$$anonfun$4$$anonfun$apply$12.apply(PlayReloader.scala:236) ~[na:na]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3$$anonfun$4$$anonfun$apply$12.apply(PlayReloader.scala:233) ~[na:na]
+	at scala.Option.map(Option.scala:133) ~[scala-library.jar:0.11.3]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3$$anonfun$4.apply(PlayReloader.scala:233) ~[na:na]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3$$anonfun$4.apply(PlayReloader.scala:231) ~[na:na]
+	at scala.Either$LeftProjection.map(Either.scala:183) ~[scala-library.jar:0.11.3]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3.apply(PlayReloader.scala:231) ~[na:na]
+	at sbt.PlayReloader$$anon$2$$anonfun$reload$3.apply(PlayReloader.scala:226) ~[na:na]
+	at scala.Option.getOrElse(Option.scala:108) ~[scala-library.jar:0.11.3]
+	at sbt.PlayReloader$$anon$2.reload(PlayReloader.scala:226) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.9.1.jar:2.0.4]
+	at akka.dispatch.Future$$anon$3.liftedTree1$1(Future.scala:195) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.Future$$anon$3.run(Future.scala:194) ~[akka-actor.jar:2.0.2]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:94) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1381) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinTask.doExec(ForkJoinTask.java:259) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinPool.runWorker(ForkJoinPool.java:1479) ~[akka-actor.jar:2.0.2]
+	at akka.jsr166y.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104) ~[akka-actor.jar:2.0.2]
+
+2013-03-28 12:18:24,318 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
 database [default] connected at jdbc:h2:db/essensplan-db
 
-2013-03-27 21:47:46,098 - [INFO] - from play in play-akka.actor.default-dispatcher-3 
+2013-03-28 12:18:24,535 - [INFO] - from play in play-akka.actor.default-dispatcher-1 
 Application started (Dev)
 

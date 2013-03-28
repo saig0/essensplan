@@ -29,11 +29,11 @@ Seq[Any](format.raw/*1.49*/("""
     
 	"""),_display_(Seq[Any](/*8.3*/recipe_ingredients_view(recipeId, ingredients))),format.raw/*8.49*/("""
 	
-	"""),_display_(Seq[Any](/*10.3*/form(routes.Application.recipe(recipeId, "step=1"))/*10.54*/ {_display_(Seq[Any](format.raw/*10.56*/("""
+	"""),_display_(Seq[Any](/*10.3*/form(routes.RecipeController.recipe(recipeId, "step=1"))/*10.59*/ {_display_(Seq[Any](format.raw/*10.61*/("""
 		<input type="submit" value="weiter" />
 	""")))})),format.raw/*12.3*/("""
 	
-	"""),_display_(Seq[Any](/*14.3*/form(routes.Application.recipe(recipeId, "info"))/*14.52*/ {_display_(Seq[Any](format.raw/*14.54*/("""
+	"""),_display_(Seq[Any](/*14.3*/form(routes.RecipeController.recipe(recipeId, "info"))/*14.57*/ {_display_(Seq[Any](format.raw/*14.59*/("""
 		<input type="submit" value="zurück" />
 	""")))})),format.raw/*16.3*/("""
 """)))})))}
@@ -48,10 +48,10 @@ Seq[Any](format.raw/*1.49*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 27 10:57:19 CET 2013
+                    DATE: Thu Mar 28 12:16:03 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/recipe_view_ingredients.scala.html
-                    HASH: 0823460641ca35b1c310a6a18bd4565afad113fc
-                    MATRIX: 538->1|693->48|721->82|757->84|779->98|818->100|860->108|927->154|967->159|1027->210|1067->212|1142->256|1182->261|1240->310|1280->312|1355->356
+                    HASH: 961e52e09bb7a0de3408964d1a750696800f593d
+                    MATRIX: 538->1|693->48|721->82|757->84|779->98|818->100|860->108|927->154|967->159|1032->215|1072->217|1147->261|1187->266|1250->320|1290->322|1365->366
                     LINES: 19->1|25->1|27->5|28->6|28->6|28->6|30->8|30->8|32->10|32->10|32->10|34->12|36->14|36->14|36->14|38->16
                     -- GENERATED --
                 */

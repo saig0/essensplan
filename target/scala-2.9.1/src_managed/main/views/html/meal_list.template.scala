@@ -57,7 +57,7 @@ Seq[Any](format.raw/*1.52*/("""
 	
 	<fieldset>
 		<legend>Essensplan-Filter</legend>
-		"""),_display_(Seq[Any](/*38.4*/form(routes.Application.mealsQuery)/*38.39*/ {_display_(Seq[Any](format.raw/*38.41*/("""	
+		"""),_display_(Seq[Any](/*38.4*/form(routes.MealController.mealsQuery)/*38.42*/ {_display_(Seq[Any](format.raw/*38.44*/("""	
 			<table>
 				<tr>
 					<td>"""),_display_(Seq[Any](/*41.11*/inputDate(mealForm("from"), '_label -> "von"))),format.raw/*41.56*/("""</td>
@@ -85,15 +85,15 @@ Seq[Any](format.raw/*1.52*/("""
 				<td>"""),_display_(Seq[Any](/*63.10*/dayOfWeek(meal.date))),format.raw/*63.30*/("""</td>
 				<td>"""),_display_(Seq[Any](/*64.10*/meal/*64.14*/.recipe.name)),format.raw/*64.26*/("""</td>
 				<td>
-					"""),_display_(Seq[Any](/*66.7*/form(routes.Application.recipe(meal.recipe.id, "all"))/*66.61*/{_display_(Seq[Any](format.raw/*66.62*/("""
+					"""),_display_(Seq[Any](/*66.7*/form(routes.RecipeController.recipe(meal.recipe.id, "all"))/*66.66*/{_display_(Seq[Any](format.raw/*66.67*/("""
 						<input type='submit' value='Rezept öffnen' />
 					""")))})),format.raw/*68.7*/("""				
 				</td>
-				<td>"""),_display_(Seq[Any](/*70.10*/form(routes.Application.mealEdit(meal.id))/*70.52*/{_display_(Seq[Any](format.raw/*70.53*/("""
+				<td>"""),_display_(Seq[Any](/*70.10*/form(routes.MealController.mealEdit(meal.id))/*70.55*/{_display_(Seq[Any](format.raw/*70.56*/("""
 						<input type='submit' value='bearbeiten' />
 					""")))})),format.raw/*72.7*/("""
 				</td>
-				<td>"""),_display_(Seq[Any](/*74.10*/form(routes.Application.mealRemove(meal.id))/*74.54*/{_display_(Seq[Any](format.raw/*74.55*/("""
+				<td>"""),_display_(Seq[Any](/*74.10*/form(routes.MealController.mealRemove(meal.id))/*74.57*/{_display_(Seq[Any](format.raw/*74.58*/("""
 						<input type='submit' value='löschen' />
 					""")))})),format.raw/*76.7*/("""
 				</td>
@@ -105,14 +105,14 @@ Seq[Any](format.raw/*1.52*/("""
 	<table>
 		<tr>
 			<td>
-				"""),_display_(Seq[Any](/*86.6*/form(routes.Application.mealsNewRecipe)/*86.45*/ {_display_(Seq[Any](format.raw/*86.47*/("""
+				"""),_display_(Seq[Any](/*86.6*/form(routes.MealController.mealsNewRecipe)/*86.48*/ {_display_(Seq[Any](format.raw/*86.50*/("""
 					<input type="submit" value="neue Mahlzeit" />
 				""")))})),format.raw/*88.6*/("""	
 			</td>
 		</tr>
 		<tr>
 			<td>
-				"""),_display_(Seq[Any](/*93.6*/form(routes.Application.mealShoppingList(dateMin, dateMax))/*93.65*/ {_display_(Seq[Any](format.raw/*93.67*/("""	
+				"""),_display_(Seq[Any](/*93.6*/form(routes.MealController.mealShoppingList(dateMin, dateMax))/*93.68*/ {_display_(Seq[Any](format.raw/*93.70*/("""	
 					<input type="submit" value="Einkaufsliste erstellen" />
 				""")))})),format.raw/*95.6*/("""
 			</td>
@@ -133,10 +133,10 @@ Seq[Any](format.raw/*1.52*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 27 10:57:19 CET 2013
+                    DATE: Thu Mar 28 12:13:13 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/meal_list.scala.html
-                    HASH: 9aa26015d73789e330d2bf9aa4ad019d92dbfcb2
-                    MATRIX: 533->1|674->87|687->93|731->127|749->137|851->228|869->237|972->329|987->336|1108->446|1123->453|1268->51|1296->85|1324->124|1353->225|1382->326|1411->443|1440->568|1478->571|1505->589|1545->591|1658->669|1702->704|1742->706|1810->738|1877->783|1947->817|2012->860|2150->967|2309->1091|2322->1096|2335->1100|2383->1110|2437->1128|2480->1149|2531->1164|2573->1184|2624->1199|2637->1203|2671->1215|2727->1236|2790->1290|2829->1291|2919->1350|2979->1374|3030->1416|3069->1417|3156->1473|3212->1493|3265->1537|3304->1538|3388->1591|3442->1614|3527->1664|3575->1703|3615->1705|3703->1762|3777->1801|3845->1860|3885->1862|3984->1930
+                    HASH: f0b2277466f3903322b5b0ede9a2afdeb9f7d71c
+                    MATRIX: 533->1|674->87|687->93|731->127|749->137|851->228|869->237|972->329|987->336|1108->446|1123->453|1268->51|1296->85|1324->124|1353->225|1382->326|1411->443|1440->568|1478->571|1505->589|1545->591|1658->669|1705->707|1745->709|1813->741|1880->786|1950->820|2015->863|2153->970|2312->1094|2325->1099|2338->1103|2386->1113|2440->1131|2483->1152|2534->1167|2576->1187|2627->1202|2640->1206|2674->1218|2730->1239|2798->1298|2837->1299|2927->1358|2987->1382|3041->1427|3080->1428|3167->1484|3223->1504|3279->1551|3318->1552|3402->1605|3456->1628|3541->1678|3592->1720|3632->1722|3720->1779|3794->1818|3865->1880|3905->1882|4004->1950
                     LINES: 19->1|24->6|24->6|24->8|24->8|26->12|26->12|28->16|28->16|34->24|34->24|41->1|43->5|44->6|46->10|48->14|50->22|52->30|54->32|54->32|54->32|60->38|60->38|60->38|63->41|63->41|65->43|65->43|71->49|82->60|82->60|82->60|82->60|84->62|84->62|85->63|85->63|86->64|86->64|86->64|88->66|88->66|88->66|90->68|92->70|92->70|92->70|94->72|96->74|96->74|96->74|98->76|101->79|108->86|108->86|108->86|110->88|115->93|115->93|115->93|117->95
                     -- GENERATED --
                 */

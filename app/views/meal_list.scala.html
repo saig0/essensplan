@@ -35,7 +35,7 @@
 	
 	<fieldset>
 		<legend>Essensplan-Filter</legend>
-		@form(routes.Application.mealsQuery) {	
+		@form(routes.MealController.mealsQuery) {	
 			<table>
 				<tr>
 					<td>@inputDate(mealForm("from"), '_label -> "von")</td>
@@ -63,15 +63,15 @@
 				<td>@dayOfWeek(meal.date)</td>
 				<td>@meal.recipe.name</td>
 				<td>
-					@form(routes.Application.recipe(meal.recipe.id, "all")){
+					@form(routes.RecipeController.recipe(meal.recipe.id, "all")){
 						<input type='submit' value='Rezept öffnen' />
 					}				
 				</td>
-				<td>@form(routes.Application.mealEdit(meal.id)){
+				<td>@form(routes.MealController.mealEdit(meal.id)){
 						<input type='submit' value='bearbeiten' />
 					}
 				</td>
-				<td>@form(routes.Application.mealRemove(meal.id)){
+				<td>@form(routes.MealController.mealRemove(meal.id)){
 						<input type='submit' value='löschen' />
 					}
 				</td>
@@ -83,14 +83,14 @@
 	<table>
 		<tr>
 			<td>
-				@form(routes.Application.mealsNewRecipe) {
+				@form(routes.MealController.mealsNewRecipe) {
 					<input type="submit" value="neue Mahlzeit" />
 				}	
 			</td>
 		</tr>
 		<tr>
 			<td>
-				@form(routes.Application.mealShoppingList(dateMin, dateMax)) {	
+				@form(routes.MealController.mealShoppingList(dateMin, dateMax)) {	
 					<input type="submit" value="Einkaufsliste erstellen" />
 				}
 			</td>

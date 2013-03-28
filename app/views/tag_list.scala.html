@@ -16,12 +16,12 @@
 			<tr>
 				<td>@tag.name</td>
 				<td>
-					@form(routes.Application.tagEdit(tag.id)){
+					@form(routes.TagController.tagEdit(tag.id)){
 						<input type="submit" value="bearbeiten" />
 					}
 				</td>
 				<td>
-					@form(routes.Application.tagRemove(tag.id)){
+					@form(routes.TagController.tagRemove(tag.id)){
 						<input type="submit" value="entfernen" />
 					}
 				</td>
@@ -34,9 +34,9 @@
 		<legend>Neuer Tag</legend>
 		@form(
 			if(tagId == 0) {
-				routes.Application.tagNew
+				routes.TagController.tagNew
 			} else {
-				routes.Application.tagUpdate(tagId)
+				routes.TagController.tagUpdate(tagId)
 			}) {
 			
 			@inputText(tagForm("name"), '_label -> "Name des Stichworts")

@@ -1,0 +1,102 @@
+@(meals: List[MealDTO], mealForm: Form[MealFilter])
+
+@import helper._
+@import tags._
+
+@locale = @{ java.util.Locale.GERMAN }
+
+@formatDate(date: java.util.Date) = @{
+	new java.text.SimpleDateFormat("dd.MM.yyyy").format(date)
+}
+
+@dayOfWeek(date: java.util.Date) = @{
+	new java.text.SimpleDateFormat("EEEE",locale).format(date)
+}
+
+@dateMin = @{
+	if(!meals.isEmpty) {
+		formatDate(meals.head.date)
+	} else {
+		formatDate(new java.util.Date())
+	}
+}
+
+@dateMax = @{
+	if(!meals.isEmpty) {
+		formatDate(meals.reverse.head.date)
+	} else {
+		formatDate(new java.util.Date())
+	}
+}
+
+@main("Essensplan") {
+	
+	<h1>Essensplan</h1>
+	
+	<fieldset>
+		<legend>Essensplan-Filter</legend>
+		@form(routes.Application.mealsQuery) {	
+			<table>
+				<tr>
+					<td>@inputDate(mealForm("from"), '_label -> "von")</td>
+					<td> - </td>
+					<td>@inputDate(mealForm("to"), '_label -> "bis")</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="suchen" /></td>			
+				</tr>
+			</table>	
+		}
+	</fieldset>
+	<br/>
+	
+	<table border="1">
+		<tr>
+			<th>Datum</th>
+			<th>Wochentag</th>
+			<th>Mahlzeit</th>
+		</tr>
+	
+		@meals.map { meal =>
+			<tr>
+				<td>@formatDate(meal.date)</td>
+				<td>@dayOfWeek(meal.date)</td>
+				<td>@meal.recipe.name</td>
+				<td>
+					@form(routes.Application.recipe(meal.recipe.id, "all")){
+						<input type='submit' value='Rezept öffnen' />
+					}				
+				</td>
+				<td>@form(routes.Application.mealEdit(meal.id)){
+						<input type='submit' value='bearbeiten' />
+					}
+				</td>
+				<td>@form(routes.Application.mealRemove(meal.id)){
+						<input type='submit' value='löschen' />
+					}
+				</td>
+			</tr>
+		}	
+	</table>
+	<br/>
+	
+	<table>
+		<tr>
+			<td>
+				@form(routes.Application.mealsNewRecipe) {
+					<input type="submit" value="neue Mahlzeit" />
+				}	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@form(routes.Application.mealShoppingList(dateMin, dateMax)) {	
+					<input type="submit" value="Einkaufsliste erstellen" />
+				}
+			</td>
+		</tr>
+	</table>
+	
+	
+	
+}

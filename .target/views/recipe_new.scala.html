@@ -1,0 +1,34 @@
+@(recipeForm: Form[RecipeDTO], tags: Map[String, String], recipeId: Long = 0)
+
+@import helper._
+
+@main("Rezepte") {
+    
+	<h1>@{if(recipeId == 0) "Neues Rezepte" else "Rezept ändern"}</h1>
+	
+	<fieldset>
+		<legend>Informationen</legend>
+		@form(
+			if(recipeId == 0) routes.Application.createRecipe
+			else routes.Application.updateRecipe(recipeId)
+			){
+			@inputText(recipeForm("name"), '_label -> "Name des Rezepts")
+			@inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung")
+			@inputText(recipeForm("imageRef"), '_label -> "Link zu einem Bild")
+			@inputText(recipeForm("source"), '_label -> "Quelle")
+			@multiSelect(field = recipeForm("tags"), 
+				options = options(tags),
+				'_label -> "Stichwörter"
+			)
+	
+	</fieldset>	
+
+		<input type="submit" value="weiter" />
+		}
+	
+	<!--
+		@form(routes.Application.recipes) {
+			<input type="submit" value="abbrechen" />
+		}
+	-->			
+}

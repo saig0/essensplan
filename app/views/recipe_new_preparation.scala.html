@@ -25,7 +25,7 @@
 				</td>
 				<td valign="top">
 					@if(preparationStep.step == preparationSteps.size) {
-						@form(routes.Application.removePreparationStep(recipe.id, preparationStep.id)) {
+						@form(routes.RecipeCreator.removePreparationStep(recipe.id, preparationStep.id)) {
 							<input type="submit" value="entfernen" />
 						}
 					}
@@ -37,7 +37,7 @@
 	
 	<fieldset>
 		<legend>Neuer Zubereitungsschritt</legend>
-		@form(routes.Application.addPreparationStep(recipe.id)) {
+		@form(routes.RecipeCreator.addPreparationStep(recipe.id)) {
 			<input type="hidden" name="step" value="@(preparationSteps.size + 1)" />
 			@textarea(preparationStepForm("description"), '_label -> "Anleitung")
 			@inputText(preparationStepForm("imageRef"), '_label -> "Link zu einem Bild")
@@ -49,12 +49,12 @@
 	<table>
 		<tr>
 			<td>	
-				@form(routes.Application.recipeIngredients(recipe.id)) {
+				@form(routes.RecipeCreator.recipeIngredients(recipe.id)) {
 					<input type="submit" value="zurück" />
 				}	
 			</td>
 			<td>
-				@form(routes.Application.recipes) {
+				@form(routes.RecipeController.recipes) {
 					<input type="submit" value="fertig" />
 				}
 			</td>

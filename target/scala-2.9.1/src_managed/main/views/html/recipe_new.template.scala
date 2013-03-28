@@ -30,8 +30,8 @@ Seq[Any](format.raw/*1.78*/("""
 	<fieldset>
 		<legend>Informationen</legend>
 		"""),_display_(Seq[Any](/*11.4*/form(
-			if(recipeId == 0) routes.Application.createRecipe
-			else routes.Application.updateRecipe(recipeId)
+			if(recipeId == 0) routes.RecipeCreator.createRecipe
+			else routes.RecipeCreator.updateRecipe(recipeId)
 			)/*14.5*/{_display_(Seq[Any](format.raw/*14.6*/("""
 			"""),_display_(Seq[Any](/*15.5*/inputText(recipeForm("name"), '_label -> "Name des Rezepts"))),format.raw/*15.65*/("""
 			"""),_display_(Seq[Any](/*16.5*/inputRange(recipeForm("rating"), 0, 5, '_label -> "Bewertung"))),format.raw/*16.67*/("""
@@ -44,15 +44,10 @@ Seq[Any](format.raw/*1.78*/("""
 	
 	</fieldset>	
 
-		<input type="submit" value="weiter" />
-		""")))})),format.raw/*27.4*/("""
-	
-	<!--
-		"""),_display_(Seq[Any](/*30.4*/form(routes.Application.recipes)/*30.36*/ {_display_(Seq[Any](format.raw/*30.38*/("""
-			<input type="submit" value="abbrechen" />
-		""")))})),format.raw/*32.4*/("""
-	-->			
-""")))})),format.raw/*34.2*/("""
+	<input type="submit" value="weiter" />
+
+		""")))})),format.raw/*28.4*/("""
+""")))})),format.raw/*29.2*/("""
 """))}
     }
     
@@ -65,11 +60,11 @@ Seq[Any](format.raw/*1.78*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 27 10:57:19 CET 2013
+                    DATE: Thu Mar 28 12:17:38 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/recipe_new.scala.html
-                    HASH: 117f4bd419e5fefce61b38118a0dc5932dd5b457
-                    MATRIX: 544->1|713->77|741->96|777->98|800->113|839->115|885->127|962->183|1053->239|1174->352|1212->353|1252->358|1334->418|1374->423|1458->485|1498->490|1586->556|1626->561|1700->613|1740->618|1864->721|1957->783|2004->795|2045->827|2085->829|2165->878|2206->888
-                    LINES: 19->1|23->1|25->4|26->5|26->5|26->5|28->7|28->7|32->11|35->14|35->14|36->15|36->15|37->16|37->16|38->17|38->17|39->18|39->18|40->19|43->22|48->27|51->30|51->30|51->30|53->32|55->34
+                    HASH: 9ecbeb48d0751d60d2060cf5272628a4e0950019
+                    MATRIX: 544->1|713->77|741->96|777->98|800->113|839->115|885->127|962->183|1053->239|1178->356|1216->357|1256->362|1338->422|1378->427|1462->489|1502->494|1590->560|1630->565|1704->617|1744->622|1868->725|1961->787|1994->789
+                    LINES: 19->1|23->1|25->4|26->5|26->5|26->5|28->7|28->7|32->11|35->14|35->14|36->15|36->15|37->16|37->16|38->17|38->17|39->18|39->18|40->19|43->22|49->28|50->29
                     -- GENERATED --
                 */
             

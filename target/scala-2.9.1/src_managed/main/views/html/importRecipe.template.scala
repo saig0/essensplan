@@ -32,7 +32,7 @@ Seq[Any](format.raw/*1.48*/("""
 	</p>
 	
 	<fieldset>
-		"""),_display_(Seq[Any](/*14.4*/form(routes.Application.importRecipeWithId)/*14.47*/ {_display_(Seq[Any](format.raw/*14.49*/("""
+		"""),_display_(Seq[Any](/*14.4*/form(routes.RecipeImport.importRecipeWithId)/*14.48*/ {_display_(Seq[Any](format.raw/*14.50*/("""
 			
 			"""),_display_(Seq[Any](/*16.5*/inputText(importForm("recipeId"), '_label -> "Chefkoch-Rezept-Id"))),format.raw/*16.71*/("""
 			
@@ -40,9 +40,9 @@ Seq[Any](format.raw/*1.48*/("""
 		""")))})),format.raw/*19.4*/("""
 	</fieldset>
 		
-	"""),_display_(Seq[Any](/*22.3*/{ 	if(recipeId > 0) {
+	"""),_display_(Seq[Any](/*22.3*/{ if(recipeId > 0) {
 			
-			form(routes.Application.recipe(recipeId, "all")){ Html("""
+			form(routes.RecipeController.recipe(recipeId, "all")){ Html("""
 				<p>Das Rezept wurde erfolgreich importiert!</p>
 				<input type="submit" value="zum Rezept" />
 				""")
@@ -65,10 +65,10 @@ Seq[Any](format.raw/*1.48*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 27 10:57:19 CET 2013
+                    DATE: Thu Mar 28 12:12:49 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/importRecipe.scala.html
-                    HASH: dac7c92fec15929181d1a830d7737e6bf19bedf1
-                    MATRIX: 523->1|662->47|689->65|729->71|763->97|802->99|1015->265|1072->275|1137->305|1189->348|1229->350|1273->359|1361->425|1447->480|1501->499|1822->799|1855->801
+                    HASH: df1cf19f80df8f4b9befd56bde225b075aa215ae
+                    MATRIX: 523->1|662->47|689->65|729->71|763->97|802->99|1015->265|1072->275|1137->305|1190->349|1230->351|1274->360|1362->426|1448->481|1502->500|1827->804|1860->806
                     LINES: 19->1|23->1|24->3|25->4|25->4|25->4|31->10|31->10|35->14|35->14|35->14|37->16|37->16|40->19|43->22|53->32|54->33
                     -- GENERATED --
                 */

@@ -1,0 +1,19 @@
+@(mealProposalForm: Form[MealProposals])
+
+@import helper._
+@import tags._
+
+@main("Essensplan") {
+	
+	<h1>Vorschläge</h1>
+	
+	<table border="1">
+	@repeat(mealProposalForm("proposals")) { proposal =>
+		<tr><td>
+		@inputText(proposal("recipeId"), '_label -> "")
+		</td><td>
+		@checkbox(proposal("checked"), '_label -> "")
+		</td></tr>	
+	}
+	</table>
+}

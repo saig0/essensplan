@@ -1,0 +1,55 @@
+@(recipes: List[Recipe], searchForm: Form[RecipeFilter], tags: Map[String, String], action: play.api.mvc.Call, render: Recipe => List[Html])(titel: String = "Rezepte")
+
+@import helper._
+    
+	<h1>@titel</h1>	
+	
+	<fieldset>
+		<legend>Rezept-Filter</legend>
+		@form(action) {
+			@searchInput(searchForm("name"), '_label -> "Name des Rezepts")
+			@select(
+				field = searchForm("sorting"), 
+				options = options(
+					"2"		-> "name",
+					"-3"	-> "rating"
+				),
+				'_label -> "Sortierung nach"
+			)
+			
+			<details>
+				<summary>erweiterte Suche</summary>
+				@select(field = searchForm("tag"), 
+					options = options(tags),
+					'_default -> "alle Tags",
+					'_label -> "Stichwörter"
+				)
+				@inputRange(searchForm("rating"), 0, 5, '_label -> "Bewertung")
+				@searchInput(searchForm("ingredient"), '_label -> "Enthaltene Zutat")
+				@checkbox(searchForm("onlyMyRecipes"), '_label -> "Nur eigene Rezepte")
+				<input type="hidden" name="userId" value='@searchForm("userId").value' />
+			</details>
+		
+		<input type="submit" value="suchen" />
+	}	
+	</fieldset>
+	<br/>
+	
+	<span>@recipes.size Rezept@{if(recipes.size > 1) "e"} gefunden</span>
+	
+	<table border="1">
+		<tr>
+			<th>Rezept</th>
+		</tr>
+	
+		@recipes.map { recipe =>
+			<tr>
+				<td>@recipe.name</td>
+				@render(recipe).map { r =>
+					<td> @r </td>
+				}
+			</tr>
+		}	
+	</table>
+	<br/>
+	

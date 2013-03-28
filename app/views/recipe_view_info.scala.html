@@ -7,13 +7,13 @@
     
 	<h1>Rezept: @recipe.name</h1>
 	
-	@form(routes.Application.recipe(recipe.id, "all")) {
+	@form(routes.RecipeController.recipe(recipe.id, "all")) {
 		<input type="submit" value="Gesamtübersicht" />
 	}
 	
 	@recipe_info_view(recipe)
 	
-	@form(routes.Application.recipe(recipe.id, "ingredients")) {
+	@form(routes.RecipeController.recipe(recipe.id, "ingredients")) {
 		<input type="submit" value="weiter" />
 	}
 }

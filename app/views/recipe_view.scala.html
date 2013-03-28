@@ -10,12 +10,12 @@
 	<table>
 		<tr>
 			<td>
-				@form(routes.Application.recipe(recipe.id, "info")) {
+				@form(routes.RecipeController.recipe(recipe.id, "info")) {
 					<input type="submit" value="Schritt-für-Schritt-Anleitung" />
 				}
 			</td>
 			<td>
-				@form(routes.Application.editRecipe(recipe.id)) {
+				@form(routes.RecipeCreator.editRecipe(recipe.id)) {
 					<input type="submit" value="bearbeiten" />
 				}
 			</td>

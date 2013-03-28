@@ -26,15 +26,15 @@
 	}
 	
 	@if(step < preparationSteps.size) {
-		@form(routes.Application.recipe(recipeId, "step="+(step+1))) {
+		@form(routes.RecipeController.recipe(recipeId, "step="+(step+1))) {
 			<input type="submit" value="weiter" />
 		}
 	}
 	
 	@form(if(step == 1) {
-			routes.Application.recipe(recipeId, "ingredients")
+			routes.RecipeController.recipe(recipeId, "ingredients")
 		} else {
-			routes.Application.recipe(recipeId, "step="+(step-1))
+			routes.RecipeController.recipe(recipeId, "step="+(step-1))
 		}) {
 		<input type="submit" value="zurück" />
 	}

@@ -27,12 +27,12 @@ Seq[Any](format.raw/*1.90*/("""
 """),format.raw/*5.1*/("""
 """),_display_(Seq[Any](/*6.2*/main("Essensplan")/*6.20*/ {_display_(Seq[Any](format.raw/*6.22*/("""
 	
-	"""),_display_(Seq[Any](/*8.3*/recipe_list_view(recipes, searchForm, tagOptions, routes.Application.mealsNewRecipeQuery, (recipe: Recipe) => {
+	"""),_display_(Seq[Any](/*8.3*/recipe_list_view(recipes, searchForm, tagOptions, routes.MealController.mealsNewRecipeQuery, (recipe: Recipe) => {
 		var l = List[Html]().toBuffer
-		l += form(routes.Application.recipe(recipe.id, "all")) { Html("""
+		l += form(routes.RecipeController.recipe(recipe.id, "all")) { Html("""
 						<input type='submit' value='öffnen' />
 						""")}
-		l+=	form(routes.Application.mealsNewDay(recipe.id)) { Html("""
+		l+=	form(routes.MealController.mealsNewDay(recipe.id)) { Html("""
 						<input type='submit' value='auswählen' />
 					""")}
 		l.toList
@@ -50,10 +50,10 @@ Seq[Any](format.raw/*1.90*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 27 10:57:19 CET 2013
+                    DATE: Thu Mar 28 12:13:27 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/meal_new_recipe.scala.html
-                    HASH: 1bb60d070ed92d30532615a445953423f538c876
-                    MATRIX: 560->1|756->89|784->123|820->125|846->143|885->145|924->150|1373->577
+                    HASH: 8984b50d09012a4bc98bcad1d8878e554f64cb6e
+                    MATRIX: 560->1|756->89|784->123|820->125|846->143|885->145|924->150|1384->588
                     LINES: 19->1|25->1|27->5|28->6|28->6|28->6|30->8|39->17
                     -- GENERATED --
                 */

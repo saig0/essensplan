@@ -1,0 +1,19 @@
+@(recipe: RecipeDTO)
+
+@import helper._
+@import tags._
+
+@main("Rezept") {
+    
+	<h1>Rezept: @recipe.name</h1>
+	
+	@form(routes.Application.recipe(recipe.id, "all")) {
+		<input type="submit" value="Gesamtübersicht" />
+	}
+	
+	@recipe_info_view(recipe)
+	
+	@form(routes.Application.recipe(recipe.id, "ingredients")) {
+		<input type="submit" value="weiter" />
+	}
+}

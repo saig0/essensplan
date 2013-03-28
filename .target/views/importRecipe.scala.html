@@ -1,0 +1,35 @@
+@(importForm: Form[String], recipeId: Long = 0)
+@import helper._
+    
+@main("Rezept importieren") {
+
+	<h1>Rezept importieren</h1>	
+	
+	<p>
+		von <a href="http://www.chefkoch.de/rezepte">chefkoch.de</a> unter Angabe der Id des Rezepts
+		<i>( www.chefkoch.de/rezepte/{REZEPT-ID} )</i>
+	</p>
+	
+	<fieldset>
+		@form(routes.Application.importRecipeWithId) {
+			
+			@inputText(importForm("recipeId"), '_label -> "Chefkoch-Rezept-Id")
+			
+			<input type="submit" value="importieren" />
+		}
+	</fieldset>
+		
+	@{ 	if(recipeId > 0) {
+			
+			form(routes.Application.recipe(recipeId, "all")){ Html("""
+				<p>Das Rezept wurde erfolgreich importiert!</p>
+				<input type="submit" value="zum Rezept" />
+				""")
+			}
+		} else if(recipeId < 0){
+			<p>Das Rezept konnte nicht erfolgreich importiert werden!</p>
+		}	
+	}
+}
+	
+	

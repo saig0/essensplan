@@ -1,0 +1,53 @@
+@(recipes: List[Recipe], searchForm: Form[RecipeFilter], tagOptions: Map[String, String])
+
+@import helper._
+@import tags._
+
+
+@main("Rezepte") {
+	
+	@recipe_list_view(recipes, searchForm, tagOptions, routes.Application.recipesQuery, (recipe: Recipe) => {
+		var l = List[Html]().toBuffer
+		l += form(routes.Application.recipe(recipe.id, "all")) { Html("""
+						<input type='submit' value='öffnen' />
+						""")}
+		l+=	form(routes.Application.editRecipe(recipe.id)) { Html("""
+						<input type='submit' value='bearbeiten' />
+					""")}
+		l+=	form(routes.Application.removeRecipe(recipe.id)) { Html("""
+						<input type='submit' value='entfernen' />
+					""")}
+		l.toList
+	})("Rezepte")
+	
+	<table>
+		<tr>
+			<td>
+				@form(routes.Application.newRecipe) {
+					<input type="submit" value="neues Rezept" />
+				}	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@form(routes.Application.importRecipe) {
+					<input type="submit" value="Rezept importieren" />
+				}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@form(routes.Application.copyRecipe) {
+					<input type="submit" value="Rezept kopieren" />
+				}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@form(routes.Application.tags) {
+					<input type="submit" value="Stichwörter verwalten" />
+				}
+			</td>
+		</tr>
+	</table>
+}

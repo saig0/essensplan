@@ -1,0 +1,25 @@
+@(ingredients: List[Ingredient])
+
+@import helper._
+@import tags._
+
+@main("Einkaufsliste") {	
+		
+	<h1>Einkaufsliste</h1>	
+		
+	<table border="1">
+		<tr>
+			<th>Zutat</th>
+			<th>Menge</th>
+			<th>Anzahl</th>
+		</tr>
+	
+		@ingredients.map { ingredient =>
+			<tr>
+				<td>@ingredient.name</td>
+				<td>@ingredient.amount</td>
+				<td>@ingredient.unit</td>
+			</tr>
+		}	
+	</table>	
+}

@@ -1,1 +1,4 @@
 run
+eclipse with-source=true
+eclipse
+eclipsify with-source=true

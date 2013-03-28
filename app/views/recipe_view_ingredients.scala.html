@@ -7,11 +7,11 @@
     
 	@recipe_ingredients_view(recipeId, ingredients)
 	
-	@form(routes.Application.recipe(recipeId, "step=1")) {
+	@form(routes.RecipeController.recipe(recipeId, "step=1")) {
 		<input type="submit" value="weiter" />
 	}
 	
-	@form(routes.Application.recipe(recipeId, "info")) {
+	@form(routes.RecipeController.recipe(recipeId, "info")) {
 		<input type="submit" value="zurück" />
 	}
 }

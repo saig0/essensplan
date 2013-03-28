@@ -1,0 +1,23 @@
+@(recipe: Recipe, newMealForm: Form[NewMealFilter], mealId: Long = 0)
+
+@import helper._
+@import tags._
+
+@main("Essensplan") {
+	
+	<h1>Tag auswählen</h1>
+	
+	<fieldset>
+		@form(
+			if(mealId == 0) {
+				routes.Application.mealsNew(recipe.id)
+			} else {
+				routes.Application.mealUpdate(recipe.id, mealId)
+			}
+		) {		
+			@inputDate(newMealForm("date"), '_label -> "Tag für die Mahlzeit")
+			
+			<input type='submit' value='eintragen' />
+		}	
+	</fieldset>
+}

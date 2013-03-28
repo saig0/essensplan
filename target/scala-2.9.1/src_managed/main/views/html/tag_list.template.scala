@@ -37,12 +37,12 @@ Seq[Any](format.raw/*1.56*/("""
 			<tr>
 				<td>"""),_display_(Seq[Any](/*17.10*/tag/*17.13*/.name)),format.raw/*17.18*/("""</td>
 				<td>
-					"""),_display_(Seq[Any](/*19.7*/form(routes.Application.tagEdit(tag.id))/*19.47*/{_display_(Seq[Any](format.raw/*19.48*/("""
+					"""),_display_(Seq[Any](/*19.7*/form(routes.TagController.tagEdit(tag.id))/*19.49*/{_display_(Seq[Any](format.raw/*19.50*/("""
 						<input type="submit" value="bearbeiten" />
 					""")))})),format.raw/*21.7*/("""
 				</td>
 				<td>
-					"""),_display_(Seq[Any](/*24.7*/form(routes.Application.tagRemove(tag.id))/*24.49*/{_display_(Seq[Any](format.raw/*24.50*/("""
+					"""),_display_(Seq[Any](/*24.7*/form(routes.TagController.tagRemove(tag.id))/*24.51*/{_display_(Seq[Any](format.raw/*24.52*/("""
 						<input type="submit" value="entfernen" />
 					""")))})),format.raw/*26.7*/("""
 				</td>
@@ -55,9 +55,9 @@ Seq[Any](format.raw/*1.56*/("""
 		<legend>Neuer Tag</legend>
 		"""),_display_(Seq[Any](/*35.4*/form(
 			if(tagId == 0) {
-				routes.Application.tagNew
+				routes.TagController.tagNew
 			} else {
-				routes.Application.tagUpdate(tagId)
+				routes.TagController.tagUpdate(tagId)
 			})/*40.6*/ {_display_(Seq[Any](format.raw/*40.8*/("""
 			
 			"""),_display_(Seq[Any](/*42.5*/inputText(tagForm("name"), '_label -> "Name des Stichworts"))),format.raw/*42.65*/("""
@@ -83,10 +83,10 @@ Seq[Any](format.raw/*1.56*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Mar 27 10:57:19 CET 2013
+                    DATE: Wed Mar 27 23:01:43 CET 2013
                     SOURCE: E:/Eigene Dateien/workspace-scala/essensplan/app/views/tag_list.scala.html
-                    HASH: bbc6dde1ada0de15f67d0552080679b8979b0c4b
-                    MATRIX: 526->1|673->55|700->73|740->79|777->108|816->110|885->145|897->149|923->154|965->161|1027->202|1143->283|1155->287|1168->291|1215->300|1269->318|1281->321|1308->326|1364->347|1413->387|1452->388|1539->444|1600->470|1651->512|1690->513|1776->568|1830->591|1930->656|2051->769|2090->771|2134->780|2216->840|2260->849|2407->975|2442->979|2488->994
+                    HASH: e4b7dc8d73b22bd74f93d524599b6e8613fc5cb6
+                    MATRIX: 526->1|673->55|700->73|740->79|777->108|816->110|885->145|897->149|923->154|965->161|1027->202|1143->283|1155->287|1168->291|1215->300|1269->318|1281->321|1308->326|1364->347|1415->389|1454->390|1541->446|1602->472|1655->516|1694->517|1780->572|1834->595|1934->660|2059->777|2098->779|2142->788|2224->848|2268->857|2415->983|2450->987|2496->1002
                     LINES: 19->1|23->1|24->3|25->4|25->4|25->4|29->8|29->8|29->8|29->8|29->8|36->15|36->15|36->15|36->15|38->17|38->17|38->17|40->19|40->19|40->19|42->21|45->24|45->24|45->24|47->26|50->29|56->35|61->40|61->40|63->42|63->42|65->44|69->48|70->49|72->51
                     -- GENERATED --
                 */

@@ -10,9 +10,9 @@
 	<fieldset>
 		@form(
 			if(mealId == 0) {
-				routes.Application.mealsNew(recipe.id)
+				routes.MealController.mealsNew(recipe.id)
 			} else {
-				routes.Application.mealUpdate(recipe.id, mealId)
+				routes.MealController.mealUpdate(recipe.id, mealId)
 			}
 		) {		
 			@inputDate(newMealForm("date"), '_label -> "Tag für die Mahlzeit")
